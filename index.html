@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PH Negócios - Consórcio Premium</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#fef2f2',
+                            100: '#fee2e2',
+                            200: '#fecaca',
+                            300: '#fca5a5',
+                            400: '#f87171',
+                            500: '#ef4444',
+                            600: '#dc2626',
+                            700: '#c91212',  // Vermelhor - Principal
+                            800: '#991b1b',
+                            900: '#7f1d1d',
+                            dark: '#6d251d',  // Mesclado
+                            bright: '#FF0000', // Vermelho forte
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'shimmer': 'shimmer 2s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-200% 0' },
+                            '100%': { backgroundPosition: '200% 0' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #c91212 0%, #6d251d 50%, #FF0000 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #c91212 0%, #6d251d 100%);
+        }
+
+        .gradient-bg-light {
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+        }
+
+        .hero-gradient {
+            background:
+                radial-gradient(circle at 0% 0%, rgba(201, 18, 18, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(109, 37, 29, 0.05) 0%, transparent 50%),
+                linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+        }
+
+        .hero-bg {
+  background:
+    linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.96),
+      rgba(243, 244, 246, 0.96)
+    ),
+    url('./trabalhe-conosco-img-1.png') center/cover no-repeat;
+}
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow:
+                0 4px 6px -1px rgba(0, 0, 0, 0.02),
+                0 2px 4px -1px rgba(0, 0, 0, 0.02);
+        }
+
+        .premium-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .premium-card:hover {
+            transform: translateY(-8px);
+            box-shadow:
+                0 20px 40px -10px rgba(201, 18, 18, 0.15),
+                0 0 0 1px rgba(201, 18, 18, 0.1);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #c91212 0%, #6d251d 100%);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px -10px rgba(201, 18, 18, 0.5);
+        }
+
+        .btn-outline {
+            border: 2px solid #c91212;
+            color: #c91212;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline:hover {
+            background: #c91212;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .input-range {
+            -webkit-appearance: none;
+            height: 6px;
+            background: linear-gradient(to right, #fee2e2, #fecaca);
+            border-radius: 10px;
+            outline: none;
+        }
+
+        .input-range::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, #c91212, #6d251d);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 0 4px rgba(201, 18, 18, 0.2);
+            transition: all 0.2s;
+        }
+
+        .input-range::-webkit-slider-thumb:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 0 6px rgba(201, 18, 18, 0.3);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #c91212, #6d251d);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .faq-content.active {
+            max-height: 500px;
+        }
+
+        .floating-whatsapp {
+            animation: pulse-border 2s infinite;
+        }
+
+        @keyframes pulse-border {
+            0% {
+                box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 20px rgba(74, 222, 128, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);
+            }
+        }
+
+        .grid-pattern {
+            background-image:
+                linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .partner-logo {
+            filter: grayscale(100%);
+            opacity: 0.6;
+            transition: all 0.3s;
+        }
+
+        .partner-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+            color: #c91212;
+        }
+
+        .testimonial-card {
+            transition: all 0.3s;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .icon-box {
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+            color: #c91212;
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, #c91212 0%, #6d251d 100%);
+        }
+
+        .highlight-text {
+            color: #FF0000;
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body class="antialiased text-gray-800 bg-white">
+
+    <!-- Navigation -->
+    <nav id="navbar"
+        class="fixed w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-xl border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-3">
+                    <img src="logo.png" alt="PH Negócios Logo" class="w-10 h-10 object-contain">
+                    <div>
+                        <span class="font-bold text-xl text-gray-900 tracking-tight">Negócios</span>
+                        <p class="text-xs text-gray-500 -mt-1">Consórcio Premium</p>
+                    </div>
+                </div>
+
+                <div class="hidden lg:flex items-center gap-8">
+                    <a href="#inicio"
+                        class="nav-link text-sm font-medium text-gray-600 hover:text-brand-700 transition-colors">Início</a>
+                    <a href="#simulador"
+                        class="nav-link text-sm font-medium text-gray-600 hover:text-brand-700 transition-colors">Simulador</a>
+                    <a href="#beneficios"
+                        class="nav-link text-sm font-medium text-gray-600 hover:text-brand-700 transition-colors">Benefícios</a>
+                    <a href="#como-funciona"
+                        class="nav-link text-sm font-medium text-gray-600 hover:text-brand-700 transition-colors">Como
+                        Funciona</a>
+                    <a href="#parceiros"
+                        class="nav-link text-sm font-medium text-gray-600 hover:text-brand-700 transition-colors">Parceiros</a>
+                    <button onclick="openWhatsApp()"
+                        class="btn-primary text-white px-6 py-2.5 rounded-full font-semibold text-sm flex items-center gap-2">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i>
+                        Fale Conosco
+                    </button>
+                </div>
+
+                <button class="lg:hidden p-2 text-gray-600 hover:text-brand-700 transition-colors"
+                    onclick="toggleMobileMenu()">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
+            <div class="px-4 py-6 space-y-4">
+                <a href="#inicio" class="block py-2 text-gray-600 hover:text-brand-700 font-medium"
+                    onclick="closeMobileMenu()">Início</a>
+                <a href="#simulador" class="block py-2 text-gray-600 hover:text-brand-700 font-medium"
+                    onclick="closeMobileMenu()">Simulador</a>
+                <a href="#beneficios" class="block py-2 text-gray-600 hover:text-brand-700 font-medium"
+                    onclick="closeMobileMenu()">Benefícios</a>
+                <a href="#como-funciona" class="block py-2 text-gray-600 hover:text-brand-700 font-medium"
+                    onclick="closeMobileMenu()">Como Funciona</a>
+                <a href="#parceiros" class="block py-2 text-gray-600 hover:text-brand-700 font-medium"
+                    onclick="closeMobileMenu()">Parceiros</a>
+                <button onclick="openWhatsApp()"
+                    class="w-full btn-primary text-white py-3 rounded-xl font-semibold mt-4">
+                    Falar no WhatsApp
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero-gradient pt-32 lg:pt-40 pb-20 lg:pb-32 relative overflow-hidden">
+        <div class="absolute inset-0 grid-pattern opacity-50"></div>
+
+        <!-- Decorative Elements -->
+        <div class="absolute top-20 right-0 w-96 h-96 bg-brand-700/10 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div
+            class="absolute bottom-0 left-0 w-72 h-72 bg-brand-dark/10 rounded-full blur-3xl animate-pulse-slow delay-1000">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <div class="reveal">
+                    <div
+                        class="inline-flex items-center gap-2 px-4 py-2 bg-brand-50 border border-brand-100 rounded-full text-brand-700 text-sm font-semibold mb-6">
+                        <span class="w-2 h-2 bg-brand-bright rounded-full animate-pulse"></span>
+                        17 anos de excelência no mercado
+                    </div>
+
+                    <h1 class="text-5xl lg:text-7xl font-bold text-gray-900 leading-[1.1] mb-6 tracking-tight">
+                        Realize seus <span class="gradient-text">sonhos</span> com planejamento inteligente
+                    </h1>
+
+                    <p class="text-lg lg:text-xl text-gray-600 mb-8 leading-relaxed max-w-xl">
+                        Com a PH Negócios, você encontra as melhores condições para conquistar seu imóvel, veículo ou
+                        serviço. <span class="highlight-text">Taxas reduzidas</span> e atendimento personalizado.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 mb-12">
+                        <button onclick="scrollToSection('simulador')"
+                            class="btn-primary text-white px-8 py-4 rounded-full font-semibold text-lg flex items-center justify-center gap-2 shadow-xl shadow-brand-700/25">
+                            <i data-lucide="calculator" class="w-5 h-5"></i>
+                            Simular Agora
+                        </button>
+                        <button onclick="openWhatsApp()"
+                            class="glass-card text-gray-700 px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:border-brand-700 transition-all flex items-center justify-center gap-2 border border-gray-200">
+                            <i data-lucide="message-circle" class="w-5 h-5 text-brand-700"></i>
+                            Falar com Especialista
+                        </button>
+                    </div>
+
+                    <div class="flex items-center gap-6">
+                        <div class="flex -space-x-3">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop"
+                                class="w-10 h-10 rounded-full border-2 border-white object-cover" alt="Cliente">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop"
+                                class="w-10 h-10 rounded-full border-2 border-white object-cover" alt="Cliente">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop"
+                                class="w-10 h-10 rounded-full border-2 border-white object-cover" alt="Cliente">
+                            <div
+                                class="w-10 h-10 rounded-full border-2 border-white gradient-bg flex items-center justify-center text-white text-xs font-bold">
+                                +75k
+                            </div>
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-900">75.000+ clientes</p>
+                            <p class="text-sm text-gray-500">satisfeitos em todo Brasil</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative reveal delay-200">
+                    <div
+                        class="relative rounded-3xl overflow-hidden shadow-2xl shadow-gray-200/50 border border-gray-100">
+                        <img src="2.jpg" alt="Casa moderna e luxuosa"
+                            class="w-full h-auto object-cover hover:scale-105 transition-transform duration-700">
+
+                        <!-- Floating Stats Card -->
+                        <div
+                            class="absolute bottom-6 left-6 glass-card p-5 rounded-2xl shadow-xl max-w-xs animate-float">
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="w-12 h-12 bg-brand-50 rounded-xl flex items-center justify-center text-brand-700">
+                                    <i data-lucide="trending-down" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-500 font-medium">Taxas a partir de</p>
+                                    <p class="text-2xl font-bold text-brand-700">0,09% a.m.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Trust Badge -->
+                        <div class="absolute top-6 right-6 glass-card px-4 py-2 rounded-full flex items-center gap-2">
+                            <i data-lucide="shield-check" class="w-4 h-4 text-brand-700"></i>
+                            <span class="text-xs font-semibold text-gray-700">100% Seguro</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section id="parceiros" class="py-16 bg-gray-50/50 border-y border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-sm font-semibold text-gray-400 uppercase tracking-wider mb-8">Administradoras
+                Parceiras</p>
+
+            <div
+                class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 items-center justify-items-center opacity-70">
+                <div class="partner-logo font-bold text-xl text-gray-400 cursor-pointer transition-all ">
+                    <img class="w-44 h-auto object-contain ml-24"
+                        src="data:image/png;base64,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"
+                        alt="Parceiro 1">
+                </div>
+                <div class="partner-logo font-bold text-xl text-gray-400 cursor-pointer transition-all">
+                    <img src="data:image/png;base64,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"
+                        alt="Servopa" class="w-44 h-auto object-contain" />
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-20 bg-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center p-6 rounded-2xl hover:bg-gray-50 transition-colors reveal">
+                    <p class="text-4xl lg:text-5xl font-bold text-brand-700 mb-2">17+</p>
+                    <p class="text-gray-500 font-medium">Anos de Mercado</p>
+                </div>
+                <div class="text-center p-6 rounded-2xl hover:bg-gray-50 transition-colors reveal delay-100">
+                    <p class="text-4xl lg:text-5xl font-bold text-brand-700 mb-2">R$ 500M+</p>
+                    <p class="text-gray-500 font-medium">Em Créditos Liberados</p>
+                </div>
+                <div class="text-center p-6 rounded-2xl hover:bg-gray-50 transition-colors reveal delay-200">
+                    <p class="text-4xl lg:text-5xl font-bold text-brand-700 mb-2">75.000+</p>
+                    <p class="text-gray-500 font-medium">Clientes Atendidos</p>
+                </div>
+                <div class="text-center p-6 rounded-2xl hover:bg-gray-50 transition-colors reveal delay-300">
+                    <p class="text-4xl lg:text-5xl font-bold text-brand-700 mb-2">242+</p>
+                    <p class="text-gray-500 font-medium">Correspondentes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simulator Section -->
+    <section id="simulador" class="py-24 lg:py-32 bg-gradient-to-b from-white to-gray-50/50 relative">
+        <div class="absolute inset-0 grid-pattern opacity-30"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-4 tracking-tight">Simule seu Consórcio</h2>
+                <p class="text-lg text-gray-500">Escolha o valor do crédito desejado e veja quanto você vai pagar por
+                    mês. <span class="text-brand-bright font-semibold">Sem compromisso!</span></p>
+            </div>
+
+            <div class="grid lg:grid-cols-5 gap-8 items-start">
+                <!-- Simulator Controls -->
+                <div class="lg:col-span-3 glass-card rounded-3xl p-8 lg:p-10 reveal">
+                    <div class="mb-10">
+                        <label class="block text-sm font-semibold text-gray-700 mb-4">Tipo de Consórcio</label>
+                        <div class="grid grid-cols-3 gap-3">
+                            <button onclick="selectType('imovel')" id="btn-imovel"
+                                class="type-btn relative overflow-hidden gradient-bg text-white p-5 rounded-2xl border-2 border-brand-700 transition-all shadow-lg shadow-brand-700/20 group">
+                                <div class="relative z-10 flex flex-col items-center gap-2">
+                                    <i data-lucide="home" class="w-6 h-6"></i>
+                                    <span class="text-sm font-semibold">Imóvel</span>
+                                </div>
+                            </button>
+                            <button onclick="selectType('veiculo')" id="btn-veiculo"
+                                class="type-btn relative overflow-hidden bg-white text-gray-600 p-5 rounded-2xl border-2 border-gray-200 hover:border-brand-700 transition-all group">
+                                <div class="relative z-10 flex flex-col items-center gap-2">
+                                    <i data-lucide="car" class="w-6 h-6"></i>
+                                    <span class="text-sm font-semibold">Veículo</span>
+                                </div>
+                            </button>
+                            <button onclick="selectType('servicos')" id="btn-servicos"
+                                class="type-btn relative overflow-hidden bg-white text-gray-600 p-5 rounded-2xl border-2 border-gray-200 hover:border-brand-700 transition-all group">
+                                <div class="relative z-10 flex flex-col items-center gap-2">
+                                    <i data-lucide="briefcase" class="w-6 h-6"></i>
+                                    <span class="text-sm font-semibold">Serviços</span>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="space-y-8">
+                        <div>
+                            <div class="flex justify-between items-end mb-4">
+                                <label class="text-sm font-semibold text-gray-700">Valor do Crédito</label>
+                                <span id="valor-display" class="text-3xl font-bold text-brand-700">R$ 200.000</span>
+                            </div>
+                            <input type="range" id="valor-range" min="50000" max="1000000" step="10000" value="200000"
+                                class="input-range w-full mb-2">
+                            <div class="flex justify-between text-xs text-gray-400 font-medium">
+                                <span>R$ 50 mil</span>
+                                <span>R$ 1 milhão</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between items-end mb-4">
+                                <label class="text-sm font-semibold text-gray-700">Prazo</label>
+                                <span id="prazo-display" class="text-3xl font-bold text-brand-700">120 meses</span>
+                            </div>
+                            <input type="range" id="prazo-range" min="60" max="200" step="12" value="120"
+                                class="input-range w-full mb-2">
+                            <div class="flex justify-between text-xs text-gray-400 font-medium">
+                                <span>60 meses</span>
+                                <span>200 meses</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Result Card -->
+                <div class="lg:col-span-2 reveal delay-200">
+                    <div
+                        class="glass-card rounded-3xl p-8 border-2 border-brand-100 bg-gradient-to-br from-white to-brand-50/30 sticky top-24">
+                        <h3 class="text-lg font-semibold text-gray-700 mb-6 flex items-center gap-2">
+                            <i data-lucide="receipt" class="w-5 h-5 text-brand-700"></i>
+                            Resultado da Simulação
+                        </h3>
+
+                        <div class="space-y-6">
+                            <div class="bg-white rounded-2xl p-6 border border-brand-100 shadow-sm">
+                                <p class="text-sm text-gray-500 mb-1">Parcela Estimada</p>
+                                <p id="parcela-result" class="text-4xl font-bold text-brand-700">R$ 1.833</p>
+                                <p class="text-xs text-gray-400 mt-2">*Consulte condições comerciais</p>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-white rounded-xl p-4 border border-gray-100">
+                                    <p class="text-xs text-gray-500 mb-1">Taxa Admin</p>
+                                    <p id="taxa-result" class="text-lg font-bold text-brand-700">0,12%</p>
+                                </div>
+                                <div class="bg-white rounded-xl p-4 border border-gray-100">
+                                    <p class="text-xs text-gray-500 mb-1">Fundo Reserva</p>
+                                    <p class="text-lg font-bold text-brand-700">2%</p>
+                                </div>
+                            </div>
+
+                            <div class="pt-4 border-t border-gray-100 space-y-2">
+                                <div class="flex justify-between text-sm">
+                                    <span class="text-gray-500">Valor Total</span>
+                                    <span id="total-result" class="font-semibold text-gray-900">R$ 219.960</span>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <span class="text-gray-500">Economia vs Financiamento</span>
+                                    <span class="font-semibold text-brand-bright">~30%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button onclick="enviarSimulacao()"
+                            class="w-full btn-primary text-white py-4 rounded-xl font-bold text-lg mt-8 flex items-center justify-center gap-2 shadow-lg shadow-brand-700/25">
+                            <i data-lucide="whatsapp" class="w-5 h-5"></i>
+                            Quero Esta Proposta
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="beneficios" class="py-24 lg:py-32 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-4 tracking-tight">Vantagens do Consórcio</h2>
+                <p class="text-lg text-gray-500">Por que milhares de brasileiros escolhem a <span
+                        class="text-brand-700 font-semibold">PH Negócios</span>?</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="premium-card bg-white rounded-2xl p-8 border border-gray-100 reveal">
+                    <div class="w-14 h-14 icon-box rounded-2xl flex items-center justify-center mb-6">
+                        <i data-lucide="percent" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Sem Juros</h3>
+                    <p class="text-gray-500 leading-relaxed">Diferente de financiamentos, o consórcio não cobra juros,
+                        apenas taxa de administração reduzida.</p>
+                </div>
+
+                <div class="premium-card bg-white rounded-2xl p-8 border border-gray-100 reveal delay-100">
+                    <div class="w-14 h-14 icon-box rounded-2xl flex items-center justify-center mb-6">
+                        <i data-lucide="zap" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Contemplação Rápida</h3>
+                    <p class="text-gray-500 leading-relaxed">Sistema de sorteios mensais e possibilidade de lance para
+                        acelerar sua contemplação.</p>
+                </div>
+
+                <div class="premium-card bg-white rounded-2xl p-8 border border-gray-100 reveal delay-200">
+                    <div class="w-14 h-14 icon-box rounded-2xl flex items-center justify-center mb-6">
+                        <i data-lucide="shield-check" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">100% Seguro</h3>
+                    <p class="text-gray-500 leading-relaxed">Administrado pelas melhores instituições e regulado pelo
+                        Banco Central do Brasil.</p>
+                </div>
+
+                <div class="premium-card bg-white rounded-2xl p-8 border border-gray-100 reveal">
+                    <div class="w-14 h-14 icon-box rounded-2xl flex items-center justify-center mb-6">
+                        <i data-lucide="wallet" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Planejamento Flexível</h3>
+                    <p class="text-gray-500 leading-relaxed">Escolha parcelas que cabem no seu orçamento e planeje sua
+                        conquista sem surpresas.</p>
+                </div>
+
+                <div class="premium-card bg-white rounded-2xl p-8 border border-gray-100 reveal delay-100">
+                    <div class="w-14 h-14 icon-box rounded-2xl flex items-center justify-center mb-6">
+                        <i data-lucide="smartphone" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Acompanhamento Digital</h3>
+                    <p class="text-gray-500 leading-relaxed">Acompanhe seu consórcio em tempo real pelo app ou site da
+                        administradora.</p>
+                </div>
+
+                <div class="premium-card bg-white rounded-2xl p-8 border border-gray-100 reveal delay-200">
+                    <div class="w-14 h-14 icon-box rounded-2xl flex items-center justify-center mb-6">
+                        <i data-lucide="refresh-cw" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Readequação de Plano</h3>
+                    <p class="text-gray-500 leading-relaxed">Possibilidade de readequar seu plano conforme suas
+                        necessidades mudam.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it Works -->
+    <section id="como-funciona" class="py-24 lg:py-32 bg-gray-50/50 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-20 reveal">
+                <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-4 tracking-tight">Como Funciona</h2>
+                <p class="text-lg text-gray-500">Em apenas 4 passos simples você realiza seu sonho</p>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-8 relative">
+                <!-- Connecting Line (Desktop) -->
+                <div
+                    class="hidden md:block absolute top-12 left-0 w-full h-0.5 bg-gradient-to-r from-brand-200 via-brand-300 to-brand-200">
+                </div>
+
+                <div class="relative text-center reveal">
+                    <div
+                        class="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-6 relative z-10 shadow-xl shadow-brand-700/10 border-4 border-brand-50">
+                        <span class="text-3xl font-bold text-brand-700">1</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Simule</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Escolha o valor e prazo que cabem no seu bolso
+                        usando nossa calculadora inteligente.</p>
+                </div>
+
+                <div class="relative text-center reveal delay-100">
+                    <div
+                        class="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-6 relative z-10 shadow-xl shadow-brand-700/10 border-4 border-brand-50">
+                        <span class="text-3xl font-bold text-brand-700">2</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Contrate</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Faça sua adesão de forma simples e rápida com
+                        auxílio da nossa equipe especializada.</p>
+                </div>
+
+                <div class="relative text-center reveal delay-200">
+                    <div
+                        class="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-6 relative z-10 shadow-xl shadow-brand-700/10 border-4 border-brand-50">
+                        <span class="text-3xl font-bold text-brand-700">3</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Pague</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Pague suas parcelas mensais e participe dos
+                        sorteios e ofertas de lance.</p>
+                </div>
+
+                <div class="relative text-center reveal delay-300">
+                    <div
+                        class="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-6 relative z-10 shadow-xl shadow-brand-700/10 border-4 border-brand-50">
+                        <span class="text-3xl font-bold text-brand-700">4</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Realize</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Seja contemplado e receba seu crédito para adquirir
+                        o bem dos seus sonhos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-24 lg:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-4 tracking-tight">O que nossos clientes dizem
+                </h2>
+                <p class="text-lg text-gray-500">Histórias reais de quem realizou com a <span
+                        class="text-brand-700 font-semibold">PH Negócios</span></p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="testimonial-card bg-gray-50 rounded-2xl p-8 border border-gray-100 reveal">
+                    <div class="flex gap-1 text-yellow-400 mb-6">
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    </div>
+                    <p class="text-gray-600 mb-8 leading-relaxed">"Fui contemplada no 8º mês! O atendimento da PH
+                        Negócios é excelente, sempre me mantiveram informada sobre cada etapa do processo."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop"
+                            class="w-12 h-12 rounded-full object-cover" alt="Mariana">
+                        <div>
+                            <p class="font-bold text-gray-900">Mariana Silva</p>
+                            <p class="text-sm text-brand-700">Consórcio Imóvel • SP</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card bg-gray-50 rounded-2xl p-8 border border-gray-100 reveal delay-100">
+                    <div class="flex gap-1 text-yellow-400 mb-6">
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    </div>
+                    <p class="text-gray-600 mb-8 leading-relaxed">"Consegui comprar meu carro dos sonhos graças ao
+                        consórcio. Processo transparente e sem burocracia. Super recomendo a PH Negócios!"</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop"
+                            class="w-12 h-12 rounded-full object-cover" alt="Carlos">
+                        <div>
+                            <p class="font-bold text-gray-900">Carlos Eduardo</p>
+                            <p class="text-sm text-brand-700">Consórcio Veículo • RJ</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card bg-gray-50 rounded-2xl p-8 border border-gray-100 reveal delay-200">
+                    <div class="flex gap-1 text-yellow-400 mb-6">
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    </div>
+                    <p class="text-gray-600 mb-8 leading-relaxed">"Usei o crédito para reformar minha casa. A taxa foi a
+                        melhor que encontrei no mercado. Muito satisfeito com o atendimento."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop"
+                            class="w-12 h-12 rounded-full object-cover" alt="Fernanda">
+                        <div>
+                            <p class="font-bold text-gray-900">Fernanda Lima</p>
+                            <p class="text-sm text-brand-700">Consórcio Serviços • MG</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 lg:py-32 relative overflow-hidden">
+        <div class="absolute inset-0 gradient-bg"></div>
+        <div class="absolute inset-0 opacity-10"
+            style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.4\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');">
+        </div>
+
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 reveal">
+            <h2 class="text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight">Pronto para realizar seus sonhos?
+            </h2>
+            <p class="text-xl text-white/90 mb-10 leading-relaxed">Entre em contato agora mesmo e fale com um de nossos
+                especialistas. Atendimento personalizado e sem compromisso.</p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="openWhatsApp()"
+                    class="bg-white text-brand-700 px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-all flex items-center justify-center gap-2 shadow-xl">
+                    <i data-lucide="whatsapp" class="w-6 h-6"></i>
+                    Falar no WhatsApp
+                </button>
+                <button onclick="scrollToSection('simulador')"
+                    class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-all flex items-center justify-center gap-2">
+                    <i data-lucide="calculator" class="w-6 h-6"></i>
+                    Fazer Simulação
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-24 lg:py-32 bg-gray-50/50">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Perguntas Frequentes</h2>
+                <p class="text-lg text-gray-500">Tire suas dúvidas sobre consórcio</p>
+            </div>
+
+            <div class="space-y-4 reveal">
+                <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden">
+                    <button onclick="toggleFaq(1)"
+                        class="w-full flex justify-between items-center p-6 text-left hover:bg-gray-50 transition-colors">
+                        <span class="font-semibold text-gray-900">O que é consórcio e como funciona?</span>
+                        <i data-lucide="chevron-down" id="icon-1"
+                            class="w-5 h-5 text-brand-700 transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-1" class="faq-content">
+                        <div class="px-6 pb-6 text-gray-600 leading-relaxed">
+                            Consórcio é uma modalidade de compra programada onde um grupo de pessoas se unem para formar
+                            uma poupança comum. Todo mês são realizados sorteios e ofertas de lance para definir quem
+                            recebe o crédito para adquirir o bem ou serviço desejado.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden">
+                    <button onclick="toggleFaq(2)"
+                        class="w-full flex justify-between items-center p-6 text-left hover:bg-gray-50 transition-colors">
+                        <span class="font-semibold text-gray-900">Posso ser contemplado antes do prazo?</span>
+                        <i data-lucide="chevron-down" id="icon-2"
+                            class="w-5 h-5 text-brand-700 transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-2" class="faq-content">
+                        <div class="px-6 pb-6 text-gray-600 leading-relaxed">
+                            Sim! Além dos sorteios mensais, você pode ofertar lances para acelerar sua contemplação.
+                            Quanto maior o lance, maiores as chances de receber o crédito antecipadamente.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden">
+                    <button onclick="toggleFaq(3)"
+                        class="w-full flex justify-between items-center p-6 text-left hover:bg-gray-50 transition-colors">
+                        <span class="font-semibold text-gray-900">O que acontece se eu não for contemplado?</span>
+                        <i data-lucide="chevron-down" id="icon-3"
+                            class="w-5 h-5 text-brand-700 transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-3" class="faq-content">
+                        <div class="px-6 pb-6 text-gray-600 leading-relaxed">
+                            Se não for contemplado até o final do grupo, você receberá de volta todo o valor pago,
+                            corrigido pelo índice de reajuste do plano, sem desconto de taxa de administração.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden">
+                    <button onclick="toggleFaq(4)"
+                        class="w-full flex justify-between items-center p-6 text-left hover:bg-gray-50 transition-colors">
+                        <span class="font-semibold text-gray-900">Posso usar o FGTS para lance ou pagamento?</span>
+                        <i data-lucide="chevron-down" id="icon-4"
+                            class="w-5 h-5 text-brand-700 transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-4" class="faq-content">
+                        <div class="px-6 pb-6 text-gray-600 leading-relaxed">
+                            Sim, para consórcio de imóvel você pode utilizar seu FGTS para ofertar lances ou até mesmo
+                            para quitar parcelas em atraso, conforme as regras da Caixa Econômica Federal.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contato" class="bg-white border-t border-gray-200 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <div class="lg:col-span-1">
+                    <div class="flex items-center gap-3 mb-6">
+                        <img src="./logo.png" alt="PH Negócios"
+                            class="w-12 h-auto">
+                        <div>
+                            <span class="font-bold text-lg text-gray-900">Negócios</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6">
+                        Há mais de 17 anos conectando sonhos à realidade através de consórcios justos e transparentes.
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="https://www.facebook.com/phnegociosofc" target="_blank"
+                            class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-brand-700 hover:text-white transition-all">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://www.instagram.com/phnegociosoficial" target="_blank"
+                            class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-brand-700 hover:text-white transition-all">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/company/phnegocios" target="_blank"
+                            class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-brand-700 hover:text-white transition-all">
+                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-4">Links Rápidos</h4>
+                    <ul class="space-y-3 text-sm text-gray-500">
+                        <li><a href="#inicio" class="hover:text-brand-700 transition-colors">Início</a></li>
+                        <li><a href="#simulador" class="hover:text-brand-700 transition-colors">Simulador</a></li>
+                        <li><a href="#beneficios" class="hover:text-brand-700 transition-colors">Vantagens</a></li>
+                        <li><a href="#como-funciona" class="hover:text-brand-700 transition-colors">Como Funciona</a>
+                        </li>
+                        <li><a href="#parceiros" class="hover:text-brand-700 transition-colors">Parceiros</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-4">Contato</h4>
+                    <ul class="space-y-3 text-sm text-gray-500">
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="phone" class="w-4 h-4 text-brand-700"></i>
+                            (11) 4765-1770
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="mail" class="w-4 h-4 text-brand-700"></i>
+                            consorcio@phnegocios.com.br
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="map-pin" class="w-4 h-4 text-brand-700 mt-0.5"></i>
+                            <span>Rua Fernandes Pinheiro, 449<br>Tatuapé, São Paulo - SP</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-4">Horário de Atendimento</h4>
+                    <ul class="space-y-3 text-sm text-gray-500">
+                        <li>Segunda - Sexta: 8h às 18h</li>
+                        <li>Sábado: 9h às 13h</li>
+                        <li class="text-brand-700 font-semibold flex items-center gap-2">
+                            <span class="w-2 h-2 bg-brand-bright rounded-full animate-pulse"></span>
+                            WhatsApp 24h
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-200 pt-8">
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div>
+                        <p class="text-gray-400 text-xs">PH Brasil Promotora de Vendas LTDA.</p>
+                        <p class="text-gray-400 text-xs">CNPJ: 26.811.024/0001-14</p>
+                    </div>
+                    <div class="md:text-right">
+                        <p class="text-gray-400 text-xs max-w-md md:ml-auto">
+                            A PH Negócios atua como correspondente bancário, regulada pelo Banco Central do Brasil, nos
+                            termos da Resolução nº 3.954/2011.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row justify-between items-center pt-6 border-t border-gray-100 gap-4">
+                    <p class="text-gray-400 text-xs">© 2025 PH Negócios. Todos os direitos reservados.</p>
+                    <div class="flex gap-6">
+                        <a href="https://lgpd.phng.com.br"
+                            class="text-gray-400 text-xs hover:text-brand-700 transition-colors">Política de
+                            Privacidade</a>
+                        <a href="https://lgpd.phng.com.br"
+                            class="text-gray-400 text-xs hover:text-brand-700 transition-colors">Termos de Uso</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <button onclick="openWhatsApp()"
+            class="floating-whatsapp bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition-all hover:scale-110 flex items-center gap-3 pr-6 group">
+            <i data-lucide="whatsapp" class="w-6 h-6"></i>
+            <span
+                class="font-semibold max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-300 whitespace-nowrap">Fale
+                Conosco</span>
+        </button>
+    </div>
+
+    <!-- Lead Modal -->
+    <div id="lead-modal" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeModal()"></div>
+        <div class="relative min-h-screen flex items-center justify-center p-4">
+            <div class="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl relative animate-[fadeIn_0.3s_ease-out]">
+                <button onclick="closeModal()"
+                    class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+
+                <div class="mb-6">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Complete seus dados</h3>
+                    <p class="text-gray-500 text-sm">Um especialista entrará em contato em breve.</p>
+                </div>
+
+                <form id="lead-form" onsubmit="submitLead(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1.5">Nome completo *</label>
+                        <input type="text" id="nome" required
+                            class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:border-brand-700 focus:ring-2 focus:ring-brand-200 outline-none transition-all"
+                            placeholder="Digite seu nome">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1.5">E-mail *</label>
+                        <input type="email" id="email" required
+                            class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:border-brand-700 focus:ring-2 focus:ring-brand-200 outline-none transition-all"
+                            placeholder="seu@email.com">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1.5">Telefone *</label>
+                        <input type="tel" id="telefone" required
+                            class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:border-brand-700 focus:ring-2 focus:ring-brand-200 outline-none transition-all"
+                            placeholder="(11) 99999-9999">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1.5">Observações (opcional)</label>
+                        <textarea id="observacoes" rows="3"
+                            class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:border-brand-700 focus:ring-2 focus:ring-brand-200 outline-none transition-all resize-none"
+                            placeholder="Conte-nos mais sobre o que você procura..."></textarea>
+                    </div>
+
+                    <button type="submit" id="submit-btn"
+                        class="w-full btn-primary text-white py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 shadow-lg shadow-brand-700/25 mt-2">
+                        <span>Enviar e Falar no WhatsApp</span>
+                    </button>
+
+                    <p class="text-xs text-gray-400 text-center">Seus dados estão protegidos e não serão compartilhados.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Global Variables
+        let currentSimulation = {
+            tipo: 'imovel',
+            valor: 200000,
+            prazo: 120,
+            parcela: 1833,
+            taxa: '0,12%'
+        };
+
+        // Mobile Menu Functions
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function closeMobileMenu() {
+            document.getElementById('mobile-menu').classList.add('hidden');
+        }
+
+        // Scroll Functions
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                const offset = 80;
+                const elementPosition = element.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+                closeMobileMenu();
+            }
+        }
+
+        // FAQ Toggle
+        function toggleFaq(id) {
+            const content = document.getElementById(`faq-${id}`);
+            const icon = document.getElementById(`icon-${id}`);
+
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                // Close others
+                document.querySelectorAll('.faq-content').forEach(el => el.classList.remove('active'));
+                document.querySelectorAll('[id^=\"icon-\"]').forEach(el => el.style.transform = 'rotate(0deg)');
+
+                content.classList.add('active');
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // Simulator Functions
+        function selectType(tipo) {
+            const buttons = document.querySelectorAll('.type-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('gradient-bg', 'text-white', 'border-brand-700', 'shadow-lg');
+                btn.classList.add('bg-white', 'text-gray-600', 'border-gray-200');
+            });
+
+            const selectedBtn = document.getElementById(`btn-${tipo}`);
+            selectedBtn.classList.remove('bg-white', 'text-gray-600', 'border-gray-200');
+            selectedBtn.classList.add('gradient-bg', 'text-white', 'border-brand-700', 'shadow-lg');
+
+            currentSimulation.tipo = tipo;
+            updateSimulation();
+        }
+
+        function formatCurrency(value) {
+            return new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(value);
+        }
+
+        function updateSimulation() {
+            const valor = parseInt(document.getElementById('valor-range').value);
+            const prazo = parseInt(document.getElementById('prazo-range').value);
+            const tipo = currentSimulation.tipo;
+
+            document.getElementById('valor-display').textContent = formatCurrency(valor);
+            document.getElementById('prazo-display').textContent = `${prazo} meses`;
+
+            let taxa = 0.0012; // 0.12%
+            if (tipo === 'veiculo') taxa = 0.0014;
+            if (tipo === 'servicos') taxa = 0.0015;
+
+            // Cálculo de parcela (sistema de amortização)
+            const parcela = (valor * taxa * Math.pow(1 + taxa, prazo)) / (Math.pow(1 + taxa, prazo) - 1);
+            const total = parcela * prazo;
+
+            document.getElementById('parcela-result').textContent = formatCurrency(parcela);
+            document.getElementById('taxa-result').textContent = `${(taxa * 100).toFixed(2)}%`;
+            document.getElementById('total-result').textContent = formatCurrency(total);
+
+            currentSimulation = {
+                tipo,
+                valor,
+                prazo,
+                parcela: Math.round(parcela),
+                taxa: `${(taxa * 100).toFixed(2)}%`
+            };
+        }
+
+        // Modal Functions
+        function openModal() {
+            document.getElementById('lead-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('lead-modal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // API Functions
+        async function salvarLead(dados) {
+            const submitBtn = document.getElementById('submit-btn');
+            const originalContent = submitBtn.innerHTML;
+
+            try {
+                submitBtn.innerHTML = '<div class=\"w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin\"></div> Enviando...';
+                submitBtn.disabled = true;
+
+                const response = await fetch('https://phapp.phng.com.br/api/consorcio-leads', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: JSON.stringify(dados)
+                });
+
+                const result = await response.json();
+                return result.success ? { success: true, id: result.id } : { success: false, errors: result.errors };
+            } catch (error) {
+                console.error('Erro:', error);
+                return { success: false, error: error.message };
+            } finally {
+                submitBtn.innerHTML = originalContent;
+                submitBtn.disabled = false;
+            }
+        }
+
+        async function submitLead(event) {
+            event.preventDefault();
+
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+            const telefone = document.getElementById('telefone').value;
+            const observacoes = document.getElementById('observacoes').value;
+
+            const dadosLead = {
+                nome,
+                email,
+                telefone,
+                tipo_consorcio: currentSimulation.tipo,
+                valor_credito: currentSimulation.valor,
+                prazo_meses: currentSimulation.prazo,
+                parcela_estimada: currentSimulation.parcela,
+                taxa_admin: currentSimulation.taxa,
+                observacoes: observacoes || `Simulação: ${currentSimulation.tipo}, ${formatCurrency(currentSimulation.valor)}, ${currentSimulation.prazo} meses`
+            };
+
+            const result = await salvarLead(dadosLead);
+
+            if (result.success) {
+                closeModal();
+
+                const mensagem = `Olá! Meu nome é ${nome}. Fiz uma simulação de consórcio no site e gostaria de mais informações:\n\n` +
+                    `📋 Tipo: ${currentSimulation.tipo.charAt(0).toUpperCase() + currentSimulation.tipo.slice(1)}\n` +
+                    `💰 Valor do crédito: ${formatCurrency(currentSimulation.valor)}\n` +
+                    `📅 Prazo: ${currentSimulation.prazo} meses\n` +
+                    `💳 Parcela estimada: ${formatCurrency(currentSimulation.parcela)}\n` +
+                    `📊 Taxa: ${currentSimulation.taxa}\n\n` +
+                    `📧 E-mail: ${email}\n` +
+                    `📱 Telefone: ${telefone}`;
+
+                window.open(`https://wa.me/551147651770?text=${encodeURIComponent(mensagem)}`, '_blank');
+            } else {
+                alert('Ocorreu um erro. Por favor, tente novamente ou entre em contato direto pelo WhatsApp.');
+            }
+        }
+
+        function enviarSimulacao() {
+            openModal();
+        }
+
+        function openWhatsApp() {
+            const mensagem = 'Olá! Vim pelo site da PH Negócios e gostaria de mais informações sobre consórcios.';
+            window.open(`https://wa.me/551147651770?text=${encodeURIComponent(mensagem)}`, '_blank');
+        }
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', function () {
+            const valorRange = document.getElementById('valor-range');
+            const prazoRange = document.getElementById('prazo-range');
+
+            valorRange.addEventListener('input', updateSimulation);
+            prazoRange.addEventListener('input', updateSimulation);
+
+            updateSimulation();
+
+            // Phone mask
+            const telefoneInput = document.getElementById('telefone');
+            if (telefoneInput) {
+                telefoneInput.addEventListener('input', function (e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    if (value.length > 11) value = value.slice(0, 11);
+
+                    if (value.length > 2) {
+                        value = `(${value.slice(0, 2)}) ${value.slice(2)}`;
+                    }
+                    if (value.length > 10) {
+                        value = `${value.slice(0, 10)}-${value.slice(10)}`;
+                    }
+
+                    e.target.value = value;
+                });
+            }
+
+            // Scroll Reveal Animation
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+            // Navbar scroll effect
+            let lastScroll = 0;
+            window.addEventListener('scroll', () => {
+                const navbar = document.getElementById('navbar');
+                const currentScroll = window.pageYOffset;
+
+                if (currentScroll > 100) {
+                    navbar.classList.add('shadow-md', 'bg-white/95');
+                } else {
+                    navbar.classList.remove('shadow-md', 'bg-white/90');
+                }
+
+                lastScroll = currentScroll;
+            });
+
+            // Close modal on escape
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeModal();
+            });
+        });
+    </script>
+</body>
+
+</html>
