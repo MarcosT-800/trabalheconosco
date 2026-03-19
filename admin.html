@@ -1,0 +1,2676 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Admin - Currículos PH Negócios</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-red: #DC2626;
+            --primary-red-hover: #B91C1C;
+            --primary-red-glow: rgba(220, 38, 38, 0.3);
+            --bg-dark: #0A0A0A;
+            --bg-card: #111111;
+            --bg-elevated: #1A1A1A;
+            --border-subtle: #262626;
+            --border-hover: #404040;
+            --text-primary: #FAFAFA;
+            --text-secondary: #A3A3A3;
+            --text-muted: #737373;
+            --success: #22C55E;
+            --warning: #F59E0B;
+            --info: #3B82F6;
+            --gradient-red: linear-gradient(135deg, #DC2626 0%, #991B1B 100%);
+            --gradient-dark: linear-gradient(180deg, #141414 0%, #0A0A0A 100%);
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+            --shadow-red: 0 4px 20px -2px rgba(220, 38, 38, 0.25);
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Header Premium */
+        .admin-header {
+            background: var(--gradient-dark);
+            padding: 0 40px;
+            height: 72px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-subtle);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .brand-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--gradient-red);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: var(--shadow-red);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .brand-icon::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        .brand h1 {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--text-primary);
+        }
+
+        .brand span {
+            display: block;
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-top: -2px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .user-badge {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 16px;
+            background: var(--bg-elevated);
+            border-radius: 100px;
+            border: 1px solid var(--border-subtle);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .user-badge i {
+            color: var(--primary-red);
+            font-size: 16px;
+        }
+
+        /* Botões Premium */
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: var(--gradient-red);
+            color: white;
+            box-shadow: var(--shadow-red);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px -5px rgba(220, 38, 38, 0.4);
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-secondary {
+            background: var(--bg-elevated);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .btn-secondary:hover {
+            background: var(--border-hover);
+            color: var(--text-primary);
+            border-color: var(--border-hover);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid transparent;
+        }
+
+        .btn-ghost:hover {
+            background: var(--bg-elevated);
+            color: var(--text-primary);
+        }
+
+        /* Layout Principal */
+        .admin-container {
+            display: flex;
+            min-height: calc(100vh - 72px);
+        }
+
+        /* Sidebar Minimalista */
+        .sidebar {
+            width: 280px;
+            background: var(--bg-card);
+            border-right: 1px solid var(--border-subtle);
+            padding: 32px 24px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-section {
+            margin-bottom: 32px;
+        }
+
+        .nav-section-title {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            padding-left: 16px;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .nav-menu a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 12px 16px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .nav-menu a::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 0;
+            background: var(--primary-red);
+            border-radius: 0 4px 4px 0;
+            transition: height 0.2s;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            background: var(--bg-elevated);
+            color: var(--text-primary);
+        }
+
+        .nav-menu a.active::before {
+            height: 24px;
+        }
+
+        .nav-menu a.active i {
+            color: var(--primary-red);
+        }
+
+        .nav-menu i {
+            font-size: 18px;
+            width: 24px;
+            text-align: center;
+            transition: color 0.2s;
+        }
+
+        /* Conteúdo Principal */
+        .main-content {
+            flex: 1;
+            padding: 32px;
+            overflow-y: auto;
+            background: var(--bg-dark);
+        }
+
+        /* Abas Premium */
+        .tab-navigation {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 32px;
+            padding-bottom: 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .tab-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        .tab-btn {
+            padding: 16px 24px;
+            background: transparent;
+            color: var(--text-muted);
+            border: none;
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.2s;
+            position: relative;
+            margin-bottom: -1px;
+            font-family: inherit;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-secondary);
+        }
+
+        .tab-btn.active {
+            color: var(--primary-red);
+            border-bottom-color: var(--primary-red);
+        }
+
+        .tab-btn i {
+            font-size: 16px;
+        }
+
+        .tab-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Cards de Estatísticas */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid var(--border-subtle);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient-red);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-hover);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-subtle);
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover .stat-icon {
+            background: var(--primary-red);
+            border-color: var(--primary-red);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .stat-trend {
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 20px;
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--success);
+        }
+
+        .stat-trend.negative {
+            background: rgba(220, 38, 38, 0.1);
+            color: var(--primary-red);
+        }
+
+        .stat-info h3 {
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+        }
+
+        .stat-info p {
+            color: var(--text-muted);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Barra de Filtros */
+        .filters-bar {
+            background: var(--bg-card);
+            padding: 20px 24px;
+            border-radius: 16px;
+            margin-bottom: 24px;
+            border: 1px solid var(--border-subtle);
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            align-items: flex-end;
+        }
+
+        .filter-group {
+            flex: 1;
+            min-width: 160px;
+        }
+
+        .filter-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .filter-group select,
+        .filter-group input {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 14px;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+
+        .filter-group select:focus,
+        .filter-group input:focus {
+            outline: none;
+            border-color: var(--primary-red);
+            box-shadow: 0 0 0 3px var(--primary-red-glow);
+        }
+
+        .search-box {
+            min-width: 280px;
+            position: relative;
+        }
+
+        .search-box input {
+            padding-left: 44px;
+        }
+
+        .search-box::before {
+            content: '\f002';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 14px;
+            pointer-events: none;
+        }
+
+        /* Tabela Premium */
+        .table-container {
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid var(--border-subtle);
+            overflow: hidden;
+        }
+
+        .table-header {
+            display: grid;
+            grid-template-columns: 60px 2fr 1.5fr 1.5fr 120px 120px 140px;
+            padding: 16px 24px;
+            background: var(--bg-elevated);
+            border-bottom: 1px solid var(--border-subtle);
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+        }
+
+        .table-row {
+            display: grid;
+            grid-template-columns: 60px 2fr 1.5fr 1.5fr 120px 120px 140px;
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border-subtle);
+            align-items: center;
+            transition: all 0.2s;
+        }
+
+        .table-row:hover {
+            background: rgba(220, 38, 38, 0.02);
+        }
+
+        .table-row:last-child {
+            border-bottom: none;
+        }
+
+        .col-id {
+            font-weight: 700;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .col-candidate {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .col-candidate strong {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .col-candidate small {
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        .col-candidate .meta {
+            display: flex;
+            gap: 12px;
+            margin-top: 4px;
+        }
+
+        .col-candidate .meta span {
+            font-size: 12px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Badges de Status */
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .status-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: currentColor;
+        }
+
+        .status-badge:hover {
+            transform: scale(1.05);
+        }
+
+        .status-pendente {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+            border-color: rgba(245, 158, 11, 0.2);
+        }
+
+        .status-lido {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--info);
+            border-color: rgba(59, 130, 246, 0.2);
+        }
+
+        .status-contratado {
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--success);
+            border-color: rgba(34, 197, 94, 0.2);
+        }
+
+        .status-descartado {
+            background: rgba(220, 38, 38, 0.1);
+            color: var(--primary-red);
+            border-color: rgba(220, 38, 38, 0.2);
+        }
+
+        .status-badge.ativa {
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--success);
+            border-color: rgba(34, 197, 94, 0.2);
+        }
+
+        .status-badge.inativa {
+            background: rgba(115, 115, 115, 0.1);
+            color: var(--text-muted);
+            border-color: rgba(115, 115, 115, 0.2);
+        }
+
+        .status-badge.expirada {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+            border-color: rgba(245, 158, 11, 0.2);
+        }
+
+        /* Ações na Tabela */
+        .actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .action-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            border: 1px solid var(--border-subtle);
+            background: var(--bg-elevated);
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            font-size: 14px;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            border-color: currentColor;
+        }
+
+        .action-btn.view:hover {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--info);
+            border-color: var(--info);
+        }
+
+        .action-btn.edit:hover {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+            border-color: var(--warning);
+        }
+
+        .action-btn.delete:hover {
+            background: rgba(220, 38, 38, 0.1);
+            color: var(--primary-red);
+            border-color: var(--primary-red);
+        }
+
+        /* Paginação */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 32px;
+        }
+
+        .page-btn {
+            min-width: 40px;
+            height: 40px;
+            padding: 0 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .page-btn:hover:not(.disabled):not(.active) {
+            background: var(--bg-elevated);
+            color: var(--text-primary);
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+        }
+
+        .page-btn.active {
+            background: var(--gradient-red);
+            border-color: var(--primary-red);
+            color: white;
+            box-shadow: var(--shadow-red);
+        }
+
+        .page-btn.disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        /* Modal Premium */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            transform: scale(0.95);
+            transition: transform 0.3s;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            padding: 24px 32px;
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--bg-elevated);
+        }
+
+        .modal-header h2 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .modal-header h2 i {
+            color: var(--primary-red);
+            font-size: 24px;
+        }
+
+        .close-modal {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            border: 1px solid var(--border-subtle);
+            background: var(--bg-card);
+            color: var(--text-muted);
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .close-modal:hover {
+            background: var(--primary-red);
+            border-color: var(--primary-red);
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 32px;
+        }
+
+        .modal-footer {
+            padding: 24px 32px;
+            border-top: 1px solid var(--border-subtle);
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            background: var(--bg-elevated);
+        }
+
+        /* Detalhes do Currículo no Modal */
+        .candidate-profile {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .candidate-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            background: var(--gradient-red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-red);
+        }
+
+        .candidate-header-info {
+            flex: 1;
+        }
+
+        .candidate-header-info h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .candidate-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .candidate-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .candidate-meta i {
+            color: var(--primary-red);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .info-section {
+            background: var(--bg-elevated);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .info-section.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .info-section h4 {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary-red);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-section p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        .btn-download {
+            background: var(--info);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            transition: all 0.2s;
+            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.2);
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        .btn-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-email {
+            background: var(--success);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            transition: all 0.2s;
+            box-shadow: 0 4px 6px -1px rgba(34, 197, 94, 0.2);
+        }
+
+        .btn-email:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(34, 197, 94, 0.3);
+        }
+
+        /* Modal Campanha */
+        .modal-campanha .modal-content {
+            max-width: 600px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 14px 16px;
+            background: var(--bg-dark);
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 15px;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-red);
+            box-shadow: 0 0 0 3px var(--primary-red-glow);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* Campanha Actions */
+        .campanha-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .campanha-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            border: 1px solid var(--border-subtle);
+            background: var(--bg-elevated);
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .campanha-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .campanha-btn.view:hover {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--info);
+            border-color: var(--info);
+        }
+
+        .campanha-btn.edit:hover {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+            border-color: var(--warning);
+        }
+
+        .campanha-btn.toggle:hover {
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--success);
+            border-color: var(--success);
+        }
+
+        .campanha-btn.delete:hover {
+            background: rgba(220, 38, 38, 0.1);
+            color: var(--primary-red);
+            border-color: var(--primary-red);
+        }
+
+        /* Empty State */
+        .empty-state {
+            padding: 60px 40px;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        .empty-state i {
+            font-size: 64px;
+            margin-bottom: 24px;
+            opacity: 0.3;
+        }
+
+        .empty-state h3 {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        /* NOVO: Modal de Status Premium */
+        .status-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .status-modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .status-modal-content {
+            background: var(--bg-card);
+            border-radius: 24px;
+            width: 100%;
+            max-width: 480px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            transform: scale(0.9);
+            transition: transform 0.3s;
+            overflow: hidden;
+        }
+
+        .status-modal-overlay.active .status-modal-content {
+            transform: scale(1);
+        }
+
+        .status-modal-header {
+            padding: 32px 32px 24px;
+            text-align: center;
+            background: var(--bg-elevated);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .status-modal-header h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .status-modal-header p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .status-options {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .status-option {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px;
+            background: var(--bg-elevated);
+            border: 2px solid var(--border-subtle);
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .status-option:hover {
+            border-color: var(--border-hover);
+            transform: translateX(8px);
+        }
+
+        .status-option.selected {
+            border-color: var(--primary-red);
+            background: rgba(220, 38, 38, 0.05);
+        }
+
+        .status-option-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.3s;
+        }
+
+        .status-option-pendente .status-option-icon {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+        }
+
+        .status-option-lido .status-option-icon {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--info);
+        }
+
+        .status-option-contratado .status-option-icon {
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--success);
+        }
+
+        .status-option-descartado .status-option-icon {
+            background: rgba(220, 38, 38, 0.1);
+            color: var(--primary-red);
+        }
+
+        .status-option-info {
+            flex: 1;
+        }
+
+        .status-option-info h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .status-option-info p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .status-option-check {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid var(--border-hover);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: transparent;
+            transition: all 0.3s;
+        }
+
+        .status-option.selected .status-option-check {
+            background: var(--primary-red);
+            border-color: var(--primary-red);
+            color: white;
+        }
+
+        .status-modal-footer {
+            padding: 24px 32px;
+            display: flex;
+            gap: 12px;
+            border-top: 1px solid var(--border-subtle);
+            background: var(--bg-elevated);
+        }
+
+        .status-modal-footer .btn {
+            flex: 1;
+            justify-content: center;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: var(--shadow-lg);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 3000;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast.success {
+            border-left: 4px solid var(--success);
+        }
+
+        .toast.error {
+            border-left: 4px solid var(--primary-red);
+        }
+
+        .toast-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .toast.success .toast-icon {
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--success);
+        }
+
+        .toast.error .toast-icon {
+            background: rgba(220, 38, 38, 0.1);
+            color: var(--primary-red);
+        }
+
+        .toast-content h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .toast-content p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* Responsividade */
+        @media (max-width: 1200px) {
+            .table-header,
+            .table-row {
+                grid-template-columns: 50px 2fr 1fr 100px 100px 120px;
+            }
+            
+            .mobile-hidden {
+                display: none;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .sidebar {
+                width: 80px;
+                padding: 24px 16px;
+            }
+            
+            .brand h1, .nav-section-title, .nav-menu span {
+                display: none;
+            }
+            
+            .nav-menu a {
+                justify-content: center;
+                padding: 16px;
+            }
+            
+            .nav-menu a::before {
+                display: none;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .admin-header {
+                padding: 0 20px;
+            }
+            
+            .user-badge span {
+                display: none;
+            }
+            
+            .main-content {
+                padding: 20px;
+            }
+            
+            .tab-navigation {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+            
+            .tab-actions {
+                width: 100%;
+            }
+            
+            .tab-actions .btn {
+                flex: 1;
+                justify-content: center;
+            }
+            
+            .filters-bar {
+                flex-direction: column;
+            }
+            
+            .filter-group {
+                min-width: 100%;
+            }
+            
+            .table-header,
+            .table-row {
+                grid-template-columns: 40px 1fr 100px 100px;
+                font-size: 13px;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .candidate-profile {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .status-modal-content {
+                max-width: 100%;
+                margin: 20px;
+            }
+        }
+
+        /* Scrollbar Personalizada */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-hover);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-red);
+        }
+
+        /* Animações */
+        @keyframes pulse-red {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.4); }
+            50% { box-shadow: 0 0 0 10px rgba(220, 38, 38, 0); }
+        }
+
+        .pulse-animation {
+            animation: pulse-red 2s infinite;
+        }
+
+        /* Loading */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Premium -->
+    <div class="admin-header">
+        <div class="brand">
+            <div class="brand-icon">
+                <i class="fas fa-briefcase"></i>
+            </div>
+            <div>
+                <h1>PH Negócios</h1>
+                <span>Painel Administrativo</span>
+            </div>
+        </div>
+        <div class="user-info">
+            <div class="user-badge">
+                <i class="fas fa-user-shield"></i>
+                <span>Recursos Humanos</span>
+            </div>
+            <button class="btn btn-secondary" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+                <span class="mobile-hidden">Sair</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="admin-container">
+        <!-- Sidebar Minimalista -->
+        <div class="sidebar">
+            <div class="nav-section">
+                <div class="nav-section-title">Menu Principal</div>
+                <ul class="nav-menu">
+                    <li>
+                        <a href="#" class="active" onclick="showTab('curriculos', this)">
+                            <i class="fas fa-inbox"></i>
+                            <span>Currículos</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="showTab('campanhas', this)">
+                            <i class="fas fa-bullhorn"></i>
+                            <span>Campanhas</span>
+                        </a>
+                    </li>
+                    <!--<li>-->
+                    <!--    <a href="#">-->
+                    <!--        <i class="fas fa-chart-pie"></i>-->
+                    <!--        <span>Estatísticas</span>-->
+                    <!--    </a>-->
+                    <!--</li>-->
+                </ul>
+            </div>
+            
+            <!--<div class="nav-section">-->
+            <!--    <div class="nav-section-title">Configurações</div>-->
+            <!--    <ul class="nav-menu">-->
+            <!--        <li>-->
+            <!--            <a href="#">-->
+            <!--                <i class="fas fa-cog"></i>-->
+            <!--                <span>Geral</span>-->
+            <!--            </a>-->
+            <!--        </li>-->
+            <!--        <li>-->
+            <!--            <a href="#">-->
+            <!--                <i class="fas fa-users-cog"></i>-->
+            <!--                <span>Usuários</span>-->
+            <!--            </a>-->
+            <!--        </li>-->
+            <!--    </ul>-->
+            <!--</div>-->
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Navegação de Abas -->
+            <div class="tab-navigation">
+                <div class="tab-group">
+                    <button class="tab-btn active" onclick="showTab('curriculos', this)">
+                        <i class="fas fa-file-alt"></i>
+                        Currículos
+                    </button>
+                    <button class="tab-btn" onclick="showTab('campanhas', this)">
+                        <i class="fas fa-bullhorn"></i>
+                        Campanhas
+                    </button>
+                </div>
+                <div class="tab-actions">
+                    <button class="btn btn-primary" onclick="novaCampanha()">
+                        <i class="fas fa-plus"></i>
+                        Nova Campanha
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Conteúdo: Currículos -->
+            <div id="tabCurriculos" class="tab-content active">
+                <!-- Estatísticas -->
+                <div class="stats-grid" id="statsContainer">
+                    <!-- Estatísticas carregadas via JS -->
+                </div>
+
+                <!-- Filtros -->
+                <div class="filters-bar">
+                    <div class="filter-group">
+                        <label>Status</label>
+                        <select id="filterStatus" onchange="loadCurriculos(1)">
+                            <option value="">Todos</option>
+                            <option value="pendente">Pendente</option>
+                            <option value="lido">Lido</option>
+                            <option value="contratado">Contratado</option>
+                            <option value="descartado">Descartado</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Vaga</label>
+                        <select id="filterVaga" onchange="loadCurriculos(1)">
+                            <option value="">Todas</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Campanha</label>
+                        <select id="filterCampanha" onchange="loadCurriculos(1)">
+                            <option value="">Todas</option>
+                        </select>
+                    </div>
+                    <div class="filter-group search-box">
+                        <label>Pesquisar</label>
+                        <input type="text" id="searchInput" placeholder="Buscar por nome, e-mail..." oninput="debounceSearch()">
+                    </div>
+                    <button class="btn btn-secondary" onclick="resetFilters()">
+                        <i class="fas fa-undo"></i>
+                        Limpar
+                    </button>
+                </div>
+
+                <!-- Tabela -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <div>ID</div>
+                        <div>Candidato</div>
+                        <div class="mobile-hidden">Vaga</div>
+                        <div class="mobile-hidden">Campanha</div>
+                        <div>Status</div>
+                        <div>Data</div>
+                        <div>Ações</div>
+                    </div>
+                    <div id="curriculosContainer">
+                        <!-- Dados carregados via JS -->
+                    </div>
+                </div>
+
+                <!-- Paginação -->
+                <div class="pagination" id="paginationContainer"></div>
+            </div>
+            
+            <!-- Conteúdo: Campanhas -->
+            <div id="tabCampanhas" class="tab-content">
+                <!-- Estatísticas Campanhas -->
+                <div class="stats-grid" id="statsCampanhas"></div>
+                
+                <!-- Filtros Campanhas -->
+                <div class="filters-bar">
+                    <div class="filter-group">
+                        <label>Status</label>
+                        <select id="filterCampanhaStatus" onchange="loadCampanhas(1)">
+                            <option value="">Todas</option>
+                            <option value="1">Ativas</option>
+                            <option value="0">Inativas</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Vaga</label>
+                        <input type="text" id="filterCampanhaVaga" placeholder="Filtrar por vaga..." oninput="debounceCampanhaSearch()">
+                    </div>
+                    <div class="filter-group">
+                        <label>Período Início</label>
+                        <input type="date" id="filterCampanhaDataInicio" onchange="loadCampanhas(1)">
+                    </div>
+                    <div class="filter-group">
+                        <label>Período Fim</label>
+                        <input type="date" id="filterCampanhaDataFim" onchange="loadCampanhas(1)">
+                    </div>
+                    <button class="btn btn-secondary" onclick="resetCampanhaFilters()">
+                        <i class="fas fa-undo"></i>
+                        Limpar
+                    </button>
+                </div>
+                
+                <!-- Tabela Campanhas -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <div>ID</div>
+                        <div>Campanha / Vaga</div>
+                        <div class="mobile-hidden">Período</div>
+                        <div class="mobile-hidden">Candidatos</div>
+                        <div>Status</div>
+                        <div>Vagas</div>
+                        <div>Ações</div>
+                    </div>
+                    <div id="campanhasContainer"></div>
+                </div>
+                
+                <div class="pagination" id="paginationCampanhas"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Visualizar Currículo -->
+    <div class="modal-overlay" id="viewModal" onclick="closeModalOnOverlay(event)">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-user-circle"></i> Detalhes do Candidato</h2>
+                <button class="close-modal" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal()">Fechar</button>
+                <button class="btn-download" onclick="downloadCurriculo()">
+                    <i class="fas fa-download"></i>
+                    Baixar CV
+                </button>
+                <a href="#" class="btn-email" id="emailLink" target="_blank">
+                    <i class="fas fa-envelope"></i>
+                    Enviar E-mail
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Criar/Editar Campanha -->
+    <div class="modal-overlay modal-campanha" id="modalCampanha" onclick="closeModalOnOverlay(event)">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-bullhorn"></i> <span id="modalCampanhaTitle">Nova Campanha</span></h2>
+                <button class="close-modal" onclick="closeCampanhaModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="formCampanha" class="form-grid">
+                    <input type="hidden" id="campanhaId">
+                    
+                    <div class="form-group full-width">
+                        <label>Título da Campanha *</label>
+                        <input type="text" id="campanhaTitulo" required placeholder="Ex: Processo Seletivo 2024">
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label>Descrição</label>
+                        <textarea id="campanhaDescricao" placeholder="Descreva os detalhes da campanha..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Vaga *</label>
+                        <input type="text" id="campanhaVaga" required placeholder="Ex: Analista de Vendas">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Vagas Disponíveis</label>
+                        <input type="number" id="campanhaVagasDisponiveis" min="1" placeholder="Deixe vazio para ilimitado">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Data Início *</label>
+                        <input type="date" id="campanhaDataInicio" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Data Fim *</label>
+                        <input type="date" id="campanhaDataFim" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select id="campanhaStatus">
+                            <option value="1">Ativa</option>
+                            <option value="0">Inativa</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeCampanhaModal()">Cancelar</button>
+                <button class="btn btn-primary" onclick="salvarCampanha()">
+                    <i class="fas fa-save"></i>
+                    Salvar Campanha
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- NOVO: Modal de Status Premium -->
+    <div class="status-modal-overlay" id="statusModal" onclick="closeStatusModalOnOverlay(event)">
+        <div class="status-modal-content">
+            <div class="status-modal-header">
+                <h3><i class="fas fa-exchange-alt" style="color: var(--primary-red); margin-right: 8px;"></i>Alterar Status</h3>
+                <p id="statusModalSubtitle">Selecione o novo status para o candidato</p>
+            </div>
+            <div class="status-options" id="statusOptions">
+                <div class="status-option status-option-pendente" onclick="selectStatus('pendente')">
+                    <div class="status-option-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="status-option-info">
+                        <h4>Pendente</h4>
+                        <p>Currículo recebido, aguardando análise</p>
+                    </div>
+                    <div class="status-option-check">
+                        <i class="fas fa-check"></i>
+                    </div>
+                </div>
+                
+                <div class="status-option status-option-lido" onclick="selectStatus('lido')">
+                    <div class="status-option-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="status-option-info">
+                        <h4>Lido</h4>
+                        <p>Currículo visualizado e em avaliação</p>
+                    </div>
+                    <div class="status-option-check">
+                        <i class="fas fa-check"></i>
+                    </div>
+                </div>
+                
+                <div class="status-option status-option-contratado" onclick="selectStatus('contratado')">
+                    <div class="status-option-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="status-option-info">
+                        <h4>Contratado</h4>
+                        <p>Candidato aprovado e contratado</p>
+                    </div>
+                    <div class="status-option-check">
+                        <i class="fas fa-check"></i>
+                    </div>
+                </div>
+                
+                <div class="status-option status-option-descartado" onclick="selectStatus('descartado')">
+                    <div class="status-option-icon">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                    <div class="status-option-info">
+                        <h4>Descartado</h4>
+                        <p>Candidato não aprovado para a vaga</p>
+                    </div>
+                    <div class="status-option-check">
+                        <i class="fas fa-check"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="status-modal-footer">
+                <button class="btn btn-secondary" onclick="closeStatusModal()">Cancelar</button>
+                <button class="btn btn-primary" onclick="confirmarMudancaStatus()">
+                    <i class="fas fa-save"></i>
+                    Confirmar Alteração
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <div class="toast-icon">
+            <i class="fas fa-check"></i>
+        </div>
+        <div class="toast-content">
+            <h4 id="toastTitle">Sucesso!</h4>
+            <p id="toastMessage">Operação realizada com sucesso.</p>
+        </div>
+    </div>
+
+    <script>
+        // Configurações
+        const API_BASE_URL = 'https://phapp.phng.com.br/api';
+        let currentTab = 'curriculos';
+        let currentPage = 1;
+        let currentCampanhaPage = 1;
+        let campanhaEditando = null;
+        let searchTimeout;
+        let curriculoAtual = null;
+        let statusSelecionado = null;
+        let curriculoIdParaStatus = null;
+
+        // ====== FUNÇÕES DE NAVEGAÇÃO ======
+        
+        function showTab(tabName, element) {
+            currentTab = tabName;
+            
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            if (element) {
+                if (element.tagName === 'A') {
+                    document.querySelectorAll('.nav-menu a').forEach(a => a.classList.remove('active'));
+                    element.classList.add('active');
+                    const tabIndex = tabName === 'curriculos' ? 0 : 1;
+                    document.querySelectorAll('.tab-btn')[tabIndex]?.classList.add('active');
+                } else {
+                    element.classList.add('active');
+                    document.querySelectorAll('.nav-menu a').forEach(a => a.classList.remove('active'));
+                    const sidebarIndex = tabName === 'curriculos' ? 0 : 1;
+                    document.querySelectorAll('.nav-menu a')[sidebarIndex]?.classList.add('active');
+                }
+            }
+            
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            const tabContent = document.getElementById(`tab${tabName.charAt(0).toUpperCase() + tabName.slice(1)}`);
+            if (tabContent) tabContent.classList.add('active');
+            
+            if (tabName === 'campanhas') {
+                loadCampanhas(1);
+                loadCampanhaStats();
+            } else {
+                loadCurriculos(1);
+                loadStats();
+            }
+        }
+
+        // ====== FUNÇÕES DE CURRÍCULOS ======
+        
+        async function loadStats() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/admin/curriculos?perPage=1`);
+                const data = await response.json();
+                
+                if (data.success && data.estatisticas) {
+                    const est = data.estatisticas;
+                    const stats = [
+                        { icon: 'fa-inbox', value: est.total || 0, label: 'Total Recebidos', trend: '+12%' },
+                        { icon: 'fa-clock', value: est.pendentes || 0, label: 'Pendentes', trend: '5 novos' },
+                        { icon: 'fa-eye', value: est.lidos || 0, label: 'Visualizados', trend: '+8%' },
+                        { icon: 'fa-check-circle', value: est.contratados || 0, label: 'Contratados', trend: '2 esta semana' },
+                        { icon: 'fa-trash', value: est.descartados || 0, label: 'Descartados', trend: '-3%' }
+                    ];
+                    
+                    document.getElementById('statsContainer').innerHTML = stats.map(stat => `
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div class="stat-icon">
+                                    <i class="fas ${stat.icon}"></i>
+                                </div>
+                                <span class="stat-trend">${stat.trend}</span>
+                            </div>
+                            <div class="stat-info">
+                                <h3>${stat.value}</h3>
+                                <p>${stat.label}</p>
+                            </div>
+                        </div>
+                    `).join('');
+                }
+            } catch (error) {
+                console.error('Erro ao carregar estatísticas:', error);
+            }
+        }
+
+        async function loadCurriculos(page = 1) {
+            currentPage = page;
+            const filters = {
+                status: document.getElementById('filterStatus')?.value || '',
+                vaga: document.getElementById('filterVaga')?.value || '',
+                campanha_id: document.getElementById('filterCampanha')?.value || '',
+                search: document.getElementById('searchInput')?.value || '',
+                page: page,
+                perPage: 10
+            };
+            
+            try {
+                const queryString = new URLSearchParams(filters).toString();
+                const response = await fetch(`${API_BASE_URL}/admin/curriculos?${queryString}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    renderCurriculos(data.data.data);
+                    renderPagination(data.data, 'curriculos');
+                    if (page === 1 && data.estatisticas?.por_vaga) {
+                        carregarFiltrosVagas(data.estatisticas.por_vaga);
+                    }
+                }
+            } catch (error) {
+                console.error('Erro ao carregar currículos:', error);
+                showToast('error', 'Erro', 'Não foi possível carregar os currículos');
+            }
+        }
+
+        function renderCurriculos(curriculos) {
+            const container = document.getElementById('curriculosContainer');
+            
+            if (!curriculos || curriculos.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-file-alt"></i>
+                        <h3>Nenhum currículo encontrado</h3>
+                        <p>Tente ajustar os filtros ou aguarde novos candidatos.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = curriculos.map(c => {
+                const data = c.created_at ? new Date(c.created_at).toLocaleDateString('pt-BR') : 'N/A';
+                const statusMap = {
+                    'pendente': { class: 'status-pendente', text: 'Pendente', icon: 'fa-clock' },
+                    'lido': { class: 'status-lido', text: 'Lido', icon: 'fa-eye' },
+                    'contratado': { class: 'status-contratado', text: 'Contratado', icon: 'fa-check' },
+                    'descartado': { class: 'status-descartado', text: 'Descartado', icon: 'fa-times' }
+                };
+                const status = statusMap[c.status] || statusMap.pendente;
+                
+                return `
+                    <div class="table-row">
+                        <div class="col-id">#${c.id}</div>
+                        <div class="col-candidate">
+                            <strong>${c.nome || 'Sem nome'}</strong>
+                            <div class="meta">
+                                <span><i class="fas fa-envelope"></i> ${c.email || 'N/A'}</span>
+                                <span><i class="fas fa-phone"></i> ${c.telefone || 'N/A'}</span>
+                            </div>
+                        </div>
+                        <div class="mobile-hidden">${c.vaga || 'N/A'}</div>
+                        <div class="mobile-hidden">${c.campanha_titulo || 'N/A'}</div>
+                        <div>
+                            <span class="status-badge ${status.class}" onclick="abrirModalStatus(${c.id}, '${c.status}', '${c.nome}')" title="Clique para alterar status">
+                                ${status.text}
+                            </span>
+                        </div>
+                        <div>${data}</div>
+                        <div class="actions">
+                            <button class="action-btn view" onclick="viewCurriculo(${c.id})" title="Visualizar">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="action-btn delete" onclick="deleteCurriculo(${c.id})" title="Excluir">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderPagination(paginator, type) {
+            const container = type === 'curriculos' ? 
+                document.getElementById('paginationContainer') : 
+                document.getElementById('paginationCampanhas');
+            
+            if (!paginator || !container) return;
+            
+            const totalPages = paginator.last_page || 1;
+            const current = paginator.current_page || 1;
+            
+            if (totalPages <= 1) {
+                container.innerHTML = '';
+                return;
+            }
+            
+            let html = `
+                <button class="page-btn ${current === 1 ? 'disabled' : ''}" 
+                        onclick="${type === 'curriculos' ? 'loadCurriculos' : 'loadCampanhas'}(${current - 1})">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+            `;
+            
+            for (let i = Math.max(1, current - 2); i <= Math.min(totalPages, current + 2); i++) {
+                html += `
+                    <button class="page-btn ${i === current ? 'active' : ''}" 
+                            onclick="${type === 'curriculos' ? 'loadCurriculos' : 'loadCampanhas'}(${i})">
+                        ${i}
+                    </button>
+                `;
+            }
+            
+            html += `
+                <button class="page-btn ${current === totalPages ? 'disabled' : ''}" 
+                        onclick="${type === 'curriculos' ? 'loadCurriculos' : 'loadCampanhas'}(${current + 1})">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            `;
+            
+            container.innerHTML = html;
+        }
+
+        async function viewCurriculo(id) {
+            try {
+                const response = await fetch(`${API_BASE_URL}/admin/curriculos/${id}`);
+                
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                
+                const data = await response.json();
+                if (!data.success) throw new Error(data.message || 'Erro ao carregar currículo');
+
+                curriculoAtual = data.data;
+                const c = data.data;
+                
+                const iniciais = c.nome ? c.nome.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase() : '??';
+                const dataEnvio = c.data_envio ? new Date(c.data_envio).toLocaleDateString('pt-BR', {
+                    day: '2-digit', month: 'long', year: 'numeric'
+                }) : 'N/A';
+
+                const statusMap = {
+                    'pendente': { class: 'status-pendente', text: 'Pendente' },
+                    'lido': { class: 'status-lido', text: 'Lido' },
+                    'contratado': { class: 'status-contratado', text: 'Contratado' },
+                    'descartado': { class: 'status-descartado', text: 'Descartado' }
+                };
+                const status = statusMap[c.status] || statusMap.pendente;
+
+                document.getElementById('modalBody').innerHTML = `
+                    <div class="candidate-profile">
+                        <div class="candidate-avatar">${iniciais}</div>
+                        <div class="candidate-header-info">
+                            <span class="status-badge ${status.class}">${status.text}</span>
+                            <h3>${c.nome || 'Sem nome'}</h3>
+                            <div class="candidate-meta">
+                                <span><i class="fas fa-briefcase"></i> ${c.vaga || 'Não especificada'}</span>
+                                <span><i class="fas fa-calendar"></i> Enviado em ${dataEnvio}</span>
+                                ${c.campanha_titulo ? `<span><i class="fas fa-bullhorn"></i> ${c.campanha_titulo}</span>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="info-grid">
+                        <div class="info-section">
+                            <h4><i class="fas fa-envelope"></i> Contato</h4>
+                            <p><strong>E-mail:</strong> ${c.email || 'N/A'}</p>
+                            <p><strong>Telefone:</strong> ${c.telefone || 'Não informado'}</p>
+                            <p><strong>Cidade:</strong> ${c.cidade || 'N/A'} - ${c.estado || 'N/A'}</p>
+                        </div>
+                        
+                        <div class="info-section">
+                            <h4><i class="fas fa-info-circle"></i> Detalhes</h4>
+                            <p><strong>Pretensão:</strong> ${c.pretensao_salarial || 'Não informada'}</p>
+                            <p><strong>Disponibilidade:</strong> ${c.disponibilidade || 'N/A'}</p>
+                        </div>
+                        
+                        ${c.experiencia ? `
+                        <div class="info-section full-width">
+                            <h4><i class="fas fa-briefcase"></i> Experiência Profissional</h4>
+                            <p>${c.experiencia}</p>
+                        </div>
+                        ` : ''}
+                        
+                        ${c.formacao ? `
+                        <div class="info-section full-width">
+                            <h4><i class="fas fa-graduation-cap"></i> Formação Acadêmica</h4>
+                            <p>${c.formacao}</p>
+                        </div>
+                        ` : ''}
+                        
+                        ${c.habilidades ? `
+                        <div class="info-section full-width">
+                            <h4><i class="fas fa-star"></i> Habilidades</h4>
+                            <p>${c.habilidades}</p>
+                        </div>
+                        ` : ''}
+                        
+                        ${c.mensagem ? `
+                        <div class="info-section full-width">
+                            <h4><i class="fas fa-comment"></i> Mensagem do Candidato</h4>
+                            <p>${c.mensagem}</p>
+                        </div>
+                        
+                        
+                        ` : ''}
+                    </div>
+                `;
+                
+                const emailLink = document.getElementById('emailLink');
+                if (emailLink && c.email) {
+                    emailLink.href = `mailto:${c.email}?subject=PH Negócios - Processo Seletivo`;
+                }
+
+                const modal = document.getElementById('viewModal');
+                modal.style.display = 'flex';
+                void modal.offsetWidth;
+                modal.classList.add('active');
+
+                // Auto-marcar como lido se pendente
+                if (c.status === 'pendente') {
+                    await fetch(`${API_BASE_URL}/admin/curriculos/${id}/status`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ status: 'lido' })
+                    });
+                    loadCurriculos(currentPage);
+                    loadStats();
+                }
+
+            } catch (error) {
+                console.error('Erro:', error);
+                showToast('error', 'Erro', 'Não foi possível carregar o currículo');
+            }
+        }
+
+        // ====== NOVO SISTEMA DE STATUS ======
+        
+        function abrirModalStatus(id, statusAtual, nomeCandidato) {
+            curriculoIdParaStatus = id;
+            statusSelecionado = statusAtual;
+            
+            document.getElementById('statusModalSubtitle').textContent = 
+                `Alterando status de: ${nomeCandidato || 'Candidato #' + id}`;
+            
+            // Resetar seleções visuais
+            document.querySelectorAll('.status-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Selecionar o atual
+            const optionAtual = document.querySelector(`.status-option-${statusAtual}`);
+            if (optionAtual) optionAtual.classList.add('selected');
+            
+            const modal = document.getElementById('statusModal');
+            modal.style.display = 'flex';
+            void modal.offsetWidth;
+            modal.classList.add('active');
+        }
+
+        function selectStatus(status) {
+            statusSelecionado = status;
+            
+            document.querySelectorAll('.status-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            document.querySelector(`.status-option-${status}`).classList.add('selected');
+        }
+
+        function closeStatusModal() {
+            const modal = document.getElementById('statusModal');
+            modal.classList.remove('active');
+            setTimeout(() => {
+                modal.style.display = 'none';
+                curriculoIdParaStatus = null;
+                statusSelecionado = null;
+            }, 300);
+        }
+
+        function closeStatusModalOnOverlay(event) {
+            if (event.target === event.currentTarget) {
+                closeStatusModal();
+            }
+        }
+
+        async function confirmarMudancaStatus() {
+            if (!curriculoIdParaStatus || !statusSelecionado) {
+                showToast('error', 'Erro', 'Selecione um status válido');
+                return;
+            }
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/admin/curriculos/${curriculoIdParaStatus}/status`, {
+                    method: 'PUT',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({ status: statusSelecionado })
+                });
+                
+                if (!response.ok) {
+                    const errorData = await response.json().catch(() => ({}));
+                    throw new Error(errorData.message || `Erro HTTP: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    showToast('success', 'Sucesso!', 'Status atualizado com sucesso');
+                    closeStatusModal();
+                    await loadCurriculos(currentPage);
+                    await loadStats();
+                } else {
+                    throw new Error(data.message || 'Erro ao atualizar status');
+                }
+            } catch (error) {
+                console.error('Erro:', error);
+                showToast('error', 'Erro', error.message);
+            }
+        }
+
+        // ====== DOWNLOAD DO CURRÍCULO ======
+        
+       function downloadCurriculo() {
+            if (!curriculoAtual || !curriculoAtual.curriculo_path) {
+                showToast('error', 'Erro', 'Currículo não disponível');
+                return;
+            }
+            
+            // Montar URL correta e abrir em nova aba
+            const fileUrl = `https://phapp.phng.com.br/storage/${curriculoAtual.curriculo_path}`;
+            window.open(fileUrl, '_blank');
+        }
+
+        // ====== FUNÇÕES AUXILIARES ======
+        
+        function closeModal() {
+            const modal = document.getElementById('viewModal');
+            modal.classList.remove('active');
+            setTimeout(() => {
+                modal.style.display = 'none';
+                curriculoAtual = null;
+            }, 300);
+        }
+
+        function closeModalOnOverlay(event) {
+            if (event.target === event.currentTarget) {
+                if (event.target.id === 'viewModal') closeModal();
+                else if (event.target.id === 'modalCampanha') closeCampanhaModal();
+            }
+        }
+
+        async function deleteCurriculo(id) {
+            if (!confirm('Tem certeza que deseja excluir este currículo?')) return;
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/admin/curriculos/${id}`, {
+                    method: 'DELETE'
+                });
+                
+                if (response.ok) {
+                    showToast('success', 'Sucesso!', 'Currículo excluído');
+                    loadCurriculos(currentPage);
+                    loadStats();
+                } else {
+                    throw new Error('Erro ao excluir');
+                }
+            } catch (error) {
+                showToast('error', 'Erro', error.message);
+            }
+        }
+
+        function debounceSearch() {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => loadCurriculos(1), 500);
+        }
+
+        function resetFilters() {
+            document.getElementById('filterStatus').value = '';
+            document.getElementById('filterVaga').value = '';
+            document.getElementById('filterCampanha').value = '';
+            document.getElementById('searchInput').value = '';
+            loadCurriculos(1);
+        }
+
+        // ====== TOAST NOTIFICATION ======
+        
+        function showToast(type, title, message) {
+            const toast = document.getElementById('toast');
+            const icon = toast.querySelector('.toast-icon i');
+            const titleEl = document.getElementById('toastTitle');
+            const messageEl = document.getElementById('toastMessage');
+            
+            toast.className = `toast ${type}`;
+            icon.className = type === 'success' ? 'fas fa-check' : type === 'error' ? 'fas fa-times' : 'fas fa-info-circle';
+            titleEl.textContent = title;
+            messageEl.textContent = message;
+            
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 4000);
+        }
+
+        // ====== FUNÇÕES DE CAMPANHAS ======
+
+        async function loadCampanhaStats() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/admin/campanhas?perPage=1`);
+                const data = await response.json();
+                
+                if (data.success && data.estatisticas) {
+                    const s = data.estatisticas;
+                    document.getElementById('statsCampanhas').innerHTML = `
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div class="stat-icon"><i class="fas fa-bullhorn"></i></div>
+                                <span class="stat-trend">Total</span>
+                            </div>
+                            <div class="stat-info"><h3>${s.total || 0}</h3><p>Campanhas Criadas</p></div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div class="stat-icon" style="background: rgba(34,197,94,0.1); color: var(--success);"><i class="fas fa-play"></i></div>
+                                <span class="stat-trend">Ativas</span>
+                            </div>
+                            <div class="stat-info"><h3>${s.ativas || 0}</h3><p>Em Andamento</p></div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div class="stat-icon" style="background: rgba(59,130,246,0.1); color: var(--info);"><i class="fas fa-users"></i></div>
+                                <span class="stat-trend">${s.total_candidatos || 0}</span>
+                            </div>
+                            <div class="stat-info"><h3>${s.total_candidatos || 0}</h3><p>Candidatos Totais</p></div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div class="stat-icon" style="background: rgba(245,158,11,0.1); color: var(--warning);"><i class="fas fa-clock"></i></div>
+                                <span class="stat-trend">Hoje</span>
+                            </div>
+                            <div class="stat-info"><h3>${s.em_andamento || 0}</h3><p>Campanhas Ativas</p></div>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Erro:', error);
+            }
+        }
+
+        async function loadCampanhas(page = 1) {
+            currentCampanhaPage = page;
+            const filters = {
+                status: document.getElementById('filterCampanhaStatus')?.value || '',
+                vaga: document.getElementById('filterCampanhaVaga')?.value || '',
+                data_inicio: document.getElementById('filterCampanhaDataInicio')?.value || '',
+                data_fim: document.getElementById('filterCampanhaDataFim')?.value || '',
+                page: page,
+                perPage: 10
+            };
+            
+            try {
+                const query = new URLSearchParams(filters).toString();
+                const response = await fetch(`${API_BASE_URL}/admin/campanhas?${query}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    renderCampanhas(data.data.data);
+                    renderPagination(data.data, 'campanhas');
+                }
+            } catch (error) {
+                console.error('Erro:', error);
+            }
+        }
+
+        function renderCampanhas(campanhas) {
+            const container = document.getElementById('campanhasContainer');
+            
+            if (!campanhas || campanhas.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-bullhorn"></i>
+                        <h3>Nenhuma campanha encontrada</h3>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = campanhas.map(c => {
+                const inicio = c.data_inicio ? new Date(c.data_inicio).toLocaleDateString('pt-BR') : 'N/A';
+                const fim = c.data_fim ? new Date(c.data_fim).toLocaleDateString('pt-BR') : 'N/A';
+                
+                let statusClass = 'ativa', statusText = 'Ativa';
+                if (c.status == 0) { statusClass = 'inativa'; statusText = 'Inativa'; }
+                else if (c.expirada) { statusClass = 'expirada'; statusText = 'Expirada'; }
+                
+                const vagas = c.vagas_disponiveis ? `${c.vagas_preenchidas || 0}/${c.vagas_disponiveis}` : 'Ilimitado';
+                
+                return `
+                    <div class="table-row">
+                        <div class="col-id">#${c.id}</div>
+                        <div class="col-candidate">
+                            <strong>${c.titulo}</strong>
+                            <small>${c.vaga}</small>
+                        </div>
+                        <div class="mobile-hidden"><small>${inicio} - ${fim}</small></div>
+                        <div class="mobile-hidden">
+                            <strong>${c.total_candidatos || 0}</strong>
+                            <small>candidatos</small>
+                        </div>
+                        <div>
+                            <span class="status-badge ${statusClass}">${statusText}</span>
+                            <br><small style="color: var(--text-muted);">${c.dias_restantes || 0} dias</small>
+                        </div>
+                        <div>${vagas}</div>
+                        <div class="campanha-actions">
+                            <button class="campanha-btn view" onclick="verCandidatosCampanha(${c.id})" title="Ver Candidatos">
+                                <i class="fas fa-users"></i>
+                            </button>
+                            <button class="campanha-btn edit" onclick="editarCampanha(${c.id})" title="Editar">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="campanha-btn toggle" onclick="toggleCampanha(${c.id}, ${c.status})" title="${c.status == 1 ? 'Desativar' : 'Ativar'}">
+                                <i class="fas fa-power-off"></i>
+                            </button>
+                            <button class="campanha-btn delete" onclick="excluirCampanha(${c.id})" title="Excluir">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function novaCampanha() {
+            campanhaEditando = null;
+            document.getElementById('modalCampanhaTitle').textContent = 'Nova Campanha';
+            document.getElementById('formCampanha').reset();
+            document.getElementById('campanhaId').value = '';
+            
+            const hoje = new Date().toISOString().split('T')[0];
+            const futuro = new Date();
+            futuro.setDate(futuro.getDate() + 30);
+            
+            document.getElementById('campanhaDataInicio').value = hoje;
+            document.getElementById('campanhaDataFim').value = futuro.toISOString().split('T')[0];
+            document.getElementById('campanhaStatus').value = '1';
+            
+            const modal = document.getElementById('modalCampanha');
+            modal.classList.add('active');
+            modal.style.display = 'flex';
+        }
+
+        async function editarCampanha(id) {
+            try {
+                const response = await fetch(`${API_BASE_URL}/admin/campanhas/${id}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    const c = data.data.campanha;
+                    campanhaEditando = c;
+                    
+                    document.getElementById('modalCampanhaTitle').textContent = 'Editar Campanha';
+                    document.getElementById('campanhaId').value = c.id;
+                    document.getElementById('campanhaTitulo').value = c.titulo;
+                    document.getElementById('campanhaDescricao').value = c.descricao || '';
+                    document.getElementById('campanhaVaga').value = c.vaga;
+                    document.getElementById('campanhaVagasDisponiveis').value = c.vagas_disponiveis || '';
+                    document.getElementById('campanhaStatus').value = c.status.toString();
+                    document.getElementById('campanhaDataInicio').value = new Date(c.data_inicio).toISOString().split('T')[0];
+                    document.getElementById('campanhaDataFim').value = new Date(c.data_fim).toISOString().split('T')[0];
+                    
+                    const modal = document.getElementById('modalCampanha');
+                    modal.classList.add('active');
+                    modal.style.display = 'flex';
+                }
+            } catch (error) {
+                showToast('error', 'Erro', 'Não foi possível carregar a campanha');
+            }
+        }
+
+        function closeCampanhaModal() {
+            const modal = document.getElementById('modalCampanha');
+            modal.classList.remove('active');
+            setTimeout(() => modal.style.display = 'none', 300);
+        }
+
+        async function salvarCampanha() {
+            const form = document.getElementById('formCampanha');
+            if (!form.checkValidity()) return form.reportValidity();
+            
+            const dados = {
+                titulo: document.getElementById('campanhaTitulo').value,
+                descricao: document.getElementById('campanhaDescricao').value,
+                vaga: document.getElementById('campanhaVaga').value,
+                data_inicio: document.getElementById('campanhaDataInicio').value,
+                data_fim: document.getElementById('campanhaDataFim').value,
+                vagas_disponiveis: document.getElementById('campanhaVagasDisponiveis').value || null,
+                status: document.getElementById('campanhaStatus').value
+            };
+            
+            const id = document.getElementById('campanhaId').value;
+            const url = id ? `${API_BASE_URL}/admin/campanhas/${id}` : `${API_BASE_URL}/admin/campanhas`;
+            const method = id ? 'PUT' : 'POST';
+            
+            try {
+                const response = await fetch(url, {
+                    method: method,
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(dados)
+                });
+                
+                if (response.ok) {
+                    showToast('success', 'Sucesso!', id ? 'Campanha atualizada' : 'Campanha criada');
+                    closeCampanhaModal();
+                    loadCampanhas(currentCampanhaPage);
+                    loadCampanhaStats();
+                    carregarFiltroCampanhas();
+                } else {
+                    throw new Error('Erro ao salvar');
+                }
+            } catch (error) {
+                showToast('error', 'Erro', error.message);
+            }
+        }
+
+        async function toggleCampanha(id, status) {
+            if (!confirm(`Deseja ${status == 1 ? 'desativar' : 'ativar'} esta campanha?`)) return;
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/admin/campanhas/${id}/status`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ status: status == 1 ? 0 : 1 })
+                });
+                
+                if (response.ok) {
+                    showToast('success', 'Sucesso!', `Campanha ${status == 1 ? 'desativada' : 'ativada'}`);
+                    loadCampanhas(currentCampanhaPage);
+                    loadCampanhaStats();
+                } else {
+                    throw new Error('Erro ao alterar status');
+                }
+            } catch (error) {
+                showToast('error', 'Erro', error.message);
+            }
+        }
+
+        async function excluirCampanha(id) {
+            if (!confirm('Tem certeza que deseja excluir esta campanha?')) return;
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/admin/campanhas/${id}`, {
+                    method: 'DELETE'
+                });
+                
+                if (response.ok) {
+                    showToast('success', 'Sucesso!', 'Campanha excluída');
+                    loadCampanhas(1);
+                    loadCampanhaStats();
+                } else {
+                    const data = await response.json();
+                    throw new Error(data.message || 'Erro ao excluir');
+                }
+            } catch (error) {
+                showToast('error', 'Erro', error.message);
+            }
+        }
+
+        function verCandidatosCampanha(id) {
+            document.getElementById('filterCampanha').value = id;
+            showTab('curriculos', document.querySelectorAll('.tab-btn')[0]);
+            loadCurriculos(1);
+        }
+
+        function debounceCampanhaSearch() {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => loadCampanhas(1), 500);
+        }
+
+        function resetCampanhaFilters() {
+            document.getElementById('filterCampanhaStatus').value = '';
+            document.getElementById('filterCampanhaVaga').value = '';
+            document.getElementById('filterCampanhaDataInicio').value = '';
+            document.getElementById('filterCampanhaDataFim').value = '';
+            loadCampanhas(1);
+        }
+
+        async function carregarFiltrosVagas(vagas) {
+            const select = document.getElementById('filterVaga');
+            select.innerHTML = '<option value="">Todas</option>';
+            vagas.forEach(v => {
+                const opt = document.createElement('option');
+                opt.value = v.vaga;
+                opt.textContent = `${v.vaga} (${v.total})`;
+                select.appendChild(opt);
+            });
+        }
+
+        async function carregarFiltroCampanhas() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/admin/campanhas?perPage=100`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    const select = document.getElementById('filterCampanha');
+                    select.innerHTML = '<option value="">Todas</option>';
+                    data.data.data.forEach(c => {
+                        const opt = document.createElement('option');
+                        opt.value = c.id;
+                        opt.textContent = `${c.titulo} - ${c.vaga}`;
+                        select.appendChild(opt);
+                    });
+                }
+            } catch (error) {
+                console.error('Erro:', error);
+            }
+        }
+
+        function logout() {
+            if (confirm('Deseja realmente sair?')) {
+                localStorage.removeItem('adminToken');
+                window.location.href = '/';
+            }
+        }
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', () => {
+            loadStats();
+            loadCurriculos(1);
+            carregarFiltroCampanhas();
+            
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeModal();
+                    closeCampanhaModal();
+                    closeStatusModal();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

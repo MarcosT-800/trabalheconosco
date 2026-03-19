@@ -1,0 +1,771 @@
+        /* ===== TRABALHE CONOSCO - PH NEGÓCIOS ===== */
+    /* Estilos fiéis ao design original */
+    
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+    
+    /* ===== VARIÁVEIS CSS ===== */
+    :root {
+      --ph-coral: #E94E4E;
+      --ph-coral-dark: #D43D3D;
+      --ph-black: #000000;
+      --ph-white: #FFFFFF;
+      --ph-gray-light: #F5F5F5;
+      --ph-gray: #888888;
+      --ph-purple: #7C3AED;
+      --ph-orange: #F97316;
+      --ph-blue: #3B82F6;
+      --ph-pink: #EC4899;
+      --ph-green: #10B981;
+      --ph-yellow: #FBBF24;
+    }
+    
+    /* ===== RESET E BASE ===== */
+    .trabalhe-conosco-page {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--ph-black);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    .trabalhe-conosco-page * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    .trabalhe-conosco-page img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    /* ===== HERO SECTION ===== */
+    .hero-section {
+      position: relative;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 60px 20px;
+      overflow: hidden;
+    }
+    
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1200') center center/cover no-repeat;
+      opacity: 0.3;
+      z-index: 0;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+    }
+    
+    .hero-logo {
+      width: 180px;
+      margin: 0 auto 40px;
+      filter: brightness(0) invert(1);
+    }
+    
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      font-weight: 700;
+      color: var(--ph-white);
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--ph-white);
+      font-weight: 300;
+      margin-bottom: 40px;
+      opacity: 0.9;
+    }
+    
+    .hero-button {
+      display: inline-block;
+      padding: 15px 40px;
+      border: 2px solid var(--ph-white);
+      color: var(--ph-white);
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      transition: all 0.3s ease;
+      background: transparent;
+      cursor: pointer;
+    }
+    
+    .hero-button:hover {
+      background: var(--ph-white);
+      color: var(--ph-black);
+    }
+    
+    .hero-hashtag {
+      position: absolute;
+      bottom: 40px;
+      right: 40px;
+      color: var(--ph-white);
+      font-size: 1.1rem;
+      font-weight: 600;
+      opacity: 0.8;
+      z-index: 1;
+    }
+    
+    /* ===== CULTURA PH SECTION ===== */
+    .cultura-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 500px;
+    }
+    
+    .cultura-image {
+      background: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=800') center center/cover no-repeat;
+      min-height: 400px;
+    }
+    
+    .cultura-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px 80px;
+      background: var(--ph-white);
+    }
+    
+    .cultura-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--ph-coral);
+      margin-bottom: 30px;
+      line-height: 1.3;
+    }
+    
+    .cultura-text {
+      font-size: 1rem;
+      color: var(--ph-black);
+      line-height: 1.8;
+    }
+    
+    /* ===== POR QUE ESCOLHER SECTION ===== */
+    .porque-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--ph-gray-light);
+    }
+    
+    .porque-image {
+      background: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800') center center/cover no-repeat;
+      min-height: 500px;
+    }
+    
+    .porque-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px 80px;
+    }
+    
+    .porque-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--ph-black);
+      margin-bottom: 40px;
+    }
+    
+    .porque-list {
+      list-style: none;
+    }
+    
+    .porque-list li {
+      position: relative;
+      padding-left: 30px;
+      margin-bottom: 25px;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    
+    .porque-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 12px;
+      height: 12px;
+      background: var(--ph-coral);
+      border-radius: 50%;
+    }
+    
+    .porque-list li strong {
+      color: var(--ph-coral);
+      font-weight: 700;
+    }
+    
+    /* ===== SONHOS BANNER ===== */
+    .sonhos-banner {
+      background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+      padding: 100px 40px;
+      text-align: center;
+    }
+    
+    .sonhos-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      font-weight: 700;
+      color: transparent;
+      -webkit-text-stroke: 2px var(--ph-white);
+      text-transform: uppercase;
+      letter-spacing: 8px;
+    }
+    
+    .sonhos-title span {
+      display: block;
+      font-size: 5rem;
+      -webkit-text-stroke: 2px var(--ph-coral);
+    }
+    
+    /* ===== NOSSO JEITO SECTION ===== */
+    .nosso-jeito-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--ph-black);
+      min-height: 500px;
+    }
+    
+    .nosso-jeito-image {
+      background: url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800') center center/cover no-repeat;
+      min-height: 400px;
+    }
+    
+    .nosso-jeito-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px 80px;
+      color: var(--ph-white);
+    }
+    
+    .nosso-jeito-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 600;
+      font-style: italic;
+      color: var(--ph-coral);
+      margin-bottom: 30px;
+      line-height: 1.3;
+    }
+    
+    .nosso-jeito-list {
+      list-style: none;
+    }
+    
+    .nosso-jeito-list li {
+      position: relative;
+      padding-left: 25px;
+      margin-bottom: 15px;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    
+    .nosso-jeito-list li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--ph-coral);
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+    
+    /* ===== VAGAS SECTION ===== */
+    .vagas-section {
+      padding: 80px 40px;
+      background: var(--ph-white);
+      text-align: center;
+    }
+    
+    .vagas-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--ph-black);
+      margin-bottom: 50px;
+    }
+    
+    .vagas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .vaga-card {
+      background: var(--ph-gray-light);
+      padding: 30px;
+      border-radius: 10px;
+      text-align: left;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .vaga-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .vaga-card h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--ph-black);
+      margin-bottom: 10px;
+    }
+    
+    .vaga-card p {
+      font-size: 0.9rem;
+      color: var(--ph-gray);
+    }
+    
+    .vaga-card .vaga-tag {
+      display: inline-block;
+      background: var(--ph-coral);
+      color: var(--ph-white);
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-top: 15px;
+      text-transform: uppercase;
+    }
+    
+    /* ===== CATEGORIAS GRID ===== */
+    .categorias-section {
+      padding: 60px 40px;
+      background: var(--ph-gray-light);
+    }
+    
+    .categorias-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .categoria-card {
+      padding: 40px 25px;
+      border-radius: 15px;
+      text-align: center;
+      color: var(--ph-white);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .categoria-card:hover {
+      transform: scale(1.05);
+    }
+    
+    .categoria-card.coral { background: var(--ph-coral); }
+    .categoria-card.purple { background: var(--ph-purple); }
+    .categoria-card.orange { background: var(--ph-orange); }
+    .categoria-card.blue { background: var(--ph-blue); }
+    .categoria-card.pink { background: var(--ph-pink); }
+    .categoria-card.green { background: var(--ph-green); }
+    .categoria-card.yellow { background: var(--ph-yellow); color: var(--ph-black); }
+    .categoria-card.black { background: var(--ph-black); }
+    
+    .categoria-icon {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+    
+    .categoria-card h4 {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    
+    /* ===== ESTATISTICA SECTION ===== */
+    .estatistica-section {
+      padding: 100px 40px;
+      background: var(--ph-white);
+      text-align: center;
+    }
+    
+    .estatistica-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 10rem;
+      font-weight: 700;
+      color: var(--ph-coral);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+    
+    .estatistica-text {
+      font-size: 1.5rem;
+      color: var(--ph-black);
+      font-weight: 500;
+    }
+    
+    /* ===== BANCO TALENTOS SECTION ===== */
+    .banco-talentos-section {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      background: var(--ph-black);
+      min-height: 400px;
+    }
+    
+    .banco-talentos-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px 80px;
+      color: var(--ph-white);
+    }
+    
+    .banco-talentos-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    
+    .banco-talentos-text {
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+    
+    .banco-talentos-button {
+      display: inline-block;
+      width: fit-content;
+      padding: 15px 40px;
+      background: var(--ph-coral);
+      color: var(--ph-white);
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    
+    .banco-talentos-button:hover {
+      background: var(--ph-coral-dark);
+    }
+    
+    .banco-talentos-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+    
+    .banco-talentos-logo img {
+      width: 200px;
+      filter: brightness(0) invert(1);
+    }
+    
+    /* ===== FOOTER ===== */
+    .footer-section {
+      background: var(--ph-black);
+      color: var(--ph-white);
+      padding: 60px 40px 30px;
+    }
+    
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .footer-slogan {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-style: italic;
+      line-height: 1.4;
+    }
+    
+    .footer-logo img {
+      width: 150px;
+      filter: brightness(0) invert(1);
+      margin-bottom: 20px;
+    }
+    
+    .footer-address {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      opacity: 0.8;
+    }
+    
+    .footer-social {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    .footer-social a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      color: var(--ph-white);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    .footer-social a:hover {
+      background: var(--ph-coral);
+      border-color: var(--ph-coral);
+    }
+    
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .footer-links a {
+      color: var(--ph-white);
+      text-decoration: none;
+      font-size: 0.9rem;
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+    }
+    
+    .footer-links a:hover {
+      opacity: 1;
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      font-size: 0.75rem;
+      opacity: 0.6;
+      line-height: 1.8;
+    }
+    
+    /* ===== RESPONSIVIDADE ===== */
+    
+    /* Tablet */
+    @media (max-width: 1024px) {
+      .hero-title {
+        font-size: 3rem;
+      }
+    
+      .cultura-section,
+      .porque-section,
+      .nosso-jeito-section,
+      .banco-talentos-section {
+        grid-template-columns: 1fr;
+      }
+    
+      .cultura-content,
+      .porque-content,
+      .nosso-jeito-content,
+      .banco-talentos-content {
+        padding: 50px 40px;
+      }
+    
+      .categorias-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    
+      .footer-top {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+    
+      .footer-social {
+        justify-content: center;
+      }
+    
+      .sonhos-title {
+        font-size: 2.5rem;
+      }
+    
+      .sonhos-title span {
+        font-size: 3rem;
+      }
+    
+      .estatistica-number {
+        font-size: 6rem;
+      }
+    }
+    
+    /* Mobile */
+    @media (max-width: 768px) {
+      .hero-section {
+        min-height: 80vh;
+        padding: 40px 20px;
+      }
+    
+      .hero-logo {
+        width: 120px;
+        margin-bottom: 30px;
+      }
+    
+      .hero-title {
+        font-size: 2.2rem;
+      }
+    
+      .hero-subtitle {
+        font-size: 1rem;
+      }
+    
+      .hero-button {
+        padding: 12px 30px;
+        font-size: 0.9rem;
+      }
+    
+      .hero-hashtag {
+        position: relative;
+        bottom: auto;
+        right: auto;
+        margin-top: 40px;
+      }
+    
+      .cultura-title,
+      .nosso-jeito-title,
+      .banco-talentos-title {
+        font-size: 1.8rem;
+      }
+    
+      .porque-title,
+      .vagas-title {
+        font-size: 1.6rem;
+      }
+    
+      .cultura-content,
+      .porque-content,
+      .nosso-jeito-content,
+      .banco-talentos-content {
+        padding: 40px 20px;
+      }
+    
+      .cultura-image,
+      .porque-image,
+      .nosso-jeito-image {
+        min-height: 250px;
+      }
+    
+      .sonhos-banner {
+        padding: 60px 20px;
+      }
+    
+      .sonhos-title {
+        font-size: 1.8rem;
+        letter-spacing: 4px;
+      }
+    
+      .sonhos-title span {
+        font-size: 2.2rem;
+      }
+    
+      .vagas-section {
+        padding: 50px 20px;
+      }
+    
+      .vagas-grid {
+        grid-template-columns: 1fr;
+      }
+    
+      .categorias-section {
+        padding: 40px 20px;
+      }
+    
+      .categorias-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+      }
+    
+      .categoria-card {
+        padding: 25px 15px;
+      }
+    
+      .categoria-icon {
+        font-size: 2rem;
+      }
+    
+      .estatistica-section {
+        padding: 60px 20px;
+      }
+    
+      .estatistica-number {
+        font-size: 4rem;
+      }
+    
+      .estatistica-text {
+        font-size: 1.2rem;
+      }
+    
+      .banco-talentos-section {
+        grid-template-columns: 1fr;
+      }
+    
+      .banco-talentos-logo {
+        order: -1;
+        padding: 30px;
+      }
+    
+      .banco-talentos-logo img {
+        width: 150px;
+      }
+    
+      .footer-section {
+        padding: 40px 20px 20px;
+      }
+    
+      .footer-slogan {
+        font-size: 1.4rem;
+      }
+    
+      .footer-top {
+        gap: 30px;
+      }
+    }
+    
+    /* Mobile pequeno */
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 1.8rem;
+      }
+    
+      .categorias-grid {
+        grid-template-columns: 1fr;
+      }
+    
+      .estatistica-number {
+        font-size: 3rem;
+      }
+    
+      .sonhos-title {
+        font-size: 1.4rem;
+        -webkit-text-stroke: 1px var(--ph-white);
+      }
+    
+      .sonhos-title span {
+        font-size: 1.8rem;
+        -webkit-text-stroke: 1px var(--ph-coral);
+      }
+    }
