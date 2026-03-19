@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html class="dark" lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,10 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Fonte Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <!-- Tailwind CSS -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
     <script>
         tailwind.config = {
@@ -17,7 +21,7 @@
                 extend: {
                     colors: {
                         primary: "#FFFFFF",
-                        accent: "#c91212", // Alterado de #FFD700 para vermelho
+                        accent: "#c91212",
                         "background-light": "#F9FAFB",
                         "background-dark": "#000000",
                         "card-dark": "#121212",
@@ -96,37 +100,84 @@
 
         /* Animações existentes */
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        /* HERO SECTION */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        /* HERO SECTION - Totalmente responsiva */
         .hero {
             background: url('./trabalhe-conosco-img-1.png');
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 60px 100px;
+            padding: 80px 100px;
             position: relative;
             background-size: cover;
             background-position: center;
             overflow: hidden;
         }
+
+        @media (max-width: 1200px) {
+            .hero {
+                padding: 60px 50px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 40px 20px;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+            }
+        }
+
         .hero::before {
             content: '';
             position: absolute;
@@ -134,9 +185,10 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3));
             animation: fadeIn 1.5s ease-out;
         }
+
         .hero-content {
             position: relative;
             z-index: 2;
@@ -148,6 +200,14 @@
             align-items: flex-start;
             width: 100%;
         }
+
+        @media (max-width: 768px) {
+            .hero-content {
+                max-width: 100%;
+                margin-top: 60px;
+            }
+        }
+
         .hero h1 {
             font-size: 58px;
             font-weight: 400;
@@ -155,6 +215,25 @@
             line-height: 1.2;
             text-align: left;
         }
+
+        @media (max-width: 1200px) {
+            .hero h1 {
+                font-size: 48px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 42px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+        }
+
         .hero p {
             font-size: 42px;
             font-weight: 300;
@@ -162,6 +241,25 @@
             line-height: 1.3;
             text-align: left;
         }
+
+        @media (max-width: 1200px) {
+            .hero p {
+                font-size: 36px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero p {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero p {
+                font-size: 24px;
+            }
+        }
+
         .btn-enviar {
             background: white;
             color: black;
@@ -180,6 +278,20 @@
             width: 350px;
             justify-content: center;
         }
+
+        @media (max-width: 1200px) {
+            .btn-enviar {
+                width: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .btn-enviar {
+                width: 100%;
+                max-width: 280px;
+            }
+        }
+
         .btn-enviar::after {
             content: '';
             position: absolute;
@@ -193,20 +305,30 @@
             transform: scale(1, 1) translate(-50%);
             transform-origin: 50% 50%;
         }
+
         .btn-enviar:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
             background: #f0f0f0;
         }
+
         .btn-enviar:active::after {
             animation: ripple 1s ease-out;
         }
+
         @keyframes ripple {
-            0% { transform: scale(0, 0); opacity: 0.5; }
-            100% { transform: scale(40, 40); opacity: 0; }
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: scale(40, 40);
+                opacity: 0;
+            }
         }
-        
-        /* LOGO NO CANTO SUPERIOR DIREITO - AJUSTE 1 */
+
+        /* LOGO NO CANTO SUPERIOR DIREITO - Responsivo */
         .logo-hero-top {
             position: absolute;
             top: 40px;
@@ -216,50 +338,66 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
             padding: 15px 30px;
             border-radius: 60px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             transition: all 0.4s ease;
         }
+
+        @media (max-width: 1200px) {
+            .logo-hero-top {
+                right: 50px;
+                top: 30px;
+                padding: 12px 25px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo-hero-top {
+                right: 20px;
+                top: 20px;
+                padding: 10px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-hero-top {
+                padding: 8px 15px;
+            }
+        }
+
         .logo-hero-top:hover {
             transform: translateY(-5px);
-            background: rgba(0, 0, 0, 0.7);
-            border-color: rgba(201, 18, 18, 0.5);
-            box-shadow: 0 15px 40px rgba(201, 18, 18, 0.2);
         }
+
         .logo-hero-top img {
             width: 180px;
             height: auto;
             transition: transform 0.5s ease;
             filter: brightness(0) invert(1);
         }
+
+        @media (max-width: 1200px) {
+            .logo-hero-top img {
+                width: 150px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo-hero-top img {
+                width: 120px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-hero-top img {
+                width: 100px;
+            }
+        }
+
         .logo-hero-top:hover img {
             transform: scale(1.05);
         }
 
-        /* Logo inferior (agora removido, mas mantive o estilo caso queira usar em outro lugar) */
-        .logo-hero {
-            position: absolute;
-            bottom: 80px;
-            left: 100px;
-            z-index: 2;
-            animation: fadeIn 1.5s ease-out 0.8s both;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .logo-hero img {
-            width: 300px;
-            height: auto;
-            transition: transform 0.5s ease;
-            filter: brightness(0) invert(1);
-        }
-        .logo-hero:hover img {
-            transform: scale(1.1);
-        }
         .hashtag {
             position: absolute;
             bottom: 80px;
@@ -270,7 +408,26 @@
             animation: fadeIn 1.5s ease-out 1s both;
         }
 
-        /* CULTURA SECTION */
+        @media (max-width: 1200px) {
+            .hashtag {
+                right: 50px;
+                bottom: 50px;
+                font-size: 26px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hashtag {
+                position: relative;
+                right: auto;
+                bottom: auto;
+                font-size: 22px;
+                margin-top: 20px;
+                margin-left: 0;
+            }
+        }
+
+        /* CULTURA SECTION - Responsiva */
         .cultura-section {
             background: black;
             padding: 100px;
@@ -279,16 +436,46 @@
             gap: 80px;
             animation: fadeInUp 1s ease-out both;
         }
+
+        @media (max-width: 1200px) {
+            .cultura-section {
+                padding: 60px 50px;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cultura-section {
+                padding: 40px 20px;
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+
         .cultura-text {
             flex: 1;
             animation: fadeInUp 0.8s ease-out 0.2s both;
         }
+
         .cultura-text h2 {
             font-size: 48px;
             font-weight: 700;
             margin-bottom: 40px;
             line-height: 1.2;
         }
+
+        @media (max-width: 1200px) {
+            .cultura-text h2 {
+                font-size: 42px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cultura-text h2 {
+                font-size: 32px;
+            }
+        }
+
         .cultura-text p {
             font-size: 20px;
             line-height: 1.8;
@@ -297,40 +484,83 @@
             opacity: 0.9;
             transition: opacity 0.3s ease;
         }
+
+        @media (max-width: 768px) {
+            .cultura-text p {
+                font-size: 18px;
+            }
+        }
+
         .cultura-text p:hover {
             opacity: 1;
         }
+
         .cultura-images {
             flex: 1;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
+            display: flex;
+            justify-content: center;
             animation: fadeInUp 0.8s ease-out 0.4s both;
+            position: relative;
         }
-        .cultura-images .img-box {
-            background: #333;
-            aspect-ratio: 1;
-            border-radius: 8px;
-            transition: all 0.4s ease;
-            opacity: 0.8;
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            border-radius: 10px;
             overflow: hidden;
         }
-        .cultura-images .img-box:hover {
-            transform: translateY(-10px) scale(1.05);
-            opacity: 1;
-            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+
+        @media (max-width: 1024px) {
+            .video-container {
+                max-width: 400px;
+            }
         }
-        .cultura-images .img-box img {
+
+        @media (max-width: 768px) {
+            .video-container {
+                max-width: 100%;
+            }
+        }
+
+        .img-trabalhe-conosco-2 {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
+            height: auto;
+            display: block;
+            border-radius: 10px;
         }
-        .cultura-images .img-box:hover img {
+
+        /* Botão de mute personalizado */
+        .mute-button {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .mute-button:hover {
+            background: rgba(201, 18, 18, 0.8);
             transform: scale(1.1);
         }
 
-        /* POR QUE ESCOLHER */
+        .mute-button .material-icons {
+            font-size: 20px;
+        }
+
+        /* POR QUE ESCOLHER - Responsiva */
         .why-section {
             background: white;
             color: black;
@@ -340,81 +570,121 @@
             align-items: center;
             animation: fadeInUp 1s ease-out both;
         }
+
+        @media (max-width: 1200px) {
+            .why-section {
+                padding: 60px 50px;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .why-section {
+                padding: 40px 20px;
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+
         .why-image {
             flex: 1;
             animation: fadeInUp 0.8s ease-out 0.2s both;
         }
-        .why-image img {
+
+        .why-img {
             width: 100%;
             height: auto;
+            max-height: 600px;
+            object-fit: cover;
             border-radius: 10px;
             transition: all 0.5s ease;
-            object-fit: cover;
         }
-        .why-image img:hover {
+
+        @media (max-width: 1024px) {
+            .why-img {
+                max-height: 500px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .why-img {
+                max-height: 400px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .why-img {
+                max-height: 300px;
+            }
+        }
+
+        .why-img:hover {
             transform: perspective(1000px) rotateY(5deg);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
+
         .why-content {
             flex: 1;
             animation: fadeInUp 0.8s ease-out 0.4s both;
         }
+
         .why-content h2 {
             font-size: 58px;
             font-weight: 700;
             margin-bottom: 50px;
             line-height: 1.1;
         }
+
+        @media (max-width: 1200px) {
+            .why-content h2 {
+                font-size: 48px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .why-content h2 {
+                font-size: 36px;
+            }
+        }
+
         .why-item {
             margin-bottom: 35px;
             padding: 15px;
             border-radius: 8px;
             transition: all 0.3s ease;
         }
+
         .why-item:hover {
             background-color: rgba(139, 0, 0, 0.05);
             transform: translateX(10px);
         }
+
         .why-item h3 {
             font-size: 22px;
             font-weight: 700;
             color: #8B0000;
             margin-bottom: 10px;
         }
+
+        @media (max-width: 768px) {
+            .why-item h3 {
+                font-size: 20px;
+            }
+        }
+
         .why-item p {
             font-size: 18px;
             line-height: 1.6;
             font-weight: 400;
         }
 
-/* Ajuste da imagem da seção "Por que escolher" */
-.why-img {
-    width: 100%;
-    height: auto;
-    max-height: 600px;
-    object-fit: cover;
-    border-radius: 10px;
-    transition: all 0.5s ease;
-}
+        @media (max-width: 768px) {
+            .why-item p {
+                font-size: 16px;
+            }
+        }
 
-@media (max-width: 1024px) {
-    .why-img {
-        max-height: 500px;
-    }
-}
-
-@media (max-width: 768px) {
-    .why-img {
-        max-height: 400px;
-    }
-}
-
-@media (max-width: 480px) {
-    .why-img {
-        max-height: 300px;
-    }
-}
-        /* SONHOS EM MOVIMENTO */
+        /* SONHOS EM MOVIMENTO - Responsiva */
         .dreams-section {
             background: #e5e5e5;
             color: black;
@@ -422,6 +692,19 @@
             position: relative;
             animation: fadeInUp 1s ease-out both;
         }
+
+        @media (max-width: 1200px) {
+            .dreams-section {
+                padding: 60px 50px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .dreams-section {
+                padding: 40px 20px;
+            }
+        }
+
         .dreams-header {
             text-align: left;
             font-size: 48px;
@@ -430,25 +713,49 @@
             margin-bottom: 60px;
             color: black;
         }
+
+        @media (max-width: 1200px) {
+            .dreams-header {
+                font-size: 42px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .dreams-header {
+                font-size: 32px;
+            }
+        }
+
         .dreams-content {
             display: flex;
             align-items: center;
             gap: 80px;
         }
+
+        @media (max-width: 1024px) {
+            .dreams-content {
+                flex-direction: column;
+                gap: 40px;
+            }
+        }
+
         .dreams-image {
             flex: 1;
             animation: fadeInUp 0.8s ease-out 0.2s both;
         }
+
         .dreams-image img {
             width: 100%;
             height: auto;
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
+
         .dreams-text {
             flex: 1;
             animation: fadeInUp 0.8s ease-out 0.4s both;
         }
+
         .dreams-text h2 {
             font-size: 48px;
             font-weight: 700;
@@ -456,6 +763,19 @@
             margin-bottom: 30px;
             line-height: 1.2;
         }
+
+        @media (max-width: 1200px) {
+            .dreams-text h2 {
+                font-size: 42px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .dreams-text h2 {
+                font-size: 32px;
+            }
+        }
+
         .dreams-text p {
             font-size: 20px;
             line-height: 1.8;
@@ -463,7 +783,13 @@
             font-weight: 400;
         }
 
-        /* VAGAS ABERTAS - AJUSTE 2: MAIS INDICATIVO DE CLIQUE */
+        @media (max-width: 768px) {
+            .dreams-text p {
+                font-size: 18px;
+            }
+        }
+
+        /* VAGAS ABERTAS - Responsiva */
         .vagas-section {
             background: #e5e5e5;
             color: black;
@@ -473,17 +799,51 @@
             align-items: center;
             animation: fadeInUp 1s ease-out both;
         }
+
+        @media (max-width: 1200px) {
+            .vagas-section {
+                padding: 60px 50px;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .vagas-section {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .vagas-section {
+                padding: 40px 20px;
+                gap: 30px;
+            }
+        }
+
         .vagas-content {
             flex: 1;
             animation: fadeInUp 0.8s ease-out 0.2s both;
+            width: 100%;
         }
+
         .vagas-content h2 {
             font-size: 56px;
             font-weight: 700;
             margin-bottom: 30px;
         }
-        
-        /* Badge de instrução */
+
+        @media (max-width: 1200px) {
+            .vagas-content h2 {
+                font-size: 48px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .vagas-content h2 {
+                font-size: 36px;
+            }
+        }
+
         .vagas-instruction {
             display: flex;
             align-items: center;
@@ -495,26 +855,37 @@
             border-left: 4px solid #c91212;
             animation: pulse 2s infinite;
         }
+
+        @media (max-width: 480px) {
+            .vagas-instruction {
+                flex-direction: column;
+                align-items: flex-start;
+                border-radius: 20px;
+            }
+        }
+
         .vagas-instruction span.material-icons {
             color: #c91212;
             font-size: 24px;
         }
+
         .vagas-instruction p {
             font-size: 16px;
             font-weight: 500;
             color: #333;
         }
+
         .vagas-instruction p strong {
             color: #c91212;
         }
 
-        /* Lista de vagas com design de cards */
         .vagas-list {
             list-style: none;
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
+
         .vagas-list li {
             font-size: 22px;
             font-weight: 500;
@@ -530,8 +901,22 @@
             align-items: center;
             justify-content: space-between;
         }
-        
-        /* Elementos visuais para indicar clique */
+
+        @media (max-width: 768px) {
+            .vagas-list li {
+                font-size: 18px;
+                padding: 15px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .vagas-list li {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+
         .vagas-list li::before {
             content: '•';
             font-size: 32px;
@@ -540,7 +925,7 @@
             transition: all 0.3s ease;
             opacity: 0.7;
         }
-        
+
         .vagas-list li::after {
             content: '→';
             font-family: 'Material Icons';
@@ -550,8 +935,7 @@
             transform: translateX(-10px);
             transition: all 0.3s ease;
         }
-        
-        /* Badge de "VAGA ABERTA" */
+
         .vaga-badge {
             background: #c91212;
             color: white;
@@ -565,26 +949,32 @@
             display: inline-block;
             animation: pulse 2s infinite;
         }
-        
+
+        @media (max-width: 480px) {
+            .vaga-badge {
+                margin-left: 0;
+                align-self: flex-start;
+            }
+        }
+
         .vagas-list li:hover {
             background: white;
             transform: translateX(10px) scale(1.02);
             box-shadow: 0 15px 30px rgba(201, 18, 18, 0.15);
             border-color: #c91212;
         }
-        
+
         .vagas-list li:hover::before {
             opacity: 1;
             transform: scale(1.3);
             color: #c91212;
         }
-        
+
         .vagas-list li:hover::after {
             opacity: 1;
             transform: translateX(5px);
         }
-        
-        /* Tooltip sutil */
+
         .vagas-list li .vaga-tooltip {
             position: absolute;
             top: -15px;
@@ -598,54 +988,87 @@
             transition: all 0.3s ease;
             pointer-events: none;
             white-space: nowrap;
-            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
         }
-        
+
+        @media (max-width: 768px) {
+            .vagas-list li .vaga-tooltip {
+                display: none;
+            }
+        }
+
         .vagas-list li:hover .vaga-tooltip {
             opacity: 1;
             top: -25px;
         }
-        
+
         .vagas-image {
             flex: 1;
             animation: fadeInUp 0.8s ease-out 0.4s both;
             position: relative;
-        }
-        .vagas-image div {
             width: 100%;
-            height: 500px;
-            background: #ccc;
-            border-radius: 10px;
-            transition: all 0.5s ease;
-            overflow: hidden;
-            position: relative;
-        }
-        .vagas-image div:hover {
-            transform: perspective(1000px) rotateX(5deg);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-        .vagas-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        .vagas-image div:hover img {
-            transform: scale(1.05);
         }
 
-        /* GRID SECTION */
+        .vagas-image img {
+            width: 100%;
+            height: auto;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.5s ease;
+        }
+
+        @media (max-width: 768px) {
+            .vagas-image img {
+                max-height: 350px;
+            }
+        }
+
+        .vagas-image img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* GRID SECTION - Responsiva */
         .grid-section {
             background: black;
             padding: 100px;
             animation: fadeInUp 1s ease-out both;
         }
+
+        @media (max-width: 1200px) {
+            .grid-section {
+                padding: 60px 50px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .grid-section {
+                padding: 40px 20px;
+            }
+        }
+
         .grid-container {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             grid-template-rows: repeat(3, 200px);
             gap: 20px;
         }
+
+        @media (max-width: 1024px) {
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+
         .grid-item {
             border-radius: 20px;
             padding: 30px;
@@ -659,32 +1082,47 @@
             transition: all 0.4s ease;
             overflow: hidden;
         }
+
+        @media (max-width: 768px) {
+            .grid-item {
+                padding: 20px;
+                font-size: 20px;
+                min-height: 180px;
+            }
+        }
+
         .grid-item:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
+
         .grid-item.white {
             background: #e5e5e5;
             color: black;
         }
+
         .grid-item.red {
             background: #FF0000;
             color: white;
         }
+
         .grid-item.orange {
             background: #FF5722;
             color: white;
         }
+
         .grid-item.purple {
             background: #9C27B0;
             color: white;
         }
+
         .grid-item.image {
             background-size: cover;
             background-position: center;
             color: white;
             background-image: url('./trabalhe-conosco-img-7.png');
         }
+
         .grid-item .plus {
             position: absolute;
             top: 20px;
@@ -700,24 +1138,37 @@
             font-size: 28px;
             transition: all 0.3s ease;
         }
+
+        @media (max-width: 768px) {
+            .grid-item .plus {
+                width: 35px;
+                height: 35px;
+                font-size: 24px;
+            }
+        }
+
         .grid-item:hover .plus {
             transform: rotate(90deg);
             width: 45px;
             height: 45px;
         }
+
         .grid-item.red .plus,
         .grid-item.purple .plus {
             background: white;
             color: #FF0000;
         }
+
         .grid-item.orange .plus {
             background: white;
             color: #FF5722;
         }
+
         .grid-item.image .plus {
             background: #FF5722;
             color: white;
         }
+
         .grid-item .arrow {
             width: 60px;
             height: 60px;
@@ -730,20 +1181,45 @@
             margin-top: auto;
             transition: all 0.4s ease;
         }
+
+        @media (max-width: 768px) {
+            .grid-item .arrow {
+                width: 50px;
+                height: 50px;
+                font-size: 28px;
+            }
+        }
+
         .grid-item:hover .arrow {
             background: white;
             color: #FF0000;
             transform: translateX(10px);
         }
+
         .grid-item.ph-logo {
             grid-row: span 1;
         }
+
         .grid-item.gestao {
             grid-row: span 2;
         }
+
+        @media (max-width: 1024px) {
+            .grid-item.gestao {
+                grid-row: span 1;
+            }
+        }
+
         .grid-item.diretora {
             grid-row: span 2;
         }
+
+        @media (max-width: 1024px) {
+            .grid-item.diretora {
+                grid-row: span 1;
+            }
+        }
+
         .ph-logo-icon {
             position: absolute;
             top: 3px;
@@ -757,12 +1233,20 @@
             justify-content: center;
             transition: all 0.4s ease;
         }
+
+        @media (max-width: 768px) {
+            .ph-logo-icon {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
         .grid-item:hover .ph-logo-icon {
             transform: scale(1.1) rotate(10deg);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
 
-        /* 420 PHZEIROS */
+        /* 420 PHZEIROS - Responsiva */
         .stats-section {
             min-height: 100vh;
             display: flex;
@@ -774,6 +1258,7 @@
             animation: fadeInUp 1s ease-out both;
             background-image: url('./trabalhe-conosco-img-6.png');
         }
+
         .stats-section::before {
             content: '';
             position: absolute;
@@ -781,21 +1266,37 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.5);
             animation: fadeIn 1.5s ease-out;
         }
+
         .stats-content {
             position: relative;
             z-index: 2;
             text-align: center;
             animation: fadeInUp 1s ease-out 0.5s both;
+            padding: 20px;
         }
+
         .stats-content .small-text {
             font-size: 42px;
             font-weight: 700;
             margin-bottom: 20px;
             animation: float 3s infinite ease-in-out;
         }
+
+        @media (max-width: 1024px) {
+            .stats-content .small-text {
+                font-size: 36px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .stats-content .small-text {
+                font-size: 28px;
+            }
+        }
+
         .stats-content .big-number {
             font-size: 280px;
             font-weight: 700;
@@ -804,28 +1305,90 @@
             animation: pulse 2s infinite ease-in-out;
             text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
+
+        @media (max-width: 1024px) {
+            .stats-content .big-number {
+                font-size: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .stats-content .big-number {
+                font-size: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-content .big-number {
+                font-size: 120px;
+            }
+        }
+
         .stats-content .label {
             font-size: 52px;
             font-weight: 700;
             animation: float 3s infinite ease-in-out 1s;
         }
 
-        /* BANCO DE TALENTOS */
+        @media (max-width: 1024px) {
+            .stats-content .label {
+                font-size: 42px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .stats-content .label {
+                font-size: 32px;
+            }
+        }
+
+        /* BANCO DE TALENTOS - Responsiva */
         .talent-section {
             background: black;
             padding: 120px 100px;
             position: relative;
             animation: fadeInUp 1s ease-out both;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
         }
+
+        @media (max-width: 1200px) {
+            .talent-section {
+                padding: 80px 50px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .talent-section {
+                padding: 60px 20px;
+            }
+        }
+
         .talent-content {
             max-width: 800px;
             animation: fadeInUp 0.8s ease-out 0.2s both;
+            text-align: center;
         }
+
         .talent-content h2 {
             font-size: 56px;
             font-weight: 400;
             margin-bottom: 40px;
         }
+
+        @media (max-width: 1200px) {
+            .talent-content h2 {
+                font-size: 48px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .talent-content h2 {
+                font-size: 36px;
+            }
+        }
+
         .talent-content p {
             font-size: 22px;
             line-height: 1.8;
@@ -835,10 +1398,18 @@
             padding: 10px;
             border-radius: 5px;
         }
+
+        @media (max-width: 768px) {
+            .talent-content p {
+                font-size: 18px;
+            }
+        }
+
         .talent-content p:hover {
             background-color: rgba(255, 255, 255, 0.05);
             transform: translateX(5px);
         }
+
         .btn-cadastrar {
             background: white;
             color: black;
@@ -852,25 +1423,22 @@
             position: relative;
             overflow: hidden;
         }
+
+        @media (max-width: 768px) {
+            .btn-cadastrar {
+                width: 100%;
+                max-width: 280px;
+                padding: 15px 30px;
+                font-size: 18px;
+            }
+        }
+
         .btn-cadastrar:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(255, 255, 255, 0.1);
             background: #f0f0f0;
         }
-        .talent-logo {
-            position: absolute;
-            right: 100px;
-            top: 50%;
-            transform: translateY(-50%);
-            animation: fadeInUp 0.8s ease-out 0.5s both;
-        }
-        .talent-logo svg {
-            transition: all 0.5s ease;
-        }
-        .talent-logo:hover svg {
-            transform: scale(1.1);
-            filter: drop-shadow(0 10px 20px rgba(255, 255, 255, 0.2));
-        }
+
         .tagline {
             text-align: center;
             font-size: 32px;
@@ -879,11 +1447,18 @@
             animation: fadeInUp 1s ease-out both;
         }
 
-        /* ========== ESTILOS DO FOOTER (copiados do blog) ========== */
+        @media (max-width: 768px) {
+            .tagline {
+                font-size: 24px;
+            }
+        }
+
+        /* FOOTER - Responsivo */
         .footer-section h5 {
             position: relative;
             display: inline-block;
         }
+
         .footer-section h5::after {
             content: '';
             position: absolute;
@@ -891,199 +1466,161 @@
             left: 0;
             width: 30px;
             height: 2px;
-            background: #c91212; /* vermelho */
+            background: #c91212;
         }
+
         .footer-link {
             position: relative;
             transition: all 0.3s ease;
         }
+
         .footer-link::before {
             content: '→';
             position: absolute;
             left: -20px;
             opacity: 0;
             transition: all 0.3s ease;
-            color: #c91212; /* vermelho */
+            color: #c91212;
         }
+
         .footer-link:hover {
             padding-left: 20px;
-            color: #c91212; /* vermelho */
+            color: #c91212;
         }
+
         .footer-link:hover::before {
             opacity: 1;
             left: 0;
         }
-        /* Animações e utilitários extras (opcionais) */
+
         .animate-fade-in {
             animation: fadeIn 0.5s ease-out;
         }
+
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
-        /* ========== MEDIA QUERIES (resumidas) ========== */
-        @media (max-width: 1024px) {
-            .hero, .cultura-section, .why-section, .dreams-section, 
-            .vagas-section, .grid-section, .talent-section {
-                padding: 60px 50px;
-            }
-            .hero h1 { font-size: 48px; }
-            .hero p { font-size: 36px; }
-            .btn-enviar { width: 300px; }
-            .logo-hero-top { 
-                right: 50px; 
-                top: 30px;
-                padding: 12px 25px;
-            }
-            .logo-hero-top img { width: 150px; }
-            .hashtag { right: 50px; bottom: 50px; font-size: 26px; }
-            .cultura-section { flex-direction: column; }
-            .why-section { flex-direction: column; }
-            .dreams-content { flex-direction: column; }
-            .vagas-section { flex-direction: column; }
-            .grid-container { grid-template-columns: repeat(2, 1fr); }
-            .stats-content .big-number { font-size: 200px; }
-            .talent-logo { position: relative; right: auto; top: auto; transform: none; margin-top: 40px; }
+        /* Ajustes gerais para imagens */
+        .Logo_vermelho_fundo_preto_ph2 {
+            width: 40px;
+            height: auto;
         }
+
         @media (max-width: 768px) {
-            .hero, .cultura-section, .why-section, .dreams-section, 
-            .vagas-section, .grid-section, .talent-section {
-                padding: 40px 20px;
+            .Logo_vermelho_fundo_preto_ph2 {
+                width: 30px;
             }
-            .hero h1 { font-size: 36px; }
-            .hero p { font-size: 28px; }
-            .btn-enviar { width: 100%; max-width: 280px; }
-            .logo-hero-top { 
-                right: 20px; 
-                top: 20px;
-                padding: 10px 20px;
-            }
-            .logo-hero-top img { width: 120px; }
-            .hashtag { position: relative; right: auto; bottom: auto; font-size: 22px; margin-top: 20px; }
-            .cultura-text h2 { font-size: 32px; }
-            .why-content h2 { font-size: 36px; }
-            .dreams-header { font-size: 32px; }
-            .dreams-text h2 { font-size: 32px; }
-            .vagas-content h2 { font-size: 36px; }
-            .vagas-list li { font-size: 18px; padding: 15px 20px; }
-            .grid-container { grid-template-columns: 1fr; }
-            .stats-content .big-number { font-size: 150px; }
-            .talent-content h2 { font-size: 36px; }
-            .btn-cadastrar { width: 100%; max-width: 280px; }
-            .tagline { font-size: 24px; }
-        }
-        @media (max-width: 480px) {
-            .hero h1 { font-size: 32px; }
-            .hero p { font-size: 24px; }
-            .stats-content .big-number { font-size: 120px; }
-            .logo-hero-top img { width: 100px; }
-            .vagas-list li { 
-                flex-direction: column; 
-                align-items: flex-start; 
-                gap: 10px;
-            }
-            .vaga-badge { margin-left: 0; }
-        }
-
-        /* Ajustes para imagens */
-        .Logo_vermelho_fundo_preto_ph2 { width: 40px; }
-        .img-trabalhe-conosco-2 { width: 500px; height: auto; }
-        .Logo_preto_fundo_preto { width: 200px; margin-top: -100px; }
-        @media (max-width: 1024px) {
-            .img-trabalhe-conosco-2 { width: 300px; }
-            .Logo_preto_fundo_preto { width: 120px; margin-top: -30px; margin-left: 120px; }
         }
     </style>
 </head>
+
 <body>
     <!-- HERO SECTION -->
-    <section class="hero">
-        <!-- LOGO NO CANTO SUPERIOR DIREITO - AJUSTE 1 -->
+    <section class="hero" id="hero">
+        <!-- LOGO NO CANTO SUPERIOR DIREITO -->
         <div class="logo-hero-top">
             <img src="./logo vermelho com escrita branca.png" alt="PH Negócios Logo" />
         </div>
-        
+
         <div class="hero-content">
             <h1>Junte-se à PH Negócios!</h1>
             <p>Aqui, transformar o<br>mundo começa com a<br>sua própria jornada.</p>
             <button class="btn-enviar">
                 <a href="#vagas" style="outline: none; text-decoration: none; color: black;">Enviar currículo!</a>
             </button>
-            <img src="./logo vermelho com escrita branca.png" alt="PH Negócios Logo" style="width: 150px;" />
         </div>
         <div class="hashtag">#OrgulhoDeSerPhzeiro</div>
     </section>
 
     <!-- CULTURA SECTION -->
-    <section class="cultura-section section-hidden">
+    <section class="cultura-section section-hidden" id="cultura">
         <div class="cultura-text">
             <h2>Cultura PH: Onde propósito,<br>desempenho e pessoas<br>andam juntos!</h2>
-            <p>Na PH Negócios, acreditamos que grandes resultados nascem de grandes pessoas. Aqui, a gente vibra com cada conquista, aprende com cada desafio e nunca anda sozinho.</p>
-            <p>Se você acredita que cultura é mais do que frase na parede, vem com a gente transformar o Brasil começando pela sua própria jornada.</p>
+            <p>Na PH Negócios, acreditamos que grandes resultados nascem de grandes pessoas. Aqui, a gente vibra com
+                cada conquista, aprende com cada desafio e nunca anda sozinho.</p>
+            <p>Se você acredita que cultura é mais do que frase na parede, vem com a gente transformar o Brasil
+                começando pela sua própria jornada.</p>
         </div>
         <div class="cultura-images">
-            <img src="./trabalhe-conosco-img-2.png" class="img-trabalhe-conosco-2" />
+            <div class="video-container">
+                <video class="img-trabalhe-conosco-2" id="culturaVideo" autoplay loop muted playsinline>
+                    <source src="https://library.phng.com.br/trabalhe-conosco/video-institucional.mp4" type="video/mp4">
+                    Seu navegador não suporta vídeo.
+                </video>
+                <button class="mute-button" id="muteToggle" onclick="toggleMute()">
+                    <span class="material-icons" id="muteIcon">volume_off</span>
+                </button>
+            </div>
         </div>
     </section>
 
-  <!-- POR QUE ESCOLHER -->
-<section class="why-section section-hidden">
-    <div class="why-image">
-        <img src="./trabalhe-conosco-img-3.png" alt="Equipe PH Negócios" class="why-img">
-    </div>
-    <div class="why-content">
-        <h2>Por que<br>escolher a<br>Ph Negócios?</h2>
-        <div class="why-item">
-            <h3>Impacto real:</h3>
-            <p>Trabalhamos com produtos que mudam vidas ajudando brasileiros a realizarem sonhos, quitarem dívidas ou darem um novo rumo à vida financeira.</p>
+    <!-- POR QUE ESCOLHER -->
+    <section class="why-section section-hidden" id="porque-escolher">
+        <div class="why-image">
+            <img src="./trabalhe-conosco-img-3.png" alt="Equipe PH Negócios" class="why-img">
         </div>
-        <div class="why-item">
-            <h3>Crescimento acelerado:</h3>
-            <p>Somos uma empresa em constante evolução. Aqui, você encontra espaço para crescer, aprender e liderar.</p>
+        <div class="why-content">
+            <h2>Por que<br>escolher a<br>Ph Negócios?</h2>
+            <div class="why-item">
+                <h3>Impacto real:</h3>
+                <p>Trabalhamos com produtos que mudam vidas ajudando brasileiros a realizarem sonhos, quitarem dívidas
+                    ou darem um novo rumo à vida financeira.</p>
+            </div>
+            <div class="why-item">
+                <h3>Crescimento acelerado:</h3>
+                <p>Somos uma empresa em constante evolução. Aqui, você encontra espaço para crescer, aprender e liderar.
+                </p>
+            </div>
+            <div class="why-item">
+                <h3>Ambiente dinâmico e colaborativo:</h3>
+                <p>Valorizamos gente com atitude, ideias novas e vontade de fazer acontecer.</p>
+            </div>
+            <div class="why-item">
+                <h3>Diversidade e inclusão:</h3>
+                <p>Acreditamos na força das diferenças e no respeito a todas as formas de ser.</p>
+            </div>
         </div>
-        <div class="why-item">
-            <h3>Ambiente dinâmico e colaborativo:</h3>
-            <p>Valorizamos gente com atitude, ideias novas e vontade de fazer acontecer.</p>
-        </div>
-        <div class="why-item">
-            <h3>Diversidade e inclusão:</h3>
-            <p>Acreditamos na força das diferenças e no respeito a todas as formas de ser.</p>
-        </div>
-    </div>
-</section>
+    </section>
 
     <!-- SONHOS EM MOVIMENTO -->
     <section class="dreams-section section-hidden">
         <h1 class="dreams-header">SONHOS EM MOVIMENTO!</h1>
         <div class="dreams-content">
             <div class="dreams-image">
-                <img src="./trabalhe-conosco-img-4.png" style="width: 100%; height: 100%; background: #444; border-radius: 10px;">
+                <img src="./trabalhe-conosco-img-4.png"
+                    style="width: 100%; height: auto; background: #444; border-radius: 10px;">
             </div>
             <div class="dreams-text">
                 <h2>Nosso Jeito<br>PhZeiro de ser!</h2>
-                <p>Autonomia com responsabilidade, comunicação aberta e direta, cultura de resultados, mas com gente no centro, foco total no cliente.</p>
+                <p>Autonomia com responsabilidade, comunicação aberta e direta, cultura de resultados, mas com gente no
+                    centro, foco total no cliente.</p>
             </div>
         </div>
     </section>
 
-    <!-- VAGAS ABERTAS - AJUSTE 2: MAIS INDICATIVO DE CLIQUE -->
+    <!-- VAGAS ABERTAS -->
     <section class="vagas-section section-hidden" id="vagas">
         <div class="vagas-content">
             <h2>VAGAS ABERTAS</h2>
-            
-            <!-- Badge de instrução para indicar clique -->
+
             <div class="vagas-instruction">
                 <span class="material-icons">touch_app</span>
                 <p><strong>Clique em qualquer vaga</strong> para se candidatar e fazer parte do time!</p>
             </div>
-            
+
             <ul class="vagas-list" id="vagasList">
                 <li>Carregando vagas...</li>
             </ul>
         </div>
         <div class="vagas-image">
-            <img src="./trabalhe-conosco-img-5.png" style="width: 100%; height: 500px; background: #ccc; border-radius: 10px;">
+            <img src="./trabalhe-conosco-img-5.png" style="width: 100%; height: auto; border-radius: 10px;">
         </div>
     </section>
 
@@ -1093,7 +1630,7 @@
             <div class="grid-item white ph-logo">
                 <a href="https://phng.com.br" style="text-decoration: none; outline: none; color: black">
                     <div class="ph-logo-icon">
-                        <img src="./Logo vermelho fundo preto ph.png" class="Logo_vermelho_fundo_preto_ph2"/>
+                        <img src="./Logo vermelho fundo preto ph.png" class="Logo_vermelho_fundo_preto_ph2" />
                     </div>
                     <span style="margin-top: 40px;">Ph Negócios</span>
                 </a>
@@ -1141,139 +1678,123 @@
     </section>
 
     <!-- BANCO DE TALENTOS -->
-    <section class="talent-section section-hidden" style="display: flex; flex-direction: row; justify-content: center;">
-        <div class="talent-content" style="text-align: center;">
+    <section class="talent-section section-hidden">
+        <div class="talent-content">
             <h2>Não encontrou a vaga ideal?</h2>
-            <p>Tudo bem! Você pode deixar seu currículo no nosso Banco de Talentos. <br/> Assim que surgir uma oportunidade com seu perfil, a gente entra em contato.</p>
+            <p>Tudo bem! Você pode deixar seu currículo no nosso Banco de Talentos. <br /> Assim que surgir uma
+                oportunidade com seu perfil, a gente entra em contato.</p>
             <button class="btn-cadastrar">
                 <a href="#vagas" style="outline: none; text-decoration: none; color: black;">Cadastrar currículo</a>
             </button>
         </div>
     </section>
 
-    <!-- FOOTER DO BLOG (integrado e com cor alterada para vermelho) -->
-    <footer class="bg-gray-50 dark:bg-black border-t border-gray-200 dark:border-gray-900 pt-16 pb-8 px-4 transition-all duration-300">
-        <div class="max-w-7xl mx-auto">
-            <!-- Grid principal do footer -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 mb-12">
-                
-                <!-- Coluna 1: Apps -->
-                <div class="footer-section lg:col-span-2 space-y-6 animate-fade-in">
-                    <h5 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-6">Baixe o App</h5>
-                    <div class="space-y-3">
-                        <a class="block bg-gray-200 dark:bg-gray-900 px-4 py-3 rounded-xl flex items-center space-x-3 hover:bg-gray-300 dark:hover:bg-gray-800 transition-all duration-300 hover:scale-105 hover:shadow-lg group"
-                            href="https://play.google.com/store/apps/details?id=com.phnegocios.app&pcampaignid=web_share">
-                            <span class="material-icons text-2xl group-hover:scale-110 transition-transform">play_arrow</span>
-                            <div class="leading-tight">
-                                <p class="text-[10px] text-gray-500 uppercase">Disponível no</p>
-                                <p class="font-bold text-sm">Google Play</p>
-                            </div>
-                        </a>
-                        <a class="block bg-gray-200 dark:bg-gray-900 px-4 py-3 rounded-xl flex items-center space-x-3 hover:bg-gray-300 dark:hover:bg-gray-800 transition-all duration-300 hover:scale-105 hover:shadow-lg group"
-                            href="https://apps.apple.com/br/app/ph-neg%C3%B3cios/id6742840882">
-                            <span class="material-icons text-2xl group-hover:scale-110 transition-transform">apple</span>
-                            <div class="leading-tight">
-                                <p class="text-[10px] text-gray-500 uppercase">Disponível na</p>
-                                <p class="font-bold text-sm">App Store</p>
-                            </div>
-                        </a>
-                    </div>
-                    
-                    <!-- Redes Sociais -->
-                    <div class="pt-4">
-                        <h5 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Siga-nos</h5>
-                        <div class="flex space-x-3">
-                            <a class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-900 flex items-center justify-center text-gray-500 hover:text-accent hover:bg-gray-300 dark:hover:bg-gray-800 transition-all duration-300 hover:scale-110 hover:rotate-12" 
-                               href="https://www.instagram.com/phnegociosoficial/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" /></svg>
-                            </a>
-                            <a class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-900 flex items-center justify-center text-gray-500 hover:text-accent hover:bg-gray-300 dark:hover:bg-gray-800 transition-all duration-300 hover:scale-110 hover:rotate-12" 
-                               href="https://www.linkedin.com/company/phnegocios/posts/?feedView=all" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.51 8.796v1.697a3.738 3.738 0 013.288-1.684c3.455 0 4.202 2.16 4.202 4.97V19.5h-3.2v-5.072c0-1.21-.244-2.766-2.128-2.766-1.827 0-2.139 1.317-2.139 2.676V19.5h-3.19V8.796h3.168zM7.2 6.106a1.61 1.61 0 01-.988 1.483 1.595 1.595 0 01-1.743-.348A1.607 1.607 0 015.6 4.5a1.601 1.601 0 011.6 1.606z" clip-rule="evenodd" /><path d="M7.2 8.809H4V19.5h3.2V8.809z" /></svg>
-                            </a>
-                            <a class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-900 flex items-center justify-center text-gray-500 hover:text-accent hover:bg-gray-300 dark:hover:bg-gray-800 transition-all duration-300 hover:scale-110 hover:rotate-12" 
-                               href="https://www.tiktok.com/@phnegociosoficial" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.589 6.686a4.793 4.793 0 01-3.77-4.245V2h-3.445v13.672a2.896 2.896 0 01-5.201 1.743l-.002-.001.002.001a2.895 2.895 0 013.183-4.51v-3.5a6.329 6.329 0 00-5.394 10.692 6.33 6.33 0 0010.857-4.424V8.687a8.182 8.182 0 004.773 1.526V6.79a4.831 4.831 0 01-3.77-1.105z" /></svg>
-                            </a>
-                            <a class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-900 flex items-center justify-center text-gray-500 hover:text-accent hover:bg-gray-300 dark:hover:bg-gray-800 transition-all duration-300 hover:scale-110 hover:rotate-12" 
-                               href="https://www.facebook.com/phnegociosofc" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
-                            </a>
+    <!-- FOOTER -->
+    <!-- Footer -->
+    <footer id="contato" class="bg-white border-t border-gray-200 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <div class="lg:col-span-1">
+                    <div class="flex items-center gap-3 mb-6">
+                        <img src="https://library.phng.com.br/site/assets/images/logo_ph.webp" alt="PH Negócios"
+                            class="w-20 h-auto">
+                        <div>
+                            <span class="font-bold text-lg text-gray-900">Negócios</span>
                         </div>
                     </div>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6">
+                        Há mais de 17 anos conectando sonhos à realidade através de consórcios justos e transparentes.
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="https://www.facebook.com/phnegociosofc" target="_blank"
+                            class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-brand-700 hover:text-white transition-all">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://www.instagram.com/phnegociosoficial" target="_blank"
+                            class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-brand-700 hover:text-white transition-all">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/company/phnegocios" target="_blank"
+                            class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-brand-700 hover:text-white transition-all">
+                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                        </a>
+                    </div>
                 </div>
 
-                <!-- Coluna 2: Sites -->
-                <div class="footer-section animate-fade-in" style="animation-delay: 0.1s">
-                    <h5 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-6">Sites</h5>
-                    <ul class="space-y-3 text-sm">
-                        <li><a class="footer-link text-gray-600 dark:text-gray-400 hover:text-accent transition-all duration-300" href="https://phng.com.br/#">PH Negócios</a></li>
-                        <li><a class="footer-link text-gray-600 dark:text-gray-400 hover:text-accent transition-all duration-300" href="https://phtech.app">PH Tech</a></li>
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-4">Links Rápidos</h4>
+                    <ul class="space-y-3 text-sm text-gray-500">
+                        <li><a href="#hero" class="hover:text-brand-700 transition-colors">Home</a></li>
+                        <li><a href="#cultura" class="hover:text-brand-700 transition-colors">Cultura da PH</a></li>
+                        <li><a href="#porque-escolher" class="hover:text-brand-700 transition-colors">Porque escolher</a></li>
+                        <li><a href="#vagas" class="hover:text-brand-700 transition-colors">Vagas</a></li>
                     </ul>
                 </div>
 
-                <!-- Coluna 3: Iniciativas -->
-                <div class="footer-section animate-fade-in" style="animation-delay: 0.2s">
-                    <h5 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-6">Iniciativas</h5>
-                    <ul class="space-y-3 text-sm">
-                        <li><a class="footer-link text-gray-600 dark:text-gray-400 hover:text-accent transition-all duration-300" href="/sustentabilidade.html">Sustentabilidade</a></li>
-                        <li><a class="footer-link text-gray-600 dark:text-gray-400 hover:text-accent transition-all duration-300" href="/blog-interno.html">Blog Interno</a></li>
-                        <li><a class="footer-link text-gray-600 dark:text-gray-400 hover:text-accent transition-all duration-300" href="https://phtech.app">Seja Parceiro PH Tech</a></li>
-                    </ul>
-                </div>
-
-                <!-- Coluna 4: Fale com a Gente -->
-                <div class="footer-section animate-fade-in" style="animation-delay: 0.3s">
-                    <h5 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-6">Fale com a Gente</h5>
-                    <ul class="space-y-3 text-sm">
-                        <li class="flex items-start gap-2 text-gray-600 dark:text-gray-400">
-                            <span class="material-icons text-accent text-sm mt-0.5">chat</span>
-                            <span>Chat do app</span>
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-4">Contato</h4>
+                    <ul class="space-y-3 text-sm text-gray-500">
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="phone" class="w-4 h-4 text-brand-700"></i>
+                            (11) 4765-1770
                         </li>
-                        <li class="flex items-start gap-2 text-gray-600 dark:text-gray-400">
-                            <span class="material-icons text-accent text-sm mt-0.5">phone</span>
-                            <div>
-                                <div class="font-medium text-black dark:text-white">11 94765-1760</div>
-                                <div class="text-xs">Central de Relacionamento</div>
-                            </div>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="mail" class="w-4 h-4 text-brand-700"></i>
+                            marketing@phnegocios.com.br
                         </li>
-                        <li class="flex items-start gap-2 text-gray-600 dark:text-gray-400">
-                            <span class="material-icons text-accent text-sm mt-0.5">email</span>
-                            <div>
-                                <div class="font-medium text-black dark:text-white">imprensa@phng.com.br</div>
-                                <div class="text-xs">Assessoria de Imprensa</div>
-                            </div>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="map-pin" class="w-4 h-4 text-brand-700 mt-0.5"></i>
+                            <span>Rua Fernandes Pinheiro, 449<br>Tatuapé, São Paulo - SP</span>
                         </li>
                     </ul>
                 </div>
 
-                <!-- Coluna 5: Carreira -->
-                <div class="footer-section animate-fade-in" style="animation-delay: 0.4s">
-                    <h5 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-6">Carreira</h5>
-                    <ul class="space-y-3 text-sm">
-                        <li><a class="footer-link text-gray-600 dark:text-gray-400 hover:text-accent transition-all duration-300" href="/trabalhe-conosco.html">Trabalhe Conosco</a></li>
-                        <li><a class="footer-link text-gray-600 dark:text-gray-400 hover:text-accent transition-all duration-300" href="/canal-transparencia.html">Canal de Transparência</a></li>
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-4">Horário de Atendimento</h4>
+                    <ul class="space-y-3 text-sm text-gray-500">
+                        <li>Segunda - Sexta: 8h às 18h</li>
+                        <li>Sábado: 9h às 13h</li>
+                        <li class="text-brand-700 font-semibold flex items-center gap-2">
+                            <span class="w-2 h-2 bg-brand-bright rounded-full animate-pulse"></span>
+                            WhatsApp 24h
+                        </li>
                     </ul>
                 </div>
             </div>
 
-            <!-- Bottom bar -->
-            <div class="pt-8 border-t border-gray-200 dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 animate-fade-in">
-                <p class="text-xs text-gray-500 hover:scale-105 transition-transform duration-300">© 2026 PH Negócios. Todos os direitos reservados.</p>
-                <div class="flex flex-wrap justify-center gap-6 text-xs">
-                    <a class="text-gray-500 hover:text-accent transition-all duration-300 hover:scale-105" href="https://lgpd.phng.com.br/">Política de Privacidade</a>
-                    <a class="text-gray-500 hover:text-accent transition-all duration-300 hover:scale-105" href="https://lgpd.phng.com.br/">Termos de Uso</a>
-                    <a class="text-gray-500 hover:text-accent transition-all duration-300 hover:scale-105" href="https://lgpd.phng.com.br/">Segurança</a>
+            <div class="border-t border-gray-200 pt-8">
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div>
+                        <p class="text-gray-400 text-xs">PH Brasil Promotora de Vendas LTDA.</p>
+                        <p class="text-gray-400 text-xs">CNPJ: 26.811.024/0001-14</p>
+                    </div>
+                    <div class="md:text-right">
+                        <p class="text-gray-400 text-xs max-w-md md:ml-auto">
+                            A PH Negócios atua como correspondente bancário, regulada pelo Banco Central do Brasil, nos
+                            termos da Resolução nº 3.954/2011.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row justify-between items-center pt-6 border-t border-gray-100 gap-4">
+                    <p class="text-gray-400 text-xs">© 2025 PH Negócios. Todos os direitos reservados.</p>
+                    <div class="flex gap-6">
+                        <a href="https://lgpd.phng.com.br"
+                            class="text-gray-400 text-xs hover:text-brand-700 transition-colors">Política de
+                            Privacidade</a>
+                        <a href="https://lgpd.phng.com.br"
+                            class="text-gray-400 text-xs hover:text-brand-700 transition-colors">Termos de Uso</a>
+                    </div>
                 </div>
             </div>
         </div>
     </footer>
 
+
     <script>
-        // Animação de entrada conforme scroll (existente)
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const sections = document.querySelectorAll('.section-hidden');
-            
+
             function checkVisibility() {
                 sections.forEach(section => {
                     const rect = section.getBoundingClientRect();
@@ -1283,23 +1804,23 @@
                     }
                 });
             }
-            
+
             checkVisibility();
             window.addEventListener('scroll', checkVisibility);
-            
-            // Efeito de clique nos botões
+
             const buttons = document.querySelectorAll('.btn-enviar, .btn-cadastrar');
             buttons.forEach(button => {
-                button.addEventListener('click', function() {
+                button.addEventListener('click', function () {
                     this.style.transform = 'scale(0.95)';
                     setTimeout(() => {
                         this.style.transform = '';
                     }, 150);
                 });
             });
-            
-            // Carregar vagas ativas
+
             carregarVagasAtivas();
+            lucide.createIcons();
+
         });
 
         async function carregarVagasAtivas() {
@@ -1307,36 +1828,32 @@
                 const response = await fetch('https://phapp.phng.com.br/api/campanhas/ativas?perPage=10');
                 const data = await response.json();
                 const vagasList = document.getElementById('vagasList');
-                
+
                 if (data.success && data.data.data.length > 0) {
                     vagasList.innerHTML = '';
                     data.data.data.forEach(campanha => {
                         const li = document.createElement('li');
-                        
-                        // Container para o título da vaga
+
                         const vagaTitle = document.createElement('span');
                         vagaTitle.textContent = campanha.vaga;
-                        
-                        // Badge de "VAGA ABERTA"
+
                         const badge = document.createElement('span');
                         badge.className = 'vaga-badge';
                         badge.textContent = 'VAGA ABERTA';
-                        
-                        // Tooltip
+
                         const tooltip = document.createElement('span');
                         tooltip.className = 'vaga-tooltip';
                         tooltip.textContent = 'Clique para se candidatar';
-                        
-                        // Montar estrutura
+
                         li.appendChild(vagaTitle);
                         li.appendChild(badge);
                         li.appendChild(tooltip);
-                        
+
                         li.style.cursor = 'pointer';
                         if (campanha.dias_restantes > 0) {
                             li.title = `${campanha.titulo}\nEncerra em ${campanha.dias_restantes} dias`;
                         }
-                        li.addEventListener('click', function() {
+                        li.addEventListener('click', function () {
                             localStorage.setItem('campanha_selecionada', JSON.stringify({
                                 id: campanha.id,
                                 vaga: campanha.vaga,
@@ -1347,7 +1864,6 @@
                         vagasList.appendChild(li);
                     });
                 } else {
-                    // Vagas padrão com indicadores visuais aprimorados
                     vagasList.innerHTML = `
                         <li onclick="selecionarVaga('Gerente Comercial PHTech')">
                             <span>Gerente Comercial PHTech</span>
@@ -1413,6 +1929,21 @@
             localStorage.setItem('vaga_selecionada', vaga);
             window.location.href = './formulario.html';
         }
+
+        // Função para controle de mute do vídeo
+        function toggleMute() {
+            const video = document.getElementById('culturaVideo');
+            const muteIcon = document.getElementById('muteIcon');
+            
+            if (video.muted) {
+                video.muted = false;
+                muteIcon.textContent = 'volume_up';
+            } else {
+                video.muted = true;
+                muteIcon.textContent = 'volume_off';
+            }
+        }
     </script>
 </body>
+
 </html>
