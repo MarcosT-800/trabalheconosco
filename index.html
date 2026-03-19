@@ -1,1337 +1,1418 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
-
+<html class="dark" lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PH Negócios - Consórcio Premium</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-
+    <title>Trabalhe Conosco - PH Negócios</title>
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Fonte Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
     <script>
         tailwind.config = {
+            darkMode: "class",
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                    },
                     colors: {
-                        brand: {
-                            50: '#fef2f2',
-                            100: '#fee2e2',
-                            200: '#fecaca',
-                            300: '#fca5a5',
-                            400: '#f87171',
-                            500: '#ef4444',
-                            600: '#dc2626',
-                            700: '#c91212',  // Vermelhor - Principal
-                            800: '#991b1b',
-                            900: '#7f1d1d',
-                            dark: '#6d251d',  // Mesclado
-                            bright: '#FF0000', // Vermelho forte
-                        }
+                        primary: "#FFFFFF",
+                        accent: "#c91212", // Alterado de #FFD700 para vermelho
+                        "background-light": "#F9FAFB",
+                        "background-dark": "#000000",
+                        "card-dark": "#121212",
+                        "border-dark": "#262626",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                        sans: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "4px",
+                        'xl': '12px',
                     },
                     animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out',
+                        'slide-up': 'slideUp 0.4s ease-out',
+                        'slide-down': 'slideDown 0.4s ease-out',
+                        'scale-up': 'scaleUp 0.3s ease-out',
+                        'pulse-gentle': 'pulseGentle 2s infinite',
                         'float': 'float 6s ease-in-out infinite',
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'shimmer': 'shimmer 2s linear infinite',
+                        'shimmer': 'shimmer 2s infinite',
+                        'bounce-slow': 'bounce 2s infinite',
                     },
                     keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        slideDown: {
+                            '0%': { transform: 'translateY(-20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        scaleUp: {
+                            '0%': { transform: 'scale(0.95)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' }
+                        },
+                        pulseGentle: {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0.8' }
+                        },
                         float: {
                             '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-20px)' },
+                            '50%': { transform: 'translateY(-10px)' }
                         },
                         shimmer: {
-                            '0%': { backgroundPosition: '-200% 0' },
-                            '100%': { backgroundPosition: '200% 0' },
+                            '0%': { backgroundPosition: '-200px 0' },
+                            '100%': { backgroundPosition: '200px 0' }
                         }
+                    },
+                    transitionProperty: {
+                        'height': 'height',
+                        'spacing': 'margin, padding',
+                        'transform': 'transform',
                     }
-                }
-            }
-        }
+                },
+            },
+        };
     </script>
-
     <style>
         * {
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .gradient-text {
-            background: linear-gradient(135deg, #c91212 0%, #6d251d 50%, #FF0000 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        body {
+            font-family: 'Inter', sans-serif;
+            color: white;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
-        .gradient-bg {
-            background: linear-gradient(135deg, #c91212 0%, #6d251d 100%);
+        /* Animações existentes */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
         }
 
-        .gradient-bg-light {
-            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
-        }
-
-        .hero-gradient {
-            background:
-                radial-gradient(circle at 0% 0%, rgba(201, 18, 18, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 100% 100%, rgba(109, 37, 29, 0.05) 0%, transparent 50%),
-                linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
-        }
-
-        .hero-bg {
-  background:
-    linear-gradient(
-      120deg,
-      rgba(255, 255, 255, 0.96),
-      rgba(243, 244, 246, 0.96)
-    ),
-    url('./trabalhe-conosco-img-1.png') center/cover no-repeat;
-}
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            box-shadow:
-                0 4px 6px -1px rgba(0, 0, 0, 0.02),
-                0 2px 4px -1px rgba(0, 0, 0, 0.02);
-        }
-
-        .premium-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(0, 0, 0, 0.04);
-        }
-
-        .premium-card:hover {
-            transform: translateY(-8px);
-            box-shadow:
-                0 20px 40px -10px rgba(201, 18, 18, 0.15),
-                0 0 0 1px rgba(201, 18, 18, 0.1);
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #c91212 0%, #6d251d 100%);
-            transition: all 0.3s ease;
+        /* HERO SECTION */
+        .hero {
+            background: url('./trabalhe-conosco-img-1.png');
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 60px 100px;
             position: relative;
+            background-size: cover;
+            background-position: center;
             overflow: hidden;
         }
-
-        .btn-primary::before {
+        .hero::before {
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
+            animation: fadeIn 1.5s ease-out;
         }
-
-        .btn-primary:hover::before {
-            left: 100%;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px -10px rgba(201, 18, 18, 0.5);
-        }
-
-        .btn-outline {
-            border: 2px solid #c91212;
-            color: #c91212;
-            transition: all 0.3s ease;
-        }
-
-        .btn-outline:hover {
-            background: #c91212;
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        .input-range {
-            -webkit-appearance: none;
-            height: 6px;
-            background: linear-gradient(to right, #fee2e2, #fecaca);
-            border-radius: 10px;
-            outline: none;
-        }
-
-        .input-range::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 24px;
-            height: 24px;
-            background: linear-gradient(135deg, #c91212, #6d251d);
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 0 0 4px rgba(201, 18, 18, 0.2);
-            transition: all 0.2s;
-        }
-
-        .input-range::-webkit-slider-thumb:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 0 6px rgba(201, 18, 18, 0.3);
-        }
-
-        .nav-link {
+        .hero-content {
             position: relative;
+            z-index: 2;
+            max-width: 600px;
+            animation: fadeInUp 1.2s ease-out 0.3s both;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            width: 100%;
         }
-
-        .nav-link::after {
+        .hero h1 {
+            font-size: 58px;
+            font-weight: 400;
+            margin-bottom: 40px;
+            line-height: 1.2;
+            text-align: left;
+        }
+        .hero p {
+            font-size: 42px;
+            font-weight: 300;
+            margin-bottom: 50px;
+            line-height: 1.3;
+            text-align: left;
+        }
+        .btn-enviar {
+            background: white;
+            color: black;
+            border: none;
+            padding: 18px 50px;
+            font-size: 20px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-bottom: 40px;
+            display: inline-block;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            width: 350px;
+            justify-content: center;
+        }
+        .btn-enviar::after {
             content: '';
             position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #c91212, #6d251d);
-            transition: width 0.3s;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .faq-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-        }
-
-        .faq-content.active {
-            max-height: 500px;
-        }
-
-        .floating-whatsapp {
-            animation: pulse-border 2s infinite;
-        }
-
-        @keyframes pulse-border {
-            0% {
-                box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7);
-            }
-
-            70% {
-                box-shadow: 0 0 0 20px rgba(74, 222, 128, 0);
-            }
-
-            100% {
-                box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);
-            }
-        }
-
-        .grid-pattern {
-            background-image:
-                linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
-        }
-
-        .reveal {
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+        .btn-enviar:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            background: #f0f0f0;
+        }
+        .btn-enviar:active::after {
+            animation: ripple 1s ease-out;
+        }
+        @keyframes ripple {
+            0% { transform: scale(0, 0); opacity: 0.5; }
+            100% { transform: scale(40, 40); opacity: 0; }
+        }
+        
+        /* LOGO NO CANTO SUPERIOR DIREITO - AJUSTE 1 */
+        .logo-hero-top {
+            position: absolute;
+            top: 40px;
+            right: 100px;
+            z-index: 10;
+            animation: slideDown 0.8s ease-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            border-radius: 60px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+        }
+        .logo-hero-top:hover {
+            transform: translateY(-5px);
+            background: rgba(0, 0, 0, 0.7);
+            border-color: rgba(201, 18, 18, 0.5);
+            box-shadow: 0 15px 40px rgba(201, 18, 18, 0.2);
+        }
+        .logo-hero-top img {
+            width: 180px;
+            height: auto;
+            transition: transform 0.5s ease;
+            filter: brightness(0) invert(1);
+        }
+        .logo-hero-top:hover img {
+            transform: scale(1.05);
         }
 
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
+        /* Logo inferior (agora removido, mas mantive o estilo caso queira usar em outro lugar) */
+        .logo-hero {
+            position: absolute;
+            bottom: 80px;
+            left: 100px;
+            z-index: 2;
+            animation: fadeIn 1.5s ease-out 0.8s both;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo-hero img {
+            width: 300px;
+            height: auto;
+            transition: transform 0.5s ease;
+            filter: brightness(0) invert(1);
+        }
+        .logo-hero:hover img {
+            transform: scale(1.1);
+        }
+        .hashtag {
+            position: absolute;
+            bottom: 80px;
+            right: 100px;
+            font-size: 32px;
+            font-weight: 600;
+            z-index: 2;
+            animation: fadeIn 1.5s ease-out 1s both;
         }
 
-        .partner-logo {
-            filter: grayscale(100%);
-            opacity: 0.6;
-            transition: all 0.3s;
+        /* CULTURA SECTION */
+        .cultura-section {
+            background: black;
+            padding: 100px;
+            display: flex;
+            align-items: center;
+            gap: 80px;
+            animation: fadeInUp 1s ease-out both;
         }
-
-        .partner-logo:hover {
-            filter: grayscale(0%);
-            opacity: 1;
-            color: #c91212;
+        .cultura-text {
+            flex: 1;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
         }
-
-        .testimonial-card {
-            transition: all 0.3s;
-        }
-
-        .testimonial-card:hover {
-            transform: translateY(-4px);
-        }
-
-        .icon-box {
-            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
-            color: #c91212;
-        }
-
-        .step-number {
-            background: linear-gradient(135deg, #c91212 0%, #6d251d 100%);
-        }
-
-        .highlight-text {
-            color: #FF0000;
+        .cultura-text h2 {
+            font-size: 48px;
             font-weight: 700;
+            margin-bottom: 40px;
+            line-height: 1.2;
+        }
+        .cultura-text p {
+            font-size: 20px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            font-weight: 300;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+        .cultura-text p:hover {
+            opacity: 1;
+        }
+        .cultura-images {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+        .cultura-images .img-box {
+            background: #333;
+            aspect-ratio: 1;
+            border-radius: 8px;
+            transition: all 0.4s ease;
+            opacity: 0.8;
+            overflow: hidden;
+        }
+        .cultura-images .img-box:hover {
+            transform: translateY(-10px) scale(1.05);
+            opacity: 1;
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+        }
+        .cultura-images .img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .cultura-images .img-box:hover img {
+            transform: scale(1.1);
+        }
+
+        /* POR QUE ESCOLHER */
+        .why-section {
+            background: white;
+            color: black;
+            padding: 100px;
+            display: flex;
+            gap: 80px;
+            align-items: center;
+            animation: fadeInUp 1s ease-out both;
+        }
+        .why-image {
+            flex: 1;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+        .why-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            transition: all 0.5s ease;
+            object-fit: cover;
+        }
+        .why-image img:hover {
+            transform: perspective(1000px) rotateY(5deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        .why-content {
+            flex: 1;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+        .why-content h2 {
+            font-size: 58px;
+            font-weight: 700;
+            margin-bottom: 50px;
+            line-height: 1.1;
+        }
+        .why-item {
+            margin-bottom: 35px;
+            padding: 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .why-item:hover {
+            background-color: rgba(139, 0, 0, 0.05);
+            transform: translateX(10px);
+        }
+        .why-item h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #8B0000;
+            margin-bottom: 10px;
+        }
+        .why-item p {
+            font-size: 18px;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+/* Ajuste da imagem da seção "Por que escolher" */
+.why-img {
+    width: 100%;
+    height: auto;
+    max-height: 600px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: all 0.5s ease;
+}
+
+@media (max-width: 1024px) {
+    .why-img {
+        max-height: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    .why-img {
+        max-height: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    .why-img {
+        max-height: 300px;
+    }
+}
+        /* SONHOS EM MOVIMENTO */
+        .dreams-section {
+            background: #e5e5e5;
+            color: black;
+            padding: 80px 100px;
+            position: relative;
+            animation: fadeInUp 1s ease-out both;
+        }
+        .dreams-header {
+            text-align: left;
+            font-size: 48px;
+            font-weight: 300;
+            letter-spacing: 3px;
+            margin-bottom: 60px;
+            color: black;
+        }
+        .dreams-content {
+            display: flex;
+            align-items: center;
+            gap: 80px;
+        }
+        .dreams-image {
+            flex: 1;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+        .dreams-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        .dreams-text {
+            flex: 1;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+        .dreams-text h2 {
+            font-size: 48px;
+            font-weight: 700;
+            color: #8B0000;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+        .dreams-text p {
+            font-size: 20px;
+            line-height: 1.8;
+            color: #333;
+            font-weight: 400;
+        }
+
+        /* VAGAS ABERTAS - AJUSTE 2: MAIS INDICATIVO DE CLIQUE */
+        .vagas-section {
+            background: #e5e5e5;
+            color: black;
+            padding: 100px;
+            display: flex;
+            gap: 80px;
+            align-items: center;
+            animation: fadeInUp 1s ease-out both;
+        }
+        .vagas-content {
+            flex: 1;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+        .vagas-content h2 {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+        
+        /* Badge de instrução */
+        .vagas-instruction {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(201, 18, 18, 0.1);
+            padding: 12px 20px;
+            border-radius: 50px;
+            margin-bottom: 30px;
+            border-left: 4px solid #c91212;
+            animation: pulse 2s infinite;
+        }
+        .vagas-instruction span.material-icons {
+            color: #c91212;
+            font-size: 24px;
+        }
+        .vagas-instruction p {
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+        }
+        .vagas-instruction p strong {
+            color: #c91212;
+        }
+
+        /* Lista de vagas com design de cards */
+        .vagas-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .vagas-list li {
+            font-size: 22px;
+            font-weight: 500;
+            padding: 20px 25px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        /* Elementos visuais para indicar clique */
+        .vagas-list li::before {
+            content: '•';
+            font-size: 32px;
+            color: #c91212;
+            margin-right: 15px;
+            transition: all 0.3s ease;
+            opacity: 0.7;
+        }
+        
+        .vagas-list li::after {
+            content: '→';
+            font-family: 'Material Icons';
+            font-size: 28px;
+            color: #c91212;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+        }
+        
+        /* Badge de "VAGA ABERTA" */
+        .vaga-badge {
+            background: #c91212;
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-left: 15px;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+        
+        .vagas-list li:hover {
+            background: white;
+            transform: translateX(10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(201, 18, 18, 0.15);
+            border-color: #c91212;
+        }
+        
+        .vagas-list li:hover::before {
+            opacity: 1;
+            transform: scale(1.3);
+            color: #c91212;
+        }
+        
+        .vagas-list li:hover::after {
+            opacity: 1;
+            transform: translateX(5px);
+        }
+        
+        /* Tooltip sutil */
+        .vagas-list li .vaga-tooltip {
+            position: absolute;
+            top: -15px;
+            right: 30px;
+            background: #333;
+            color: white;
+            font-size: 12px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            white-space: nowrap;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        }
+        
+        .vagas-list li:hover .vaga-tooltip {
+            opacity: 1;
+            top: -25px;
+        }
+        
+        .vagas-image {
+            flex: 1;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+            position: relative;
+        }
+        .vagas-image div {
+            width: 100%;
+            height: 500px;
+            background: #ccc;
+            border-radius: 10px;
+            transition: all 0.5s ease;
+            overflow: hidden;
+            position: relative;
+        }
+        .vagas-image div:hover {
+            transform: perspective(1000px) rotateX(5deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        .vagas-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .vagas-image div:hover img {
+            transform: scale(1.05);
+        }
+
+        /* GRID SECTION */
+        .grid-section {
+            background: black;
+            padding: 100px;
+            animation: fadeInUp 1s ease-out both;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(3, 200px);
+            gap: 20px;
+        }
+        .grid-item {
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            position: relative;
+            font-size: 22px;
+            font-weight: 600;
+            transition: all 0.4s ease;
+            overflow: hidden;
+        }
+        .grid-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        .grid-item.white {
+            background: #e5e5e5;
+            color: black;
+        }
+        .grid-item.red {
+            background: #FF0000;
+            color: white;
+        }
+        .grid-item.orange {
+            background: #FF5722;
+            color: white;
+        }
+        .grid-item.purple {
+            background: #9C27B0;
+            color: white;
+        }
+        .grid-item.image {
+            background-size: cover;
+            background-position: center;
+            color: white;
+            background-image: url('./trabalhe-conosco-img-7.png');
+        }
+        .grid-item .plus {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            transition: all 0.3s ease;
+        }
+        .grid-item:hover .plus {
+            transform: rotate(90deg);
+            width: 45px;
+            height: 45px;
+        }
+        .grid-item.red .plus,
+        .grid-item.purple .plus {
+            background: white;
+            color: #FF0000;
+        }
+        .grid-item.orange .plus {
+            background: white;
+            color: #FF5722;
+        }
+        .grid-item.image .plus {
+            background: #FF5722;
+            color: white;
+        }
+        .grid-item .arrow {
+            width: 60px;
+            height: 60px;
+            border: 3px solid white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-top: auto;
+            transition: all 0.4s ease;
+        }
+        .grid-item:hover .arrow {
+            background: white;
+            color: #FF0000;
+            transform: translateX(10px);
+        }
+        .grid-item.ph-logo {
+            grid-row: span 1;
+        }
+        .grid-item.gestao {
+            grid-row: span 2;
+        }
+        .grid-item.diretora {
+            grid-row: span 2;
+        }
+        .ph-logo-icon {
+            position: absolute;
+            top: 3px;
+            left: 13px;
+            width: 60px;
+            height: 60px;
+            background: black;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+        }
+        .grid-item:hover .ph-logo-icon {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* 420 PHZEIROS */
+        .stats-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            animation: fadeInUp 1s ease-out both;
+            background-image: url('./trabalhe-conosco-img-6.png');
+        }
+        .stats-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            animation: fadeIn 1.5s ease-out;
+        }
+        .stats-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+        .stats-content .small-text {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            animation: float 3s infinite ease-in-out;
+        }
+        .stats-content .big-number {
+            font-size: 280px;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite ease-in-out;
+            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        .stats-content .label {
+            font-size: 52px;
+            font-weight: 700;
+            animation: float 3s infinite ease-in-out 1s;
+        }
+
+        /* BANCO DE TALENTOS */
+        .talent-section {
+            background: black;
+            padding: 120px 100px;
+            position: relative;
+            animation: fadeInUp 1s ease-out both;
+        }
+        .talent-content {
+            max-width: 800px;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+        .talent-content h2 {
+            font-size: 56px;
+            font-weight: 400;
+            margin-bottom: 40px;
+        }
+        .talent-content p {
+            font-size: 22px;
+            line-height: 1.8;
+            margin-bottom: 50px;
+            font-weight: 300;
+            transition: all 0.3s ease;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .talent-content p:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            transform: translateX(5px);
+        }
+        .btn-cadastrar {
+            background: white;
+            color: black;
+            border: none;
+            padding: 18px 50px;
+            font-size: 20px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-cadastrar:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 255, 255, 0.1);
+            background: #f0f0f0;
+        }
+        .talent-logo {
+            position: absolute;
+            right: 100px;
+            top: 50%;
+            transform: translateY(-50%);
+            animation: fadeInUp 0.8s ease-out 0.5s both;
+        }
+        .talent-logo svg {
+            transition: all 0.5s ease;
+        }
+        .talent-logo:hover svg {
+            transform: scale(1.1);
+            filter: drop-shadow(0 10px 20px rgba(255, 255, 255, 0.2));
+        }
+        .tagline {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 300;
+            margin: 80px 0;
+            animation: fadeInUp 1s ease-out both;
+        }
+
+        /* ========== ESTILOS DO FOOTER (copiados do blog) ========== */
+        .footer-section h5 {
+            position: relative;
+            display: inline-block;
+        }
+        .footer-section h5::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: #c91212; /* vermelho */
+        }
+        .footer-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .footer-link::before {
+            content: '→';
+            position: absolute;
+            left: -20px;
+            opacity: 0;
+            transition: all 0.3s ease;
+            color: #c91212; /* vermelho */
+        }
+        .footer-link:hover {
+            padding-left: 20px;
+            color: #c91212; /* vermelho */
+        }
+        .footer-link:hover::before {
+            opacity: 1;
+            left: 0;
+        }
+        /* Animações e utilitários extras (opcionais) */
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* ========== MEDIA QUERIES (resumidas) ========== */
+        @media (max-width: 1024px) {
+            .hero, .cultura-section, .why-section, .dreams-section, 
+            .vagas-section, .grid-section, .talent-section {
+                padding: 60px 50px;
+            }
+            .hero h1 { font-size: 48px; }
+            .hero p { font-size: 36px; }
+            .btn-enviar { width: 300px; }
+            .logo-hero-top { 
+                right: 50px; 
+                top: 30px;
+                padding: 12px 25px;
+            }
+            .logo-hero-top img { width: 150px; }
+            .hashtag { right: 50px; bottom: 50px; font-size: 26px; }
+            .cultura-section { flex-direction: column; }
+            .why-section { flex-direction: column; }
+            .dreams-content { flex-direction: column; }
+            .vagas-section { flex-direction: column; }
+            .grid-container { grid-template-columns: repeat(2, 1fr); }
+            .stats-content .big-number { font-size: 200px; }
+            .talent-logo { position: relative; right: auto; top: auto; transform: none; margin-top: 40px; }
+        }
+        @media (max-width: 768px) {
+            .hero, .cultura-section, .why-section, .dreams-section, 
+            .vagas-section, .grid-section, .talent-section {
+                padding: 40px 20px;
+            }
+            .hero h1 { font-size: 36px; }
+            .hero p { font-size: 28px; }
+            .btn-enviar { width: 100%; max-width: 280px; }
+            .logo-hero-top { 
+                right: 20px; 
+                top: 20px;
+                padding: 10px 20px;
+            }
+            .logo-hero-top img { width: 120px; }
+            .hashtag { position: relative; right: auto; bottom: auto; font-size: 22px; margin-top: 20px; }
+            .cultura-text h2 { font-size: 32px; }
+            .why-content h2 { font-size: 36px; }
+            .dreams-header { font-size: 32px; }
+            .dreams-text h2 { font-size: 32px; }
+            .vagas-content h2 { font-size: 36px; }
+            .vagas-list li { font-size: 18px; padding: 15px 20px; }
+            .grid-container { grid-template-columns: 1fr; }
+            .stats-content .big-number { font-size: 150px; }
+            .talent-content h2 { font-size: 36px; }
+            .btn-cadastrar { width: 100%; max-width: 280px; }
+            .tagline { font-size: 24px; }
+        }
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 32px; }
+            .hero p { font-size: 24px; }
+            .stats-content .big-number { font-size: 120px; }
+            .logo-hero-top img { width: 100px; }
+            .vagas-list li { 
+                flex-direction: column; 
+                align-items: flex-start; 
+                gap: 10px;
+            }
+            .vaga-badge { margin-left: 0; }
+        }
+
+        /* Ajustes para imagens */
+        .Logo_vermelho_fundo_preto_ph2 { width: 40px; }
+        .img-trabalhe-conosco-2 { width: 500px; height: auto; }
+        .Logo_preto_fundo_preto { width: 200px; margin-top: -100px; }
+        @media (max-width: 1024px) {
+            .img-trabalhe-conosco-2 { width: 300px; }
+            .Logo_preto_fundo_preto { width: 120px; margin-top: -30px; margin-left: 120px; }
         }
     </style>
 </head>
+<body>
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <!-- LOGO NO CANTO SUPERIOR DIREITO - AJUSTE 1 -->
+        <div class="logo-hero-top">
+            <img src="./logo vermelho com escrita branca.png" alt="PH Negócios Logo" />
+        </div>
+        
+        <div class="hero-content">
+            <h1>Junte-se à PH Negócios!</h1>
+            <p>Aqui, transformar o<br>mundo começa com a<br>sua própria jornada.</p>
+            <button class="btn-enviar">
+                <a href="#vagas" style="outline: none; text-decoration: none; color: black;">Enviar currículo!</a>
+            </button>
+            <img src="./logo vermelho com escrita branca.png" alt="PH Negócios Logo" style="width: 150px;" />
+        </div>
+        <div class="hashtag">#OrgulhoDeSerPhzeiro</div>
+    </section>
 
-<body class="antialiased text-gray-800 bg-white">
+    <!-- CULTURA SECTION -->
+    <section class="cultura-section section-hidden">
+        <div class="cultura-text">
+            <h2>Cultura PH: Onde propósito,<br>desempenho e pessoas<br>andam juntos!</h2>
+            <p>Na PH Negócios, acreditamos que grandes resultados nascem de grandes pessoas. Aqui, a gente vibra com cada conquista, aprende com cada desafio e nunca anda sozinho.</p>
+            <p>Se você acredita que cultura é mais do que frase na parede, vem com a gente transformar o Brasil começando pela sua própria jornada.</p>
+        </div>
+        <div class="cultura-images">
+            <img src="./trabalhe-conosco-img-2.png" class="img-trabalhe-conosco-2" />
+        </div>
+    </section>
 
-    <!-- Navigation -->
-    <nav id="navbar"
-        class="fixed w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-xl border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex items-center gap-3">
-                    <img src="logo.png" alt="PH Negócios Logo" class="w-10 h-10 object-contain">
-                    <div>
-                        <span class="font-bold text-xl text-gray-900 tracking-tight">Negócios</span>
-                        <p class="text-xs text-gray-500 -mt-1">Consórcio Premium</p>
-                    </div>
-                </div>
+  <!-- POR QUE ESCOLHER -->
+<section class="why-section section-hidden">
+    <div class="why-image">
+        <img src="./trabalhe-conosco-img-3.png" alt="Equipe PH Negócios" class="why-img">
+    </div>
+    <div class="why-content">
+        <h2>Por que<br>escolher a<br>Ph Negócios?</h2>
+        <div class="why-item">
+            <h3>Impacto real:</h3>
+            <p>Trabalhamos com produtos que mudam vidas ajudando brasileiros a realizarem sonhos, quitarem dívidas ou darem um novo rumo à vida financeira.</p>
+        </div>
+        <div class="why-item">
+            <h3>Crescimento acelerado:</h3>
+            <p>Somos uma empresa em constante evolução. Aqui, você encontra espaço para crescer, aprender e liderar.</p>
+        </div>
+        <div class="why-item">
+            <h3>Ambiente dinâmico e colaborativo:</h3>
+            <p>Valorizamos gente com atitude, ideias novas e vontade de fazer acontecer.</p>
+        </div>
+        <div class="why-item">
+            <h3>Diversidade e inclusão:</h3>
+            <p>Acreditamos na força das diferenças e no respeito a todas as formas de ser.</p>
+        </div>
+    </div>
+</section>
 
-                <div class="hidden lg:flex items-center gap-8">
-                    <a href="#inicio"
-                        class="nav-link text-sm font-medium text-gray-600 hover:text-brand-700 transition-colors">Início</a>
-                    <a href="#simulador"
-                        class="nav-link text-sm font-medium text-gray-600 hover:text-brand-700 transition-colors">Simulador</a>
-                    <a href="#beneficios"
-                        class="nav-link text-sm font-medium text-gray-600 hover:text-brand-700 transition-colors">Benefícios</a>
-                    <a href="#como-funciona"
-                        class="nav-link text-sm font-medium text-gray-600 hover:text-brand-700 transition-colors">Como
-                        Funciona</a>
-                    <a href="#parceiros"
-                        class="nav-link text-sm font-medium text-gray-600 hover:text-brand-700 transition-colors">Parceiros</a>
-                    <button onclick="openWhatsApp()"
-                        class="btn-primary text-white px-6 py-2.5 rounded-full font-semibold text-sm flex items-center gap-2">
-                        <i data-lucide="message-circle" class="w-4 h-4"></i>
-                        Fale Conosco
-                    </button>
-                </div>
-
-                <button class="lg:hidden p-2 text-gray-600 hover:text-brand-700 transition-colors"
-                    onclick="toggleMobileMenu()">
-                    <i data-lucide="menu" class="w-6 h-6"></i>
-                </button>
+    <!-- SONHOS EM MOVIMENTO -->
+    <section class="dreams-section section-hidden">
+        <h1 class="dreams-header">SONHOS EM MOVIMENTO!</h1>
+        <div class="dreams-content">
+            <div class="dreams-image">
+                <img src="./trabalhe-conosco-img-4.png" style="width: 100%; height: 100%; background: #444; border-radius: 10px;">
             </div>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
-            <div class="px-4 py-6 space-y-4">
-                <a href="#inicio" class="block py-2 text-gray-600 hover:text-brand-700 font-medium"
-                    onclick="closeMobileMenu()">Início</a>
-                <a href="#simulador" class="block py-2 text-gray-600 hover:text-brand-700 font-medium"
-                    onclick="closeMobileMenu()">Simulador</a>
-                <a href="#beneficios" class="block py-2 text-gray-600 hover:text-brand-700 font-medium"
-                    onclick="closeMobileMenu()">Benefícios</a>
-                <a href="#como-funciona" class="block py-2 text-gray-600 hover:text-brand-700 font-medium"
-                    onclick="closeMobileMenu()">Como Funciona</a>
-                <a href="#parceiros" class="block py-2 text-gray-600 hover:text-brand-700 font-medium"
-                    onclick="closeMobileMenu()">Parceiros</a>
-                <button onclick="openWhatsApp()"
-                    class="w-full btn-primary text-white py-3 rounded-xl font-semibold mt-4">
-                    Falar no WhatsApp
-                </button>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="inicio" class="hero-gradient pt-32 lg:pt-40 pb-20 lg:pb-32 relative overflow-hidden">
-        <div class="absolute inset-0 grid-pattern opacity-50"></div>
-
-        <!-- Decorative Elements -->
-        <div class="absolute top-20 right-0 w-96 h-96 bg-brand-700/10 rounded-full blur-3xl animate-pulse-slow"></div>
-        <div
-            class="absolute bottom-0 left-0 w-72 h-72 bg-brand-dark/10 rounded-full blur-3xl animate-pulse-slow delay-1000">
-        </div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-                <div class="reveal">
-                    <div
-                        class="inline-flex items-center gap-2 px-4 py-2 bg-brand-50 border border-brand-100 rounded-full text-brand-700 text-sm font-semibold mb-6">
-                        <span class="w-2 h-2 bg-brand-bright rounded-full animate-pulse"></span>
-                        17 anos de excelência no mercado
-                    </div>
-
-                    <h1 class="text-5xl lg:text-7xl font-bold text-gray-900 leading-[1.1] mb-6 tracking-tight">
-                        Realize seus <span class="gradient-text">sonhos</span> com planejamento inteligente
-                    </h1>
-
-                    <p class="text-lg lg:text-xl text-gray-600 mb-8 leading-relaxed max-w-xl">
-                        Com a PH Negócios, você encontra as melhores condições para conquistar seu imóvel, veículo ou
-                        serviço. <span class="highlight-text">Taxas reduzidas</span> e atendimento personalizado.
-                    </p>
-
-                    <div class="flex flex-col sm:flex-row gap-4 mb-12">
-                        <button onclick="scrollToSection('simulador')"
-                            class="btn-primary text-white px-8 py-4 rounded-full font-semibold text-lg flex items-center justify-center gap-2 shadow-xl shadow-brand-700/25">
-                            <i data-lucide="calculator" class="w-5 h-5"></i>
-                            Simular Agora
-                        </button>
-                        <button onclick="openWhatsApp()"
-                            class="glass-card text-gray-700 px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:border-brand-700 transition-all flex items-center justify-center gap-2 border border-gray-200">
-                            <i data-lucide="message-circle" class="w-5 h-5 text-brand-700"></i>
-                            Falar com Especialista
-                        </button>
-                    </div>
-
-                    <div class="flex items-center gap-6">
-                        <div class="flex -space-x-3">
-                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop"
-                                class="w-10 h-10 rounded-full border-2 border-white object-cover" alt="Cliente">
-                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop"
-                                class="w-10 h-10 rounded-full border-2 border-white object-cover" alt="Cliente">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop"
-                                class="w-10 h-10 rounded-full border-2 border-white object-cover" alt="Cliente">
-                            <div
-                                class="w-10 h-10 rounded-full border-2 border-white gradient-bg flex items-center justify-center text-white text-xs font-bold">
-                                +75k
-                            </div>
-                        </div>
-                        <div>
-                            <p class="font-bold text-gray-900">75.000+ clientes</p>
-                            <p class="text-sm text-gray-500">satisfeitos em todo Brasil</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="relative reveal delay-200">
-                    <div
-                        class="relative rounded-3xl overflow-hidden shadow-2xl shadow-gray-200/50 border border-gray-100">
-                        <img src="2.jpg" alt="Casa moderna e luxuosa"
-                            class="w-full h-auto object-cover hover:scale-105 transition-transform duration-700">
-
-                        <!-- Floating Stats Card -->
-                        <div
-                            class="absolute bottom-6 left-6 glass-card p-5 rounded-2xl shadow-xl max-w-xs animate-float">
-                            <div class="flex items-center gap-4">
-                                <div
-                                    class="w-12 h-12 bg-brand-50 rounded-xl flex items-center justify-center text-brand-700">
-                                    <i data-lucide="trending-down" class="w-6 h-6"></i>
-                                </div>
-                                <div>
-                                    <p class="text-xs text-gray-500 font-medium">Taxas a partir de</p>
-                                    <p class="text-2xl font-bold text-brand-700">0,09% a.m.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Trust Badge -->
-                        <div class="absolute top-6 right-6 glass-card px-4 py-2 rounded-full flex items-center gap-2">
-                            <i data-lucide="shield-check" class="w-4 h-4 text-brand-700"></i>
-                            <span class="text-xs font-semibold text-gray-700">100% Seguro</span>
-                        </div>
-                    </div>
-                </div>
+            <div class="dreams-text">
+                <h2>Nosso Jeito<br>PhZeiro de ser!</h2>
+                <p>Autonomia com responsabilidade, comunicação aberta e direta, cultura de resultados, mas com gente no centro, foco total no cliente.</p>
             </div>
         </div>
     </section>
 
-    <!-- Partners Section -->
-    <section id="parceiros" class="py-16 bg-gray-50/50 border-y border-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <p class="text-center text-sm font-semibold text-gray-400 uppercase tracking-wider mb-8">Administradoras
-                Parceiras</p>
-
-            <div
-                class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 items-center justify-items-center opacity-70">
-                <div class="partner-logo font-bold text-xl text-gray-400 cursor-pointer transition-all ">
-                    <img class="w-44 h-auto object-contain ml-24"
-                        src="data:image/png;base64,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"
-                        alt="Parceiro 1">
-                </div>
-                <div class="partner-logo font-bold text-xl text-gray-400 cursor-pointer transition-all">
-                    <img src="data:image/png;base64,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"
-                        alt="Servopa" class="w-44 h-auto object-contain" />
-
-                </div>
+    <!-- VAGAS ABERTAS - AJUSTE 2: MAIS INDICATIVO DE CLIQUE -->
+    <section class="vagas-section section-hidden" id="vagas">
+        <div class="vagas-content">
+            <h2>VAGAS ABERTAS</h2>
+            
+            <!-- Badge de instrução para indicar clique -->
+            <div class="vagas-instruction">
+                <span class="material-icons">touch_app</span>
+                <p><strong>Clique em qualquer vaga</strong> para se candidatar e fazer parte do time!</p>
             </div>
+            
+            <ul class="vagas-list" id="vagasList">
+                <li>Carregando vagas...</li>
+            </ul>
+        </div>
+        <div class="vagas-image">
+            <img src="./trabalhe-conosco-img-5.png" style="width: 100%; height: 500px; background: #ccc; border-radius: 10px;">
         </div>
     </section>
 
-    <!-- Stats Section -->
-    <section class="py-20 bg-white relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="text-center p-6 rounded-2xl hover:bg-gray-50 transition-colors reveal">
-                    <p class="text-4xl lg:text-5xl font-bold text-brand-700 mb-2">17+</p>
-                    <p class="text-gray-500 font-medium">Anos de Mercado</p>
-                </div>
-                <div class="text-center p-6 rounded-2xl hover:bg-gray-50 transition-colors reveal delay-100">
-                    <p class="text-4xl lg:text-5xl font-bold text-brand-700 mb-2">R$ 500M+</p>
-                    <p class="text-gray-500 font-medium">Em Créditos Liberados</p>
-                </div>
-                <div class="text-center p-6 rounded-2xl hover:bg-gray-50 transition-colors reveal delay-200">
-                    <p class="text-4xl lg:text-5xl font-bold text-brand-700 mb-2">75.000+</p>
-                    <p class="text-gray-500 font-medium">Clientes Atendidos</p>
-                </div>
-                <div class="text-center p-6 rounded-2xl hover:bg-gray-50 transition-colors reveal delay-300">
-                    <p class="text-4xl lg:text-5xl font-bold text-brand-700 mb-2">242+</p>
-                    <p class="text-gray-500 font-medium">Correspondentes</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Simulator Section -->
-    <section id="simulador" class="py-24 lg:py-32 bg-gradient-to-b from-white to-gray-50/50 relative">
-        <div class="absolute inset-0 grid-pattern opacity-30"></div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
-                <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-4 tracking-tight">Simule seu Consórcio</h2>
-                <p class="text-lg text-gray-500">Escolha o valor do crédito desejado e veja quanto você vai pagar por
-                    mês. <span class="text-brand-bright font-semibold">Sem compromisso!</span></p>
-            </div>
-
-            <div class="grid lg:grid-cols-5 gap-8 items-start">
-                <!-- Simulator Controls -->
-                <div class="lg:col-span-3 glass-card rounded-3xl p-8 lg:p-10 reveal">
-                    <div class="mb-10">
-                        <label class="block text-sm font-semibold text-gray-700 mb-4">Tipo de Consórcio</label>
-                        <div class="grid grid-cols-3 gap-3">
-                            <button onclick="selectType('imovel')" id="btn-imovel"
-                                class="type-btn relative overflow-hidden gradient-bg text-white p-5 rounded-2xl border-2 border-brand-700 transition-all shadow-lg shadow-brand-700/20 group">
-                                <div class="relative z-10 flex flex-col items-center gap-2">
-                                    <i data-lucide="home" class="w-6 h-6"></i>
-                                    <span class="text-sm font-semibold">Imóvel</span>
-                                </div>
-                            </button>
-                            <button onclick="selectType('veiculo')" id="btn-veiculo"
-                                class="type-btn relative overflow-hidden bg-white text-gray-600 p-5 rounded-2xl border-2 border-gray-200 hover:border-brand-700 transition-all group">
-                                <div class="relative z-10 flex flex-col items-center gap-2">
-                                    <i data-lucide="car" class="w-6 h-6"></i>
-                                    <span class="text-sm font-semibold">Veículo</span>
-                                </div>
-                            </button>
-                            <button onclick="selectType('servicos')" id="btn-servicos"
-                                class="type-btn relative overflow-hidden bg-white text-gray-600 p-5 rounded-2xl border-2 border-gray-200 hover:border-brand-700 transition-all group">
-                                <div class="relative z-10 flex flex-col items-center gap-2">
-                                    <i data-lucide="briefcase" class="w-6 h-6"></i>
-                                    <span class="text-sm font-semibold">Serviços</span>
-                                </div>
-                            </button>
-                        </div>
+    <!-- GRID SECTION -->
+    <section class="grid-section section-hidden">
+        <div class="grid-container">
+            <div class="grid-item white ph-logo">
+                <a href="https://phng.com.br" style="text-decoration: none; outline: none; color: black">
+                    <div class="ph-logo-icon">
+                        <img src="./Logo vermelho fundo preto ph.png" class="Logo_vermelho_fundo_preto_ph2"/>
                     </div>
+                    <span style="margin-top: 40px;">Ph Negócios</span>
+                </a>
+            </div>
+            <div class="grid-item orange">
+                <span class="plus">+</span>
+                <span>Central<br>de Marca e<br>Marketing</span>
+            </div>
+            <div class="grid-item white">
+                <span class="plus" style="color: #333;">+</span>
+                <span>Benefícios</span>
+            </div>
+            <div class="grid-item red">
+                <a href="https://blog.phng.com.br" style="text-decoration: none; outline: none; color: white;">
+                    <span class="plus">+</span>
+                    <span>Notícias<br>Ph Negócios</span>
+                </a>
+            </div>
+            <div class="grid-item red gestao">
+                <span>GESTÃO E PESSOAS</span>
+                <div class="arrow">→</div>
+            </div>
+            <div class="grid-item white gestao">
+                <span class="plus" style="color: #FF0000;">+</span>
+                <span>Sistema<br>de Recursos<br>Humanos</span>
+            </div>
+            <div class="grid-item purple gestao">
+                <span class="plus">+</span>
+                <span>Comunidade de<br>Aprendizagem e<br>Desenvolvimento</span>
+            </div>
+            <div class="grid-item image diretora">
+                <span class="plus">+</span>
+                <span style="position: absolute; bottom: 30px; font-size: 28px;">Nossa Diretora</span>
+            </div>
+        </div>
+    </section>
 
-                    <div class="space-y-8">
-                        <div>
-                            <div class="flex justify-between items-end mb-4">
-                                <label class="text-sm font-semibold text-gray-700">Valor do Crédito</label>
-                                <span id="valor-display" class="text-3xl font-bold text-brand-700">R$ 200.000</span>
+    <!-- 420 PHZEIROS -->
+    <section class="stats-section section-hidden">
+        <div class="stats-content">
+            <div class="small-text">SOMOS MAIS DE</div>
+            <div class="big-number">420</div>
+            <div class="label">PHZEIROS</div>
+        </div>
+    </section>
+
+    <!-- BANCO DE TALENTOS -->
+    <section class="talent-section section-hidden" style="display: flex; flex-direction: row; justify-content: center;">
+        <div class="talent-content" style="text-align: center;">
+            <h2>Não encontrou a vaga ideal?</h2>
+            <p>Tudo bem! Você pode deixar seu currículo no nosso Banco de Talentos. <br/> Assim que surgir uma oportunidade com seu perfil, a gente entra em contato.</p>
+            <button class="btn-cadastrar">
+                <a href="#vagas" style="outline: none; text-decoration: none; color: black;">Cadastrar currículo</a>
+            </button>
+        </div>
+    </section>
+
+    <!-- FOOTER DO BLOG (integrado e com cor alterada para vermelho) -->
+    <footer class="bg-gray-50 dark:bg-black border-t border-gray-200 dark:border-gray-900 pt-16 pb-8 px-4 transition-all duration-300">
+        <div class="max-w-7xl mx-auto">
+            <!-- Grid principal do footer -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 mb-12">
+                
+                <!-- Coluna 1: Apps -->
+                <div class="footer-section lg:col-span-2 space-y-6 animate-fade-in">
+                    <h5 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-6">Baixe o App</h5>
+                    <div class="space-y-3">
+                        <a class="block bg-gray-200 dark:bg-gray-900 px-4 py-3 rounded-xl flex items-center space-x-3 hover:bg-gray-300 dark:hover:bg-gray-800 transition-all duration-300 hover:scale-105 hover:shadow-lg group"
+                            href="https://play.google.com/store/apps/details?id=com.phnegocios.app&pcampaignid=web_share">
+                            <span class="material-icons text-2xl group-hover:scale-110 transition-transform">play_arrow</span>
+                            <div class="leading-tight">
+                                <p class="text-[10px] text-gray-500 uppercase">Disponível no</p>
+                                <p class="font-bold text-sm">Google Play</p>
                             </div>
-                            <input type="range" id="valor-range" min="50000" max="1000000" step="10000" value="200000"
-                                class="input-range w-full mb-2">
-                            <div class="flex justify-between text-xs text-gray-400 font-medium">
-                                <span>R$ 50 mil</span>
-                                <span>R$ 1 milhão</span>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="flex justify-between items-end mb-4">
-                                <label class="text-sm font-semibold text-gray-700">Prazo</label>
-                                <span id="prazo-display" class="text-3xl font-bold text-brand-700">120 meses</span>
-                            </div>
-                            <input type="range" id="prazo-range" min="60" max="200" step="12" value="120"
-                                class="input-range w-full mb-2">
-                            <div class="flex justify-between text-xs text-gray-400 font-medium">
-                                <span>60 meses</span>
-                                <span>200 meses</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Result Card -->
-                <div class="lg:col-span-2 reveal delay-200">
-                    <div
-                        class="glass-card rounded-3xl p-8 border-2 border-brand-100 bg-gradient-to-br from-white to-brand-50/30 sticky top-24">
-                        <h3 class="text-lg font-semibold text-gray-700 mb-6 flex items-center gap-2">
-                            <i data-lucide="receipt" class="w-5 h-5 text-brand-700"></i>
-                            Resultado da Simulação
-                        </h3>
-
-                        <div class="space-y-6">
-                            <div class="bg-white rounded-2xl p-6 border border-brand-100 shadow-sm">
-                                <p class="text-sm text-gray-500 mb-1">Parcela Estimada</p>
-                                <p id="parcela-result" class="text-4xl font-bold text-brand-700">R$ 1.833</p>
-                                <p class="text-xs text-gray-400 mt-2">*Consulte condições comerciais</p>
-                            </div>
-
-                            <div class="grid grid-cols-2 gap-4">
-                                <div class="bg-white rounded-xl p-4 border border-gray-100">
-                                    <p class="text-xs text-gray-500 mb-1">Taxa Admin</p>
-                                    <p id="taxa-result" class="text-lg font-bold text-brand-700">0,12%</p>
-                                </div>
-                                <div class="bg-white rounded-xl p-4 border border-gray-100">
-                                    <p class="text-xs text-gray-500 mb-1">Fundo Reserva</p>
-                                    <p class="text-lg font-bold text-brand-700">2%</p>
-                                </div>
-                            </div>
-
-                            <div class="pt-4 border-t border-gray-100 space-y-2">
-                                <div class="flex justify-between text-sm">
-                                    <span class="text-gray-500">Valor Total</span>
-                                    <span id="total-result" class="font-semibold text-gray-900">R$ 219.960</span>
-                                </div>
-                                <div class="flex justify-between text-sm">
-                                    <span class="text-gray-500">Economia vs Financiamento</span>
-                                    <span class="font-semibold text-brand-bright">~30%</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <button onclick="enviarSimulacao()"
-                            class="w-full btn-primary text-white py-4 rounded-xl font-bold text-lg mt-8 flex items-center justify-center gap-2 shadow-lg shadow-brand-700/25">
-                            <i data-lucide="whatsapp" class="w-5 h-5"></i>
-                            Quero Esta Proposta
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Benefits Section -->
-    <section id="beneficios" class="py-24 lg:py-32 bg-white relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
-                <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-4 tracking-tight">Vantagens do Consórcio</h2>
-                <p class="text-lg text-gray-500">Por que milhares de brasileiros escolhem a <span
-                        class="text-brand-700 font-semibold">PH Negócios</span>?</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="premium-card bg-white rounded-2xl p-8 border border-gray-100 reveal">
-                    <div class="w-14 h-14 icon-box rounded-2xl flex items-center justify-center mb-6">
-                        <i data-lucide="percent" class="w-7 h-7"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Sem Juros</h3>
-                    <p class="text-gray-500 leading-relaxed">Diferente de financiamentos, o consórcio não cobra juros,
-                        apenas taxa de administração reduzida.</p>
-                </div>
-
-                <div class="premium-card bg-white rounded-2xl p-8 border border-gray-100 reveal delay-100">
-                    <div class="w-14 h-14 icon-box rounded-2xl flex items-center justify-center mb-6">
-                        <i data-lucide="zap" class="w-7 h-7"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Contemplação Rápida</h3>
-                    <p class="text-gray-500 leading-relaxed">Sistema de sorteios mensais e possibilidade de lance para
-                        acelerar sua contemplação.</p>
-                </div>
-
-                <div class="premium-card bg-white rounded-2xl p-8 border border-gray-100 reveal delay-200">
-                    <div class="w-14 h-14 icon-box rounded-2xl flex items-center justify-center mb-6">
-                        <i data-lucide="shield-check" class="w-7 h-7"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">100% Seguro</h3>
-                    <p class="text-gray-500 leading-relaxed">Administrado pelas melhores instituições e regulado pelo
-                        Banco Central do Brasil.</p>
-                </div>
-
-                <div class="premium-card bg-white rounded-2xl p-8 border border-gray-100 reveal">
-                    <div class="w-14 h-14 icon-box rounded-2xl flex items-center justify-center mb-6">
-                        <i data-lucide="wallet" class="w-7 h-7"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Planejamento Flexível</h3>
-                    <p class="text-gray-500 leading-relaxed">Escolha parcelas que cabem no seu orçamento e planeje sua
-                        conquista sem surpresas.</p>
-                </div>
-
-                <div class="premium-card bg-white rounded-2xl p-8 border border-gray-100 reveal delay-100">
-                    <div class="w-14 h-14 icon-box rounded-2xl flex items-center justify-center mb-6">
-                        <i data-lucide="smartphone" class="w-7 h-7"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Acompanhamento Digital</h3>
-                    <p class="text-gray-500 leading-relaxed">Acompanhe seu consórcio em tempo real pelo app ou site da
-                        administradora.</p>
-                </div>
-
-                <div class="premium-card bg-white rounded-2xl p-8 border border-gray-100 reveal delay-200">
-                    <div class="w-14 h-14 icon-box rounded-2xl flex items-center justify-center mb-6">
-                        <i data-lucide="refresh-cw" class="w-7 h-7"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Readequação de Plano</h3>
-                    <p class="text-gray-500 leading-relaxed">Possibilidade de readequar seu plano conforme suas
-                        necessidades mudam.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How it Works -->
-    <section id="como-funciona" class="py-24 lg:py-32 bg-gray-50/50 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-20 reveal">
-                <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-4 tracking-tight">Como Funciona</h2>
-                <p class="text-lg text-gray-500">Em apenas 4 passos simples você realiza seu sonho</p>
-            </div>
-
-            <div class="grid md:grid-cols-4 gap-8 relative">
-                <!-- Connecting Line (Desktop) -->
-                <div
-                    class="hidden md:block absolute top-12 left-0 w-full h-0.5 bg-gradient-to-r from-brand-200 via-brand-300 to-brand-200">
-                </div>
-
-                <div class="relative text-center reveal">
-                    <div
-                        class="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-6 relative z-10 shadow-xl shadow-brand-700/10 border-4 border-brand-50">
-                        <span class="text-3xl font-bold text-brand-700">1</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Simule</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">Escolha o valor e prazo que cabem no seu bolso
-                        usando nossa calculadora inteligente.</p>
-                </div>
-
-                <div class="relative text-center reveal delay-100">
-                    <div
-                        class="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-6 relative z-10 shadow-xl shadow-brand-700/10 border-4 border-brand-50">
-                        <span class="text-3xl font-bold text-brand-700">2</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Contrate</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">Faça sua adesão de forma simples e rápida com
-                        auxílio da nossa equipe especializada.</p>
-                </div>
-
-                <div class="relative text-center reveal delay-200">
-                    <div
-                        class="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-6 relative z-10 shadow-xl shadow-brand-700/10 border-4 border-brand-50">
-                        <span class="text-3xl font-bold text-brand-700">3</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Pague</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">Pague suas parcelas mensais e participe dos
-                        sorteios e ofertas de lance.</p>
-                </div>
-
-                <div class="relative text-center reveal delay-300">
-                    <div
-                        class="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-6 relative z-10 shadow-xl shadow-brand-700/10 border-4 border-brand-50">
-                        <span class="text-3xl font-bold text-brand-700">4</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Realize</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">Seja contemplado e receba seu crédito para adquirir
-                        o bem dos seus sonhos.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="py-24 lg:py-32 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
-                <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-4 tracking-tight">O que nossos clientes dizem
-                </h2>
-                <p class="text-lg text-gray-500">Histórias reais de quem realizou com a <span
-                        class="text-brand-700 font-semibold">PH Negócios</span></p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="testimonial-card bg-gray-50 rounded-2xl p-8 border border-gray-100 reveal">
-                    <div class="flex gap-1 text-yellow-400 mb-6">
-                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                    </div>
-                    <p class="text-gray-600 mb-8 leading-relaxed">"Fui contemplada no 8º mês! O atendimento da PH
-                        Negócios é excelente, sempre me mantiveram informada sobre cada etapa do processo."</p>
-                    <div class="flex items-center gap-4">
-                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop"
-                            class="w-12 h-12 rounded-full object-cover" alt="Mariana">
-                        <div>
-                            <p class="font-bold text-gray-900">Mariana Silva</p>
-                            <p class="text-sm text-brand-700">Consórcio Imóvel • SP</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-card bg-gray-50 rounded-2xl p-8 border border-gray-100 reveal delay-100">
-                    <div class="flex gap-1 text-yellow-400 mb-6">
-                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                    </div>
-                    <p class="text-gray-600 mb-8 leading-relaxed">"Consegui comprar meu carro dos sonhos graças ao
-                        consórcio. Processo transparente e sem burocracia. Super recomendo a PH Negócios!"</p>
-                    <div class="flex items-center gap-4">
-                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop"
-                            class="w-12 h-12 rounded-full object-cover" alt="Carlos">
-                        <div>
-                            <p class="font-bold text-gray-900">Carlos Eduardo</p>
-                            <p class="text-sm text-brand-700">Consórcio Veículo • RJ</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-card bg-gray-50 rounded-2xl p-8 border border-gray-100 reveal delay-200">
-                    <div class="flex gap-1 text-yellow-400 mb-6">
-                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                    </div>
-                    <p class="text-gray-600 mb-8 leading-relaxed">"Usei o crédito para reformar minha casa. A taxa foi a
-                        melhor que encontrei no mercado. Muito satisfeito com o atendimento."</p>
-                    <div class="flex items-center gap-4">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop"
-                            class="w-12 h-12 rounded-full object-cover" alt="Fernanda">
-                        <div>
-                            <p class="font-bold text-gray-900">Fernanda Lima</p>
-                            <p class="text-sm text-brand-700">Consórcio Serviços • MG</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="py-24 lg:py-32 relative overflow-hidden">
-        <div class="absolute inset-0 gradient-bg"></div>
-        <div class="absolute inset-0 opacity-10"
-            style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.4\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');">
-        </div>
-
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 reveal">
-            <h2 class="text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight">Pronto para realizar seus sonhos?
-            </h2>
-            <p class="text-xl text-white/90 mb-10 leading-relaxed">Entre em contato agora mesmo e fale com um de nossos
-                especialistas. Atendimento personalizado e sem compromisso.</p>
-
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <button onclick="openWhatsApp()"
-                    class="bg-white text-brand-700 px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-all flex items-center justify-center gap-2 shadow-xl">
-                    <i data-lucide="whatsapp" class="w-6 h-6"></i>
-                    Falar no WhatsApp
-                </button>
-                <button onclick="scrollToSection('simulador')"
-                    class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-all flex items-center justify-center gap-2">
-                    <i data-lucide="calculator" class="w-6 h-6"></i>
-                    Fazer Simulação
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="py-24 lg:py-32 bg-gray-50/50">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 reveal">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Perguntas Frequentes</h2>
-                <p class="text-lg text-gray-500">Tire suas dúvidas sobre consórcio</p>
-            </div>
-
-            <div class="space-y-4 reveal">
-                <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden">
-                    <button onclick="toggleFaq(1)"
-                        class="w-full flex justify-between items-center p-6 text-left hover:bg-gray-50 transition-colors">
-                        <span class="font-semibold text-gray-900">O que é consórcio e como funciona?</span>
-                        <i data-lucide="chevron-down" id="icon-1"
-                            class="w-5 h-5 text-brand-700 transition-transform duration-300"></i>
-                    </button>
-                    <div id="faq-1" class="faq-content">
-                        <div class="px-6 pb-6 text-gray-600 leading-relaxed">
-                            Consórcio é uma modalidade de compra programada onde um grupo de pessoas se unem para formar
-                            uma poupança comum. Todo mês são realizados sorteios e ofertas de lance para definir quem
-                            recebe o crédito para adquirir o bem ou serviço desejado.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden">
-                    <button onclick="toggleFaq(2)"
-                        class="w-full flex justify-between items-center p-6 text-left hover:bg-gray-50 transition-colors">
-                        <span class="font-semibold text-gray-900">Posso ser contemplado antes do prazo?</span>
-                        <i data-lucide="chevron-down" id="icon-2"
-                            class="w-5 h-5 text-brand-700 transition-transform duration-300"></i>
-                    </button>
-                    <div id="faq-2" class="faq-content">
-                        <div class="px-6 pb-6 text-gray-600 leading-relaxed">
-                            Sim! Além dos sorteios mensais, você pode ofertar lances para acelerar sua contemplação.
-                            Quanto maior o lance, maiores as chances de receber o crédito antecipadamente.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden">
-                    <button onclick="toggleFaq(3)"
-                        class="w-full flex justify-between items-center p-6 text-left hover:bg-gray-50 transition-colors">
-                        <span class="font-semibold text-gray-900">O que acontece se eu não for contemplado?</span>
-                        <i data-lucide="chevron-down" id="icon-3"
-                            class="w-5 h-5 text-brand-700 transition-transform duration-300"></i>
-                    </button>
-                    <div id="faq-3" class="faq-content">
-                        <div class="px-6 pb-6 text-gray-600 leading-relaxed">
-                            Se não for contemplado até o final do grupo, você receberá de volta todo o valor pago,
-                            corrigido pelo índice de reajuste do plano, sem desconto de taxa de administração.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden">
-                    <button onclick="toggleFaq(4)"
-                        class="w-full flex justify-between items-center p-6 text-left hover:bg-gray-50 transition-colors">
-                        <span class="font-semibold text-gray-900">Posso usar o FGTS para lance ou pagamento?</span>
-                        <i data-lucide="chevron-down" id="icon-4"
-                            class="w-5 h-5 text-brand-700 transition-transform duration-300"></i>
-                    </button>
-                    <div id="faq-4" class="faq-content">
-                        <div class="px-6 pb-6 text-gray-600 leading-relaxed">
-                            Sim, para consórcio de imóvel você pode utilizar seu FGTS para ofertar lances ou até mesmo
-                            para quitar parcelas em atraso, conforme as regras da Caixa Econômica Federal.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="contato" class="bg-white border-t border-gray-200 pt-16 pb-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-                <div class="lg:col-span-1">
-                    <div class="flex items-center gap-3 mb-6">
-                        <img src="./logo.png" alt="PH Negócios"
-                            class="w-12 h-auto">
-                        <div>
-                            <span class="font-bold text-lg text-gray-900">Negócios</span>
-                        </div>
-                    </div>
-                    <p class="text-gray-500 text-sm leading-relaxed mb-6">
-                        Há mais de 17 anos conectando sonhos à realidade através de consórcios justos e transparentes.
-                    </p>
-                    <div class="flex gap-3">
-                        <a href="https://www.facebook.com/phnegociosofc" target="_blank"
-                            class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-brand-700 hover:text-white transition-all">
-                            <i data-lucide="facebook" class="w-5 h-5"></i>
                         </a>
-                        <a href="https://www.instagram.com/phnegociosoficial" target="_blank"
-                            class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-brand-700 hover:text-white transition-all">
-                            <i data-lucide="instagram" class="w-5 h-5"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/company/phnegocios" target="_blank"
-                            class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-brand-700 hover:text-white transition-all">
-                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                        <a class="block bg-gray-200 dark:bg-gray-900 px-4 py-3 rounded-xl flex items-center space-x-3 hover:bg-gray-300 dark:hover:bg-gray-800 transition-all duration-300 hover:scale-105 hover:shadow-lg group"
+                            href="https://apps.apple.com/br/app/ph-neg%C3%B3cios/id6742840882">
+                            <span class="material-icons text-2xl group-hover:scale-110 transition-transform">apple</span>
+                            <div class="leading-tight">
+                                <p class="text-[10px] text-gray-500 uppercase">Disponível na</p>
+                                <p class="font-bold text-sm">App Store</p>
+                            </div>
                         </a>
                     </div>
+                    
+                    <!-- Redes Sociais -->
+                    <div class="pt-4">
+                        <h5 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Siga-nos</h5>
+                        <div class="flex space-x-3">
+                            <a class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-900 flex items-center justify-center text-gray-500 hover:text-accent hover:bg-gray-300 dark:hover:bg-gray-800 transition-all duration-300 hover:scale-110 hover:rotate-12" 
+                               href="https://www.instagram.com/phnegociosoficial/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" /></svg>
+                            </a>
+                            <a class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-900 flex items-center justify-center text-gray-500 hover:text-accent hover:bg-gray-300 dark:hover:bg-gray-800 transition-all duration-300 hover:scale-110 hover:rotate-12" 
+                               href="https://www.linkedin.com/company/phnegocios/posts/?feedView=all" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.51 8.796v1.697a3.738 3.738 0 013.288-1.684c3.455 0 4.202 2.16 4.202 4.97V19.5h-3.2v-5.072c0-1.21-.244-2.766-2.128-2.766-1.827 0-2.139 1.317-2.139 2.676V19.5h-3.19V8.796h3.168zM7.2 6.106a1.61 1.61 0 01-.988 1.483 1.595 1.595 0 01-1.743-.348A1.607 1.607 0 015.6 4.5a1.601 1.601 0 011.6 1.606z" clip-rule="evenodd" /><path d="M7.2 8.809H4V19.5h3.2V8.809z" /></svg>
+                            </a>
+                            <a class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-900 flex items-center justify-center text-gray-500 hover:text-accent hover:bg-gray-300 dark:hover:bg-gray-800 transition-all duration-300 hover:scale-110 hover:rotate-12" 
+                               href="https://www.tiktok.com/@phnegociosoficial" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.589 6.686a4.793 4.793 0 01-3.77-4.245V2h-3.445v13.672a2.896 2.896 0 01-5.201 1.743l-.002-.001.002.001a2.895 2.895 0 013.183-4.51v-3.5a6.329 6.329 0 00-5.394 10.692 6.33 6.33 0 0010.857-4.424V8.687a8.182 8.182 0 004.773 1.526V6.79a4.831 4.831 0 01-3.77-1.105z" /></svg>
+                            </a>
+                            <a class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-900 flex items-center justify-center text-gray-500 hover:text-accent hover:bg-gray-300 dark:hover:bg-gray-800 transition-all duration-300 hover:scale-110 hover:rotate-12" 
+                               href="https://www.facebook.com/phnegociosofc" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
-                <div>
-                    <h4 class="font-bold text-gray-900 mb-4">Links Rápidos</h4>
-                    <ul class="space-y-3 text-sm text-gray-500">
-                        <li><a href="#inicio" class="hover:text-brand-700 transition-colors">Início</a></li>
-                        <li><a href="#simulador" class="hover:text-brand-700 transition-colors">Simulador</a></li>
-                        <li><a href="#beneficios" class="hover:text-brand-700 transition-colors">Vantagens</a></li>
-                        <li><a href="#como-funciona" class="hover:text-brand-700 transition-colors">Como Funciona</a>
-                        </li>
-                        <li><a href="#parceiros" class="hover:text-brand-700 transition-colors">Parceiros</a></li>
+                <!-- Coluna 2: Sites -->
+                <div class="footer-section animate-fade-in" style="animation-delay: 0.1s">
+                    <h5 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-6">Sites</h5>
+                    <ul class="space-y-3 text-sm">
+                        <li><a class="footer-link text-gray-600 dark:text-gray-400 hover:text-accent transition-all duration-300" href="https://phng.com.br/#">PH Negócios</a></li>
+                        <li><a class="footer-link text-gray-600 dark:text-gray-400 hover:text-accent transition-all duration-300" href="https://phtech.app">PH Tech</a></li>
                     </ul>
                 </div>
 
-                <div>
-                    <h4 class="font-bold text-gray-900 mb-4">Contato</h4>
-                    <ul class="space-y-3 text-sm text-gray-500">
-                        <li class="flex items-center gap-2">
-                            <i data-lucide="phone" class="w-4 h-4 text-brand-700"></i>
-                            (11) 4765-1770
+                <!-- Coluna 3: Iniciativas -->
+                <div class="footer-section animate-fade-in" style="animation-delay: 0.2s">
+                    <h5 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-6">Iniciativas</h5>
+                    <ul class="space-y-3 text-sm">
+                        <li><a class="footer-link text-gray-600 dark:text-gray-400 hover:text-accent transition-all duration-300" href="/sustentabilidade.html">Sustentabilidade</a></li>
+                        <li><a class="footer-link text-gray-600 dark:text-gray-400 hover:text-accent transition-all duration-300" href="/blog-interno.html">Blog Interno</a></li>
+                        <li><a class="footer-link text-gray-600 dark:text-gray-400 hover:text-accent transition-all duration-300" href="https://phtech.app">Seja Parceiro PH Tech</a></li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 4: Fale com a Gente -->
+                <div class="footer-section animate-fade-in" style="animation-delay: 0.3s">
+                    <h5 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-6">Fale com a Gente</h5>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start gap-2 text-gray-600 dark:text-gray-400">
+                            <span class="material-icons text-accent text-sm mt-0.5">chat</span>
+                            <span>Chat do app</span>
                         </li>
-                        <li class="flex items-center gap-2">
-                            <i data-lucide="mail" class="w-4 h-4 text-brand-700"></i>
-                            consorcio@phnegocios.com.br
+                        <li class="flex items-start gap-2 text-gray-600 dark:text-gray-400">
+                            <span class="material-icons text-accent text-sm mt-0.5">phone</span>
+                            <div>
+                                <div class="font-medium text-black dark:text-white">11 94765-1760</div>
+                                <div class="text-xs">Central de Relacionamento</div>
+                            </div>
                         </li>
-                        <li class="flex items-start gap-2">
-                            <i data-lucide="map-pin" class="w-4 h-4 text-brand-700 mt-0.5"></i>
-                            <span>Rua Fernandes Pinheiro, 449<br>Tatuapé, São Paulo - SP</span>
+                        <li class="flex items-start gap-2 text-gray-600 dark:text-gray-400">
+                            <span class="material-icons text-accent text-sm mt-0.5">email</span>
+                            <div>
+                                <div class="font-medium text-black dark:text-white">imprensa@phng.com.br</div>
+                                <div class="text-xs">Assessoria de Imprensa</div>
+                            </div>
                         </li>
                     </ul>
                 </div>
 
-                <div>
-                    <h4 class="font-bold text-gray-900 mb-4">Horário de Atendimento</h4>
-                    <ul class="space-y-3 text-sm text-gray-500">
-                        <li>Segunda - Sexta: 8h às 18h</li>
-                        <li>Sábado: 9h às 13h</li>
-                        <li class="text-brand-700 font-semibold flex items-center gap-2">
-                            <span class="w-2 h-2 bg-brand-bright rounded-full animate-pulse"></span>
-                            WhatsApp 24h
-                        </li>
+                <!-- Coluna 5: Carreira -->
+                <div class="footer-section animate-fade-in" style="animation-delay: 0.4s">
+                    <h5 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-6">Carreira</h5>
+                    <ul class="space-y-3 text-sm">
+                        <li><a class="footer-link text-gray-600 dark:text-gray-400 hover:text-accent transition-all duration-300" href="/trabalhe-conosco.html">Trabalhe Conosco</a></li>
+                        <li><a class="footer-link text-gray-600 dark:text-gray-400 hover:text-accent transition-all duration-300" href="/canal-transparencia.html">Canal de Transparência</a></li>
                     </ul>
                 </div>
             </div>
 
-            <div class="border-t border-gray-200 pt-8">
-                <div class="grid md:grid-cols-2 gap-4 mb-6">
-                    <div>
-                        <p class="text-gray-400 text-xs">PH Brasil Promotora de Vendas LTDA.</p>
-                        <p class="text-gray-400 text-xs">CNPJ: 26.811.024/0001-14</p>
-                    </div>
-                    <div class="md:text-right">
-                        <p class="text-gray-400 text-xs max-w-md md:ml-auto">
-                            A PH Negócios atua como correspondente bancário, regulada pelo Banco Central do Brasil, nos
-                            termos da Resolução nº 3.954/2011.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="flex flex-col md:flex-row justify-between items-center pt-6 border-t border-gray-100 gap-4">
-                    <p class="text-gray-400 text-xs">© 2025 PH Negócios. Todos os direitos reservados.</p>
-                    <div class="flex gap-6">
-                        <a href="https://lgpd.phng.com.br"
-                            class="text-gray-400 text-xs hover:text-brand-700 transition-colors">Política de
-                            Privacidade</a>
-                        <a href="https://lgpd.phng.com.br"
-                            class="text-gray-400 text-xs hover:text-brand-700 transition-colors">Termos de Uso</a>
-                    </div>
+            <!-- Bottom bar -->
+            <div class="pt-8 border-t border-gray-200 dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 animate-fade-in">
+                <p class="text-xs text-gray-500 hover:scale-105 transition-transform duration-300">© 2026 PH Negócios. Todos os direitos reservados.</p>
+                <div class="flex flex-wrap justify-center gap-6 text-xs">
+                    <a class="text-gray-500 hover:text-accent transition-all duration-300 hover:scale-105" href="https://lgpd.phng.com.br/">Política de Privacidade</a>
+                    <a class="text-gray-500 hover:text-accent transition-all duration-300 hover:scale-105" href="https://lgpd.phng.com.br/">Termos de Uso</a>
+                    <a class="text-gray-500 hover:text-accent transition-all duration-300 hover:scale-105" href="https://lgpd.phng.com.br/">Segurança</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- WhatsApp Float -->
-    <div class="fixed bottom-6 right-6 z-50">
-        <button onclick="openWhatsApp()"
-            class="floating-whatsapp bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition-all hover:scale-110 flex items-center gap-3 pr-6 group">
-            <i data-lucide="whatsapp" class="w-6 h-6"></i>
-            <span
-                class="font-semibold max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-300 whitespace-nowrap">Fale
-                Conosco</span>
-        </button>
-    </div>
-
-    <!-- Lead Modal -->
-    <div id="lead-modal" class="fixed inset-0 z-[100] hidden">
-        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeModal()"></div>
-        <div class="relative min-h-screen flex items-center justify-center p-4">
-            <div class="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl relative animate-[fadeIn_0.3s_ease-out]">
-                <button onclick="closeModal()"
-                    class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors">
-                    <i data-lucide="x" class="w-6 h-6"></i>
-                </button>
-
-                <div class="mb-6">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Complete seus dados</h3>
-                    <p class="text-gray-500 text-sm">Um especialista entrará em contato em breve.</p>
-                </div>
-
-                <form id="lead-form" onsubmit="submitLead(event)" class="space-y-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1.5">Nome completo *</label>
-                        <input type="text" id="nome" required
-                            class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:border-brand-700 focus:ring-2 focus:ring-brand-200 outline-none transition-all"
-                            placeholder="Digite seu nome">
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1.5">E-mail *</label>
-                        <input type="email" id="email" required
-                            class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:border-brand-700 focus:ring-2 focus:ring-brand-200 outline-none transition-all"
-                            placeholder="seu@email.com">
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1.5">Telefone *</label>
-                        <input type="tel" id="telefone" required
-                            class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:border-brand-700 focus:ring-2 focus:ring-brand-200 outline-none transition-all"
-                            placeholder="(11) 99999-9999">
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1.5">Observações (opcional)</label>
-                        <textarea id="observacoes" rows="3"
-                            class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:border-brand-700 focus:ring-2 focus:ring-brand-200 outline-none transition-all resize-none"
-                            placeholder="Conte-nos mais sobre o que você procura..."></textarea>
-                    </div>
-
-                    <button type="submit" id="submit-btn"
-                        class="w-full btn-primary text-white py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 shadow-lg shadow-brand-700/25 mt-2">
-                        <span>Enviar e Falar no WhatsApp</span>
-                    </button>
-
-                    <p class="text-xs text-gray-400 text-center">Seus dados estão protegidos e não serão compartilhados.
-                    </p>
-                </form>
-            </div>
-        </div>
-    </div>
-
     <script>
-        // Initialize Lucide Icons
-        lucide.createIcons();
-
-        // Global Variables
-        let currentSimulation = {
-            tipo: 'imovel',
-            valor: 200000,
-            prazo: 120,
-            parcela: 1833,
-            taxa: '0,12%'
-        };
-
-        // Mobile Menu Functions
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        }
-
-        function closeMobileMenu() {
-            document.getElementById('mobile-menu').classList.add('hidden');
-        }
-
-        // Scroll Functions
-        function scrollToSection(id) {
-            const element = document.getElementById(id);
-            if (element) {
-                const offset = 80;
-                const elementPosition = element.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-                closeMobileMenu();
-            }
-        }
-
-        // FAQ Toggle
-        function toggleFaq(id) {
-            const content = document.getElementById(`faq-${id}`);
-            const icon = document.getElementById(`icon-${id}`);
-
-            if (content.classList.contains('active')) {
-                content.classList.remove('active');
-                icon.style.transform = 'rotate(0deg)';
-            } else {
-                // Close others
-                document.querySelectorAll('.faq-content').forEach(el => el.classList.remove('active'));
-                document.querySelectorAll('[id^=\"icon-\"]').forEach(el => el.style.transform = 'rotate(0deg)');
-
-                content.classList.add('active');
-                icon.style.transform = 'rotate(180deg)';
-            }
-        }
-
-        // Simulator Functions
-        function selectType(tipo) {
-            const buttons = document.querySelectorAll('.type-btn');
-            buttons.forEach(btn => {
-                btn.classList.remove('gradient-bg', 'text-white', 'border-brand-700', 'shadow-lg');
-                btn.classList.add('bg-white', 'text-gray-600', 'border-gray-200');
-            });
-
-            const selectedBtn = document.getElementById(`btn-${tipo}`);
-            selectedBtn.classList.remove('bg-white', 'text-gray-600', 'border-gray-200');
-            selectedBtn.classList.add('gradient-bg', 'text-white', 'border-brand-700', 'shadow-lg');
-
-            currentSimulation.tipo = tipo;
-            updateSimulation();
-        }
-
-        function formatCurrency(value) {
-            return new Intl.NumberFormat('pt-BR', {
-                style: 'currency',
-                currency: 'BRL',
-                minimumFractionDigits: 0,
-                maximumFractionDigits: 0
-            }).format(value);
-        }
-
-        function updateSimulation() {
-            const valor = parseInt(document.getElementById('valor-range').value);
-            const prazo = parseInt(document.getElementById('prazo-range').value);
-            const tipo = currentSimulation.tipo;
-
-            document.getElementById('valor-display').textContent = formatCurrency(valor);
-            document.getElementById('prazo-display').textContent = `${prazo} meses`;
-
-            let taxa = 0.0012; // 0.12%
-            if (tipo === 'veiculo') taxa = 0.0014;
-            if (tipo === 'servicos') taxa = 0.0015;
-
-            // Cálculo de parcela (sistema de amortização)
-            const parcela = (valor * taxa * Math.pow(1 + taxa, prazo)) / (Math.pow(1 + taxa, prazo) - 1);
-            const total = parcela * prazo;
-
-            document.getElementById('parcela-result').textContent = formatCurrency(parcela);
-            document.getElementById('taxa-result').textContent = `${(taxa * 100).toFixed(2)}%`;
-            document.getElementById('total-result').textContent = formatCurrency(total);
-
-            currentSimulation = {
-                tipo,
-                valor,
-                prazo,
-                parcela: Math.round(parcela),
-                taxa: `${(taxa * 100).toFixed(2)}%`
-            };
-        }
-
-        // Modal Functions
-        function openModal() {
-            document.getElementById('lead-modal').classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            document.getElementById('lead-modal').classList.add('hidden');
-            document.body.style.overflow = '';
-        }
-
-        // API Functions
-        async function salvarLead(dados) {
-            const submitBtn = document.getElementById('submit-btn');
-            const originalContent = submitBtn.innerHTML;
-
-            try {
-                submitBtn.innerHTML = '<div class=\"w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin\"></div> Enviando...';
-                submitBtn.disabled = true;
-
-                const response = await fetch('https://phapp.phng.com.br/api/consorcio-leads', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json',
-                        'X-Requested-With': 'XMLHttpRequest'
-                    },
-                    body: JSON.stringify(dados)
-                });
-
-                const result = await response.json();
-                return result.success ? { success: true, id: result.id } : { success: false, errors: result.errors };
-            } catch (error) {
-                console.error('Erro:', error);
-                return { success: false, error: error.message };
-            } finally {
-                submitBtn.innerHTML = originalContent;
-                submitBtn.disabled = false;
-            }
-        }
-
-        async function submitLead(event) {
-            event.preventDefault();
-
-            const nome = document.getElementById('nome').value;
-            const email = document.getElementById('email').value;
-            const telefone = document.getElementById('telefone').value;
-            const observacoes = document.getElementById('observacoes').value;
-
-            const dadosLead = {
-                nome,
-                email,
-                telefone,
-                tipo_consorcio: currentSimulation.tipo,
-                valor_credito: currentSimulation.valor,
-                prazo_meses: currentSimulation.prazo,
-                parcela_estimada: currentSimulation.parcela,
-                taxa_admin: currentSimulation.taxa,
-                observacoes: observacoes || `Simulação: ${currentSimulation.tipo}, ${formatCurrency(currentSimulation.valor)}, ${currentSimulation.prazo} meses`
-            };
-
-            const result = await salvarLead(dadosLead);
-
-            if (result.success) {
-                closeModal();
-
-                const mensagem = `Olá! Meu nome é ${nome}. Fiz uma simulação de consórcio no site e gostaria de mais informações:\n\n` +
-                    `📋 Tipo: ${currentSimulation.tipo.charAt(0).toUpperCase() + currentSimulation.tipo.slice(1)}\n` +
-                    `💰 Valor do crédito: ${formatCurrency(currentSimulation.valor)}\n` +
-                    `📅 Prazo: ${currentSimulation.prazo} meses\n` +
-                    `💳 Parcela estimada: ${formatCurrency(currentSimulation.parcela)}\n` +
-                    `📊 Taxa: ${currentSimulation.taxa}\n\n` +
-                    `📧 E-mail: ${email}\n` +
-                    `📱 Telefone: ${telefone}`;
-
-                window.open(`https://wa.me/551147651770?text=${encodeURIComponent(mensagem)}`, '_blank');
-            } else {
-                alert('Ocorreu um erro. Por favor, tente novamente ou entre em contato direto pelo WhatsApp.');
-            }
-        }
-
-        function enviarSimulacao() {
-            openModal();
-        }
-
-        function openWhatsApp() {
-            const mensagem = 'Olá! Vim pelo site da PH Negócios e gostaria de mais informações sobre consórcios.';
-            window.open(`https://wa.me/551147651770?text=${encodeURIComponent(mensagem)}`, '_blank');
-        }
-
-        // Event Listeners
-        document.addEventListener('DOMContentLoaded', function () {
-            const valorRange = document.getElementById('valor-range');
-            const prazoRange = document.getElementById('prazo-range');
-
-            valorRange.addEventListener('input', updateSimulation);
-            prazoRange.addEventListener('input', updateSimulation);
-
-            updateSimulation();
-
-            // Phone mask
-            const telefoneInput = document.getElementById('telefone');
-            if (telefoneInput) {
-                telefoneInput.addEventListener('input', function (e) {
-                    let value = e.target.value.replace(/\D/g, '');
-                    if (value.length > 11) value = value.slice(0, 11);
-
-                    if (value.length > 2) {
-                        value = `(${value.slice(0, 2)}) ${value.slice(2)}`;
-                    }
-                    if (value.length > 10) {
-                        value = `${value.slice(0, 10)}-${value.slice(10)}`;
-                    }
-
-                    e.target.value = value;
-                });
-            }
-
-            // Scroll Reveal Animation
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
+        // Animação de entrada conforme scroll (existente)
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.section-hidden');
+            
+            function checkVisibility() {
+                sections.forEach(section => {
+                    const rect = section.getBoundingClientRect();
+                    const windowHeight = window.innerHeight;
+                    if (rect.top < windowHeight * 0.8) {
+                        section.classList.add('section-visible');
                     }
                 });
-            }, observerOptions);
-
-            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-            // Navbar scroll effect
-            let lastScroll = 0;
-            window.addEventListener('scroll', () => {
-                const navbar = document.getElementById('navbar');
-                const currentScroll = window.pageYOffset;
-
-                if (currentScroll > 100) {
-                    navbar.classList.add('shadow-md', 'bg-white/95');
-                } else {
-                    navbar.classList.remove('shadow-md', 'bg-white/90');
-                }
-
-                lastScroll = currentScroll;
+            }
+            
+            checkVisibility();
+            window.addEventListener('scroll', checkVisibility);
+            
+            // Efeito de clique nos botões
+            const buttons = document.querySelectorAll('.btn-enviar, .btn-cadastrar');
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
             });
-
-            // Close modal on escape
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') closeModal();
-            });
+            
+            // Carregar vagas ativas
+            carregarVagasAtivas();
         });
+
+        async function carregarVagasAtivas() {
+            try {
+                const response = await fetch('https://phapp.phng.com.br/api/campanhas/ativas?perPage=10');
+                const data = await response.json();
+                const vagasList = document.getElementById('vagasList');
+                
+                if (data.success && data.data.data.length > 0) {
+                    vagasList.innerHTML = '';
+                    data.data.data.forEach(campanha => {
+                        const li = document.createElement('li');
+                        
+                        // Container para o título da vaga
+                        const vagaTitle = document.createElement('span');
+                        vagaTitle.textContent = campanha.vaga;
+                        
+                        // Badge de "VAGA ABERTA"
+                        const badge = document.createElement('span');
+                        badge.className = 'vaga-badge';
+                        badge.textContent = 'VAGA ABERTA';
+                        
+                        // Tooltip
+                        const tooltip = document.createElement('span');
+                        tooltip.className = 'vaga-tooltip';
+                        tooltip.textContent = 'Clique para se candidatar';
+                        
+                        // Montar estrutura
+                        li.appendChild(vagaTitle);
+                        li.appendChild(badge);
+                        li.appendChild(tooltip);
+                        
+                        li.style.cursor = 'pointer';
+                        if (campanha.dias_restantes > 0) {
+                            li.title = `${campanha.titulo}\nEncerra em ${campanha.dias_restantes} dias`;
+                        }
+                        li.addEventListener('click', function() {
+                            localStorage.setItem('campanha_selecionada', JSON.stringify({
+                                id: campanha.id,
+                                vaga: campanha.vaga,
+                                titulo: campanha.titulo
+                            }));
+                            window.location.href = './formulario.html?campanha=' + campanha.id;
+                        });
+                        vagasList.appendChild(li);
+                    });
+                } else {
+                    // Vagas padrão com indicadores visuais aprimorados
+                    vagasList.innerHTML = `
+                        <li onclick="selecionarVaga('Gerente Comercial PHTech')">
+                            <span>Gerente Comercial PHTech</span>
+                            <span class="vaga-badge">VAGA ABERTA</span>
+                            <span class="vaga-tooltip">Clique para se candidatar</span>
+                        </li>
+                        <li onclick="selecionarVaga('Vendedor de Consórcio')">
+                            <span>Vendedor de Consórcio</span>
+                            <span class="vaga-badge">VAGA ABERTA</span>
+                            <span class="vaga-tooltip">Clique para se candidatar</span>
+                        </li>
+                        <li onclick="selecionarVaga('Promotor de Vendas')">
+                            <span>Promotor de Vendas</span>
+                            <span class="vaga-badge">VAGA ABERTA</span>
+                            <span class="vaga-tooltip">Clique para se candidatar</span>
+                        </li>
+                        <li onclick="selecionarVaga('Assistente de Backoffice')">
+                            <span>Assistente de Backoffice</span>
+                            <span class="vaga-badge">VAGA ABERTA</span>
+                            <span class="vaga-tooltip">Clique para se candidatar</span>
+                        </li>
+                        <li onclick="selecionarVaga('PCD')">
+                            <span>PCD</span>
+                            <span class="vaga-badge">VAGA ABERTA</span>
+                            <span class="vaga-tooltip">Clique para se candidatar</span>
+                        </li>
+                    `;
+                }
+            } catch (error) {
+                console.error('Erro ao carregar vagas:', error);
+                const vagasList = document.getElementById('vagasList');
+                vagasList.innerHTML = `
+                    <li onclick="selecionarVaga('Gerente Comercial PHTech')">
+                        <span>Gerente Comercial PHTech</span>
+                        <span class="vaga-badge">VAGA ABERTA</span>
+                        <span class="vaga-tooltip">Clique para se candidatar</span>
+                    </li>
+                    <li onclick="selecionarVaga('Vendedor de Consórcio')">
+                        <span>Vendedor de Consórcio</span>
+                        <span class="vaga-badge">VAGA ABERTA</span>
+                        <span class="vaga-tooltip">Clique para se candidatar</span>
+                    </li>
+                    <li onclick="selecionarVaga('Promotor de Vendas')">
+                        <span>Promotor de Vendas</span>
+                        <span class="vaga-badge">VAGA ABERTA</span>
+                        <span class="vaga-tooltip">Clique para se candidatar</span>
+                    </li>
+                    <li onclick="selecionarVaga('Assistente de Backoffice')">
+                        <span>Assistente de Backoffice</span>
+                        <span class="vaga-badge">VAGA ABERTA</span>
+                        <span class="vaga-tooltip">Clique para se candidatar</span>
+                    </li>
+                    <li onclick="selecionarVaga('PCD')">
+                        <span>PCD</span>
+                        <span class="vaga-badge">VAGA ABERTA</span>
+                        <span class="vaga-tooltip">Clique para se candidatar</span>
+                    </li>
+                `;
+            }
+        }
+
+        function selecionarVaga(vaga) {
+            localStorage.setItem('vaga_selecionada', vaga);
+            window.location.href = './formulario.html';
+        }
     </script>
 </body>
-
 </html>
